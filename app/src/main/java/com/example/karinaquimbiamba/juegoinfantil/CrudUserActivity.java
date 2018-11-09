@@ -15,6 +15,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -36,10 +37,10 @@ public class CrudUserActivity extends AppCompatActivity implements View.OnClickL
 
     private ListView listViewUser;
     private Button buttonRegresar;
+    private Spinner spinnerRol;
     private EditText editTextEmail; //Definición de variable de texto para ingresar el email
     private EditText editTextPassword; //Definción de variable de texto para el ingreso de contraseña
     private EditText editTextNombre; // Definición de variable de texto para ingreso de nombre
-    private EditText editTextEdad; // Definición de variable de texto para ingreso de nombre
     private ProgressDialog progressDialog; //Definición de variable de Dialogo
     private FirebaseAuth firebaseAuth; //Definición de variable para registro de usuarios en firebase
 
@@ -48,6 +49,10 @@ public class CrudUserActivity extends AppCompatActivity implements View.OnClickL
     private List<User> listUser = new ArrayList<User>();
     ArrayAdapter<User> arrayAdapterUser;
     User userSeleccionado;
+
+    private List<Rol> listRol = new ArrayList<Rol>();
+    ArrayAdapter<Rol> arrayAdapterRol;
+    Rol rolSeleccionado;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,22 +65,35 @@ public class CrudUserActivity extends AppCompatActivity implements View.OnClickL
         editTextEmail =(EditText) findViewById(R.id.txtEmail);
         editTextPassword =(EditText) findViewById(R.id.txtPassword);
         editTextNombre= (EditText) findViewById(R.id.txtNombre);
-        editTextEdad= (EditText) findViewById(R.id.txtEdad);
+        spinnerRol= findViewById(R.id.spnRol);
 
         listViewUser= findViewById(R.id.lstUser);
         buttonRegresar = (Button) findViewById(R.id.btnRegresar);
         buttonRegresar.setOnClickListener(this);
         incializarFirebase();
         listarUsuarios();
+        listarRoles();
 
         listViewUser.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 userSeleccionado= (User) parent.getItemAtPosition(position);
                 editTextNombre.setText(userSeleccionado.getName());
-                editTextEdad.setText(userSeleccionado.getEdad());
                 editTextEmail.setText(userSeleccionado.getEmail());
-                //editTextDescripcion.setText(userSeleccionado.getEdad());
+
+            }
+        });
+        spinnerRol.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                rolSeleccionado= (Rol) parent.getItemAtPosition(position);
+
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
             }
         });
     }
@@ -117,7 +135,10 @@ public class CrudUserActivity extends AppCompatActivity implements View.OnClickL
         final String email = editTextEmail.getText().toString().trim();
         String password = editTextPassword.getText().toString().trim();
         final String name = editTextNombre.getText().toString().trim();
-        final String edad = editTextEdad.getText().toString().trim(); //Definción del tipo de variable edad
+        final String rol= spinnerRol.getSelectedItem().toString().trim();
+
+
+        //final String edad = editTextEdad.getText().toString().trim(); //Definción del tipo de variable edad
 
         if (name.isEmpty()){
             Toast.makeText(this,"Ingrese el nombre", Toast.LENGTH_SHORT).show();
@@ -151,12 +172,7 @@ public class CrudUserActivity extends AppCompatActivity implements View.OnClickL
             editTextPassword.requestFocus();
             return;
         }
-        if (edad.isEmpty()){
-            Toast.makeText(this,"Ingrese la edad", Toast.LENGTH_SHORT).show();
-            editTextEdad.setError("Es necesario ingresar la edad");
-            editTextEdad.requestFocus();
-            return;
-        }
+
 
         //progressDialog.setMessage("Registrando Usuario.....");
         //progressDialog.show();
@@ -165,7 +181,8 @@ public class CrudUserActivity extends AppCompatActivity implements View.OnClickL
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()){
-                            User user = new User(name,email,edad);
+
+                            User user = new User(name,email,rol);
                             FirebaseDatabase.getInstance().getReference("Users")
                                     .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                                     .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -198,29 +215,7 @@ public class CrudUserActivity extends AppCompatActivity implements View.OnClickL
 
             }
             case R.id.icon_guardar:{
-                final String email = editTextEmail.getText().toString().trim();
-                String password = editTextPassword.getText().toString().trim();
-                final String name = editTextNombre.getText().toString().trim();
-                final String edad = editTextEdad.getText().toString().trim();
-                User user = new User(name,email,edad);
-                //user.setUid(userSeleccionado.getUid());
-                //user.setName(editTextNombre.getText().toString().trim());
-                //user.setDescripcion(editTextDescripcion.getText().toString().trim());
-                FirebaseDatabase.getInstance().getReference("Users")
-                        .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                        .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        if (task.isSuccessful()){
-                            Toast.makeText(CrudUserActivity.this, "Registro exitoso",Toast.LENGTH_SHORT).show();
-                            CasillasBlancas();
-                        }else {
 
-                        }
-
-                    }
-                });
-                CasillasBlancas();
                 break;
 
 
@@ -242,9 +237,32 @@ public class CrudUserActivity extends AppCompatActivity implements View.OnClickL
         editTextEmail.setText("");
         editTextPassword.setText("");
         editTextNombre.setText("");
-        editTextEdad.setText("");
+
 
     }
+    private void listarRoles() {
+        ValueEventListener rol = databaseReference.child("Rol").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                listRol.clear();
+                for (DataSnapshot objSnapshot : dataSnapshot.getChildren()) {
+                    Rol rol = objSnapshot.getValue(Rol.class);
+                    boolean add = listRol.add(rol);
+
+                    arrayAdapterRol = new ArrayAdapter<Rol>(CrudUserActivity.this, android.R.layout.simple_list_item_1, listRol);
+                    spinnerRol.setAdapter(arrayAdapterRol);
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }
+
 
 
 
@@ -253,7 +271,7 @@ public class CrudUserActivity extends AppCompatActivity implements View.OnClickL
     public void onClick(View view) {
         if (view == buttonRegresar) {
             finish();
-            startActivity(new Intent(this, MainAdminActivity.class));//Abrir  pantalla para el registro
+            startActivity(new Intent(this, CrudsAdminActivity.class));//Abrir  pantalla para el registro
 
         }
 

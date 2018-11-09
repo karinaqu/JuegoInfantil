@@ -27,6 +27,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private TextView textViewLogin; //Definición de variable de texto para acceso al login
     private EditText editTextNombre; // Definición de variable de texto para ingreso de nombre
     private EditText editTextEdad; // Definición de variable de texto para ingreso de nombre
+    private TextView textViewRol;
 
     private ProgressDialog progressDialog; //Definición de variable de Dialogo
     private FirebaseAuth firebaseAuth; //Definición de variable para registro de usuarios en firebase
@@ -50,8 +51,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         editTextEmail =(EditText) findViewById(R.id.txtEmail);
         editTextPassword =(EditText) findViewById(R.id.txtPassword);
         textViewLogin =(TextView) findViewById(R.id.txtvLogin);
+        textViewRol =(TextView) findViewById(R.id.txtRol);
         editTextNombre= (EditText) findViewById(R.id.txtNombre);
-        editTextEdad= (EditText) findViewById(R.id.txtEdad);
+
         buttonRegister.setOnClickListener(this);
         textViewLogin.setOnClickListener(this);
     }
@@ -67,7 +69,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         final String email = editTextEmail.getText().toString().trim();
         String password = editTextPassword.getText().toString().trim();
         final String name = editTextNombre.getText().toString().trim();
-        final String edad = editTextEdad.getText().toString().trim(); //Definción del tipo de variable edad
+        final String rol =textViewRol.getText().toString().trim();
+        //final String edad = editTextEdad.getText().toString().trim(); //Definción del tipo de variable edad
 
         if (name.isEmpty()){
             Toast.makeText(this,"Ingrese el nombre", Toast.LENGTH_SHORT).show();
@@ -101,12 +104,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             editTextPassword.requestFocus();
             return;
         }
-        if (edad.isEmpty()){
+        /*if (edad.isEmpty()){
             Toast.makeText(this,"Ingrese la edad", Toast.LENGTH_SHORT).show();
             editTextEdad.setError("Es necesario ingresar la edad");
             editTextEdad.requestFocus();
             return;
-        }
+        }*/
 
         progressDialog.setMessage("Registrando Usuario.....");
         progressDialog.show();
@@ -116,7 +119,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()){
-                            User user = new User(name,email,edad);
+                            User user = new User(name,email,rol);
                             FirebaseDatabase.getInstance().getReference("Users")
                                     .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                                     .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -124,11 +127,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                                 public void onComplete(@NonNull Task<Void> task) {
                                     if (task.isSuccessful()){
 
-                                        if (editTextEdad.getText().toString().equals("3")){
-                                            startActivity(new Intent(getApplicationContext(),MainAdminActivity.class));
+                                        if (textViewRol.getText().toString().equals("Usuario")){
+                                            startActivity(new Intent(getApplicationContext(),MainPrincipalActivity.class));
 
                                         }
-                                        if (editTextEdad.getText().toString().equals("1")){
+                                        if (textViewRol.getText().toString().equals("Administrador")){
                                             startActivity(new Intent(getApplicationContext(),MainAdminActivity.class));
 
                                         }

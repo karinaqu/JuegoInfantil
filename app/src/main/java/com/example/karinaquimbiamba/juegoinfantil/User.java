@@ -4,16 +4,16 @@ public class User {
     public String uid;
 
     public String name, email;//declaración de atributos nombre y correo
-    public String edad;//definción de atributo edad
+    public String rol;//definción de atributo edad
 
     public User(){ //definición e metodo usuario sin atributos por defecto
 
     }
 
-    public User(String name, String email, String edad){//definición de metodo con atributos para ser llamado
+    public User(String name, String email, String rol){//definición de metodo con atributos para ser llamado
         this.name = name;//referenciar objeto nombre
         this.email= email;//Referenciar objeto correo
-        this.edad= edad;//Referenciar objeto edad
+        this.rol= rol;//Referenciar objeto edad
     }
 
     public String getName() {
@@ -32,12 +32,12 @@ public class User {
         this.email = email;
     }
 
-    public String getEdad() {
-        return edad;
+    public String getRol() {
+        return rol;
     }
 
-    public void setEdad(String edad) {
-        this.edad = edad;
+    public void setRol(String rol) {
+        this.rol = rol;
     }
 
     public String getUid() {

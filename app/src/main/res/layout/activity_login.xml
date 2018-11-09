@@ -30,7 +30,7 @@
             android:id="@+id/txtEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="15dp"
+            android:layout_margin="10dp"
             android:drawableLeft="@drawable/ic_email"
             android:hint="    Ingresar su correo"
             android:inputType="textEmailAddress" />
@@ -39,7 +39,7 @@
             android:id="@+id/txtPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="15dp"
+            android:layout_margin="10dp"
             android:drawableLeft="@drawable/ic_contrasena"
             android:hint="   Ingresar su contraseña"
             android:inputType="textPassword" />
@@ -48,7 +48,7 @@
             android:id="@+id/btnIngresar"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_margin="20dp"
+            android:layout_margin="10dp"
             android:drawableBottom="@drawable/ic_key"
             android:text="Ingresar"
             android:textSize="18sp"

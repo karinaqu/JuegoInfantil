@@ -9,7 +9,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="306dp"
+        android:layout_height="276dp"
         android:orientation="vertical">
 
         <TextView
@@ -57,7 +57,7 @@
     <ListView
         android:id="@+id/lstNivel"
         android:layout_width="match_parent"
-        android:layout_height="182dp"
+        android:layout_height="138dp"
         android:textSize="8px"></ListView>
 
     <Button

@@ -29,17 +29,15 @@ import java.util.List;
 
 public class AreasActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private FirebaseAuth.AuthStateListener mAuthListener; //Definición de variable de autenticacipin
+
     private FirebaseAuth firebaseAuth; //Definción de variable Autenticación
-    private TextView textViewNombre; //Definción de variable texto  para el nombre
-    private TextView textViewRol;
+
     private Button buttonSalir; //Definición de variable para el botón Salir
     private ProgressDialog progressDialog; //Definición de variable para cuadros de Dialogo
     private StorageReference storageReference; //Definción de referencia para firebase
     private DatabaseReference databaseReference; //Definción de variable para la base de datos firebase
     FirebaseDatabase firebaseDatabase;
-    private Button buttonAdministrar;
-    private Button buttonJugar;
+
 
 
     private ListView listViewArea;
@@ -47,11 +45,7 @@ public class AreasActivity extends AppCompatActivity implements View.OnClickList
     ArrayAdapter<Area> arrayAdapterArea;
     Area areaSeleccionado;
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-        firebaseAuth.addAuthStateListener(mAuthListener);
-    }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,62 +55,15 @@ public class AreasActivity extends AppCompatActivity implements View.OnClickList
         progressDialog= new ProgressDialog(this);
         firebaseAuth= FirebaseAuth.getInstance();
 
-        textViewRol=(TextView) findViewById(R.id.txtRol);
 
-        buttonJugar=(Button) findViewById(R.id.btnJugar);
-        buttonAdministrar=(Button) findViewById(R.id.btnAdminitrar);
 
 
 
         FirebaseUser user= firebaseAuth.getCurrentUser();
-        textViewNombre=(TextView) findViewById(R.id.txtNombre);
+
         buttonSalir=(Button) findViewById(R.id.btnSalir);
         buttonSalir.setOnClickListener(this);
-        mAuthListener = new FirebaseAuth.AuthStateListener() {
-            @Override
-            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                final String rol="3";
 
-                if (firebaseAuth.getCurrentUser() !=null){
-
-
-                    //
-                    storageReference = FirebaseStorage.getInstance().getReference();
-                    databaseReference = FirebaseDatabase.getInstance().getReference().child("Users");//Refrenciar base de datos a la tabla Users creada
-                    final ValueEventListener valueEventListener = databaseReference.child(firebaseAuth.getCurrentUser().getUid()).addValueEventListener(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(DataSnapshot dataSnapshot) {
-
-
-                                User user = dataSnapshot.getValue(User.class);{
-                                    //User user = dataSnapshot.getValue(User.class);
-                                    //textViewRol.toString() =user.getEdad().toString();
-                                    user.getEdad();
-                                    textViewNombre.setText(String.valueOf(dataSnapshot.child("name").getValue()));//Traer desde la base de datos firebase el nombre para colocarlo en el cajón de texto
-                                    if (user.getEdad().equals("3")){
-                                        buttonJugar.setVisibility(View.VISIBLE);
-
-
-                                    }
-                                    if (user.getEdad().equals("1")){
-                                        buttonAdministrar.setVisibility(View.VISIBLE);
-
-                                    }
-
-                                }
-
-                        }
-
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                        }
-
-                    });
-                }
-
-            }
-        };
         listViewArea= findViewById(R.id.lstArea);
         incializarFirebase();
         listarAreas();
@@ -125,13 +72,12 @@ public class AreasActivity extends AppCompatActivity implements View.OnClickList
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 if (position == 0){
-                    // Abre una nueva Activity:
-                    startActivity( new Intent(view.getContext(), MainAdminActivity.class));
+                    startActivity( new Intent(view.getContext(), NivelesAre1Activity.class));
 
                 }
                 if(position == 1) {
                     // Abre una nueva Activity:
-                    startActivity( new Intent(view.getContext(), MainAdminActivity.class));
+                    startActivity( new Intent(view.getContext(), NivelesAre2Activity.class));
                 }
 
             }
@@ -150,6 +96,7 @@ public class AreasActivity extends AppCompatActivity implements View.OnClickList
                 listArea.clear();
                 for (DataSnapshot objSnapshot : dataSnapshot.getChildren()) {
                     Area area = objSnapshot.getValue(Area.class);
+
                     boolean add = listArea.add(area);
 
                     arrayAdapterArea = new ArrayAdapter<Area>(AreasActivity.this, android.R.layout.simple_list_item_1, listArea);

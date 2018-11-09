@@ -227,7 +227,7 @@ public class CrudNivelActivity extends AppCompatActivity implements View.OnClick
     public void onClick(View view) {
         if (view == buttonRegresar) {
             finish();
-            startActivity(new Intent(this, MainAdminActivity.class));//Abrir  pantalla para el registro
+            startActivity(new Intent(this, CrudsAdminActivity.class));//Abrir  pantalla para el registro
 
         }
     }

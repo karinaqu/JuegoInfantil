@@ -97,8 +97,40 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                         //Condición que establece que si es exitoso se cumpla la condición
                         if (task.isSuccessful()) {
 
-                            finish();
-                            startActivity(new Intent(getApplicationContext(), AreasActivity.class));//Muestra pantalla de Áreas del usuario
+                            storageReference = FirebaseStorage.getInstance().getReference();
+                            databaseReference = FirebaseDatabase.getInstance().getReference().child("Users");//Refrenciar base de datos a la tabla Users creada
+                            final ValueEventListener valueEventListener = databaseReference.child(firebaseAuth.getCurrentUser().getUid()).addValueEventListener(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(DataSnapshot dataSnapshot) {
+
+
+                                    User user = dataSnapshot.getValue(User.class);{
+                                        user.getRol();
+                                        if (user.getRol().equals("Usuario")){
+
+                                            startActivity(new Intent(getApplicationContext(), MainPrincipalActivity.class));
+
+
+                                        }
+                                        if (user.getRol().equals("Administrador")){
+                                            startActivity(new Intent(getApplicationContext(), MainAdminActivity.class));
+
+
+                                        }
+
+                                    }
+
+                                }
+
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                }
+
+                            });
+
+                            //finish();
+                            //startActivity(new Intent(getApplicationContext(), MainPrincipalActivity.class));//Muestra pantalla de Áreas del usuario
 
                         } else {
                             Toast.makeText(LoginActivity.this, "Usuario o Contraseña incorrectos", Toast.LENGTH_SHORT).show();

@@ -26,7 +26,7 @@
             android:id="@+id/txtNombre"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
+            android:layout_margin="5dp"
             android:drawableLeft="@drawable/ic_user"
             android:hint="   Ingresar su nombre"
             android:inputType="textEmailAddress" />
@@ -35,7 +35,7 @@
             android:id="@+id/txtEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
+            android:layout_margin="5dp"
             android:drawableLeft="@drawable/ic_email"
             android:hint="   Ingresar su correo"
             android:inputType="textEmailAddress" />
@@ -44,19 +44,16 @@
             android:id="@+id/txtPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
+            android:layout_margin="5dp"
             android:drawableLeft="@drawable/ic_contrasena"
             android:hint="   Ingresar su contraseña"
             android:inputType="textPassword" />
 
-        <EditText
-            android:id="@+id/txtEdad"
-            android:layout_width="187dp"
-            android:layout_height="39dp"
-            android:layout_margin="10dp"
-            android:drawableLeft="@drawable/ic_edad"
-            android:hint="  Ingresar la edad"
-            android:inputType="number" />
+        <Spinner
+            android:id="@+id/spnRol"
+            android:layout_width="wrap_content"
+            android:layout_margin="5dp"
+            android:layout_height="wrap_content" />
         <TextView
 
             android:layout_width="wrap_content"
@@ -64,12 +61,13 @@
             android:layout_gravity="center"
             android:text="Lista de Usuarios"
             android:textSize="24sp" />
+
     </LinearLayout>
 
     <ListView
         android:id="@+id/lstUser"
         android:layout_width="match_parent"
-        android:layout_height="182dp"
+        android:layout_height="119dp"
         android:textSize="8px"></ListView>
 
     <Button

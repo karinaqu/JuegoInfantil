@@ -15,30 +15,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:text="Bienvenido"
+            android:text="AREAS"
 
             android:textSize="50sp"
             android:textStyle="bold" />
 
-
-        <TextView
-            android:id="@+id/txtNombre"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:text=""
-            android:textColor="#131946"
-            android:textSize="30sp" />
-
-        <TextView
-            android:id="@+id/txtRol"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:text=""
-            android:visibility="invisible"
-            android:textColor="#131946"
-            android:textSize="30sp" />
 
         <Button
             android:id="@+id/btnSalir"
@@ -47,20 +28,7 @@
             android:layout_gravity="center_horizontal"
             android:text="Logout" />
 
-        <Button
-            android:id="@+id/btnJugar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:text="JUGAR"
-            android:visibility="invisible"/>
-        <Button
-            android:id="@+id/btnAdminitrar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:text="ADMINISTRAR"
-            android:visibility="invisible"/>
+
 
         <ListView
             android:id="@+id/lstArea"

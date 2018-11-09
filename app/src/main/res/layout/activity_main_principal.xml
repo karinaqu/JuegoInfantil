@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:orientation="vertical"
     android:layout_height="match_parent"
-    tools:context=".MainAdminActivity">
+    tools:context=".MainPrincipalActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -48,17 +49,30 @@
             android:text="Logout" />
 
         <Button
-            android:id="@+id/btnAdminitrar"
-            android:layout_width="266dp"
-            android:layout_height="139dp"
+            android:id="@+id/btnJugar"
+            android:layout_width="223dp"
+            android:layout_height="119dp"
             android:layout_gravity="center_horizontal"
-            android:layout_margin="80dp"
-            android:background="#0febf7"
-            android:text="ADMINISTRAR"
+            android:layout_margin="20dp"
+            android:background="#eb0a0a"
+            android:text="JUGAR"
             android:textColor="@android:color/white"
-            android:textSize="35sp"
-            android:textStyle="bold" />
+            android:textSize="30sp" />
+
+        <Button
+            android:id="@+id/btnPuntajes"
+            android:layout_width="223dp"
+            android:layout_height="127dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="20dp"
+            android:background="#8b0ede"
+            android:text="PUNTAJES"
+            android:textColor="@android:color/white"
+            android:textSize="30sp" />
+
+
+
+
     </LinearLayout>
 
-
-</LinearLayout>
+</android.support.constraint.ConstraintLayout>

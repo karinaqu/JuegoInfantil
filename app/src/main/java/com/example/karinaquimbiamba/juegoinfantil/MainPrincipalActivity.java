@@ -6,9 +6,11 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -19,7 +21,8 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
-public class MainAdminActivity extends AppCompatActivity implements View.OnClickListener{
+public class MainPrincipalActivity extends AppCompatActivity implements View.OnClickListener{
+
 
     private FirebaseAuth.AuthStateListener mAuthListener; //Definición de variable de autenticacipin
     private FirebaseAuth firebaseAuth; //Definción de variable Autenticación
@@ -36,15 +39,16 @@ public class MainAdminActivity extends AppCompatActivity implements View.OnClick
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main_admin);
+        setContentView(R.layout.activity_main_principal);
 
         progressDialog= new ProgressDialog(this);
         firebaseAuth= FirebaseAuth.getInstance();
 
         textViewRol=(TextView) findViewById(R.id.txtRol);
 
+        buttonJugar=(Button) findViewById(R.id.btnJugar);
+        buttonJugar.setOnClickListener(this);
         buttonAdministrar=(Button) findViewById(R.id.btnAdminitrar);
-        buttonAdministrar.setOnClickListener(this);
 
 
 
@@ -52,6 +56,7 @@ public class MainAdminActivity extends AppCompatActivity implements View.OnClick
         textViewNombre=(TextView) findViewById(R.id.txtNombre);
         buttonSalir=(Button) findViewById(R.id.btnSalir);
         buttonSalir.setOnClickListener(this);
+
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
@@ -84,7 +89,6 @@ public class MainAdminActivity extends AppCompatActivity implements View.OnClick
             }
         };
 
-
     }
 
     @Override
@@ -92,7 +96,7 @@ public class MainAdminActivity extends AppCompatActivity implements View.OnClick
         super.onStart();
         firebaseAuth.addAuthStateListener(mAuthListener);
     }
-    //Implemetación del método OnClickListener
+
 
     @Override
     public void onClick(View view) {
@@ -102,13 +106,12 @@ public class MainAdminActivity extends AppCompatActivity implements View.OnClick
             finish();
             startActivity(new Intent(this, LoginActivity.class));//Llama a la pantalla de Logeo para ingresar de nuevo
         }
-        //Condición que establece que si se da clic en el Boton desloguearse
-        if(view==buttonAdministrar){
+        if(view==buttonJugar){
             firebaseAuth.signOut();//Permite salir al usuario es decir desloguearse
             finish();
-            startActivity(new Intent(this, CrudsAdminActivity.class));//Llama a la pantalla de Logeo para ingresar de nuevo
+            startActivity(new Intent(this, AreasActivity.class));//Llama a la pantalla de Logeo para ingresar de nuevo
         }
 
-
     }
+
 }
