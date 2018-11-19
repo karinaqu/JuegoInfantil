@@ -19,16 +19,31 @@
             </intent-filter>
         </activity>
         <activity android:name=".MainActivity" />
-        <activity android:name=".AreasActivity" />
+        <activity
+            android:name=".AreasActivity"
+            android:screenOrientation="landscape" />
         <activity android:name=".CrudAreaActivity" />
         <activity android:name=".CrudRolActivity" />
         <activity android:name=".MainAdminActivity" />
         <activity android:name=".CrudNivelActivity" />
         <activity android:name=".CrudUserActivity" />
-        <activity android:name=".NivelesAre1Activity" />
-        <activity android:name=".NivelesAre2Activity" />
+        <activity
+            android:name=".NivelesAre1Activity"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".NivelesAre2Activity"
+            android:screenOrientation="landscape" />
         <activity android:name=".MainPrincipalActivity" />
-        <activity android:name=".CrudsAdminActivity"></activity>
+        <activity android:name=".CrudsAdminActivity" />
+        <activity
+            android:name=".JuegoNivel1Activity"
+            android:screenOrientation="landscape" />
+        <activity android:name=".RecuperarContrasenaActivity" />
+        <activity android:name=".JuegoNivel2Area1Activity" />
+        <activity android:name=".JuegoNivel3Area1Activity" />
+        <activity android:name=".JuegoNivel1Area2Activity" />
+        <activity android:name=".JuegoNivel2Area2Activity" />
+        <activity android:name=".JuegoNivel3Area2Activity"></activity>
     </application>
 
 </manifest>

@@ -11,6 +11,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -29,13 +30,14 @@ public class CrudRolActivity extends AppCompatActivity implements View.OnClickLi
 
     private EditText editTexttNombre;
     private EditText editTextDescripcion;
-    private Button buttonRegresar;
+
     private ListView listViewRol;
     DatabaseReference databaseReference;
     FirebaseDatabase firebaseDatabase;
     private List<Rol> listRol = new ArrayList<Rol>();
     ArrayAdapter<Rol> arrayAdapterRol;
     Rol rolSeleccionado;
+    private ImageButton imageButtonFlechaAtras;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,10 +47,11 @@ public class CrudRolActivity extends AppCompatActivity implements View.OnClickLi
         editTexttNombre=findViewById(R.id.txtNombre);
         editTextDescripcion= findViewById(R.id.txtDescripcion);
         listViewRol= findViewById(R.id.lstRol);
-        buttonRegresar = (Button) findViewById(R.id.btnRegresar);
-        buttonRegresar.setOnClickListener(this);
+
         incializarFirebase();
         listarRoles();
+        imageButtonFlechaAtras= findViewById(R.id.imgAtras);
+        imageButtonFlechaAtras.setOnClickListener(this);
 
         listViewRol.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -166,9 +169,8 @@ public class CrudRolActivity extends AppCompatActivity implements View.OnClickLi
 
     @Override
     public void onClick(View view) {
-        if (view == buttonRegresar) {
-            finish();
-            startActivity(new Intent(this, CrudsAdminActivity.class));//Abrir  pantalla para el registro
+        if (view == imageButtonFlechaAtras){
+            startActivity(new Intent(this, CrudsAdminActivity.class));
 
         }
     }

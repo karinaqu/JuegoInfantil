@@ -11,6 +11,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -30,7 +31,7 @@ public class CrudAreaActivity extends AppCompatActivity implements View.OnClickL
     private EditText editTexttNombre;
     private EditText editTextDescripcion;
     private ListView listViewArea;
-    private Button buttonRegresar;
+    private ImageButton imageButtonFlechaAtras;
     DatabaseReference databaseReference;
     FirebaseDatabase firebaseDatabase;
     private List<Area> listArea = new ArrayList<Area>();
@@ -45,8 +46,9 @@ public class CrudAreaActivity extends AppCompatActivity implements View.OnClickL
         editTexttNombre=findViewById(R.id.txtNombre);
         editTextDescripcion= findViewById(R.id.txtDescripcion);
         listViewArea= findViewById(R.id.lstArea);
-        buttonRegresar = (Button) findViewById(R.id.btnRegresar);
-        buttonRegresar.setOnClickListener(this);
+        imageButtonFlechaAtras= findViewById(R.id.imgAtras);
+        imageButtonFlechaAtras.setOnClickListener(this);
+
         incializarFirebase();
         listarAreas();
 
@@ -168,9 +170,9 @@ public class CrudAreaActivity extends AppCompatActivity implements View.OnClickL
 
     @Override
     public void onClick(View view) {
-        if (view == buttonRegresar) {
-            finish();
-            startActivity(new Intent(this, CrudsAdminActivity.class));//Abrir  pantalla para el registro
+
+        if (view == imageButtonFlechaAtras){
+            startActivity(new Intent(this, CrudsAdminActivity.class));
 
         }
     }

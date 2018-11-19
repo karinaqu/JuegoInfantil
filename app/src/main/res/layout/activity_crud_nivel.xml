@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -9,7 +9,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="276dp"
+        android:layout_height="match_parent"
         android:orientation="vertical">
 
         <TextView
@@ -17,7 +17,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="Crud de Niveles"
+            android:text="Niveles"
             android:textSize="24sp" />
 
 
@@ -25,7 +25,7 @@
             android:id="@+id/txtNombre"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="15dp"
+            android:layout_margin="10dp"
             android:hint="Ingresar Nombre "
             android:inputType="text" />
 
@@ -33,13 +33,21 @@
             android:id="@+id/txtDescripcion"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="15dp"
+            android:layout_margin="10dp"
             android:hint="Ingresar Descripción"
             android:inputType="text" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="Seleccione un área: "
+            android:textSize="20sp" />
 
         <Spinner
             android:id="@+id/spnArea"
             android:layout_width="wrap_content"
+            android:layout_margin="5dp"
+            android:layout_gravity="center"
             android:layout_height="wrap_content" />
 
 
@@ -51,22 +59,22 @@
             android:text="Lista de Niveles"
             android:textSize="24sp" />
 
+
+
+        <ListView
+            android:id="@+id/lstNivel"
+            android:layout_width="match_parent"
+            android:layout_height="152dp"
+            android:textSize="8px"></ListView>
+
+        <ImageButton
+            android:id="@+id/imgAtras"
+            android:layout_width="67dp"
+            android:layout_height="73dp"
+            android:src="@drawable/atras" />
+
     </LinearLayout>
 
 
-    <ListView
-        android:id="@+id/lstNivel"
-        android:layout_width="match_parent"
-        android:layout_height="138dp"
-        android:textSize="8px"></ListView>
 
-    <Button
-        android:id="@+id/btnRegresar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="20dp"
-        android:gravity="center"
-        android:text="Regresar Menu PRINCIPAL"
-        android:textSize="18sp" />
-
-</LinearLayout>
+</ScrollView>

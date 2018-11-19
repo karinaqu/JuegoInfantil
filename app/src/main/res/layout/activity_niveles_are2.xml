@@ -19,20 +19,15 @@
             android:textSize="50sp"
             android:textStyle="bold" />
 
-
-        <Button
-            android:id="@+id/btnSalir"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:text="Logout" />
-
-
-
         <ListView
             android:id="@+id/lstNivel"
             android:layout_width="match_parent"
-            android:layout_height="236dp"></ListView>
+            android:layout_height="154dp"></ListView>
+        <ImageButton
+            android:id="@+id/imgAtras"
+            android:layout_width="67dp"
+            android:layout_height="73dp"
+            android:src="@drawable/atras" />
 
     </LinearLayout>
 

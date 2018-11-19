@@ -2,13 +2,18 @@ package com.example.karinaquimbiamba.juegoinfantil;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -26,18 +31,19 @@ import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 public class AreasActivity extends AppCompatActivity implements View.OnClickListener {
 
 
     private FirebaseAuth firebaseAuth; //Definción de variable Autenticación
+    private ImageView imageViewLista;
 
-    private Button buttonSalir; //Definición de variable para el botón Salir
     private ProgressDialog progressDialog; //Definición de variable para cuadros de Dialogo
     private StorageReference storageReference; //Definción de referencia para firebase
     private DatabaseReference databaseReference; //Definción de variable para la base de datos firebase
     FirebaseDatabase firebaseDatabase;
-
+    private ImageButton imageButtonFlechaAtras;
 
 
     private ListView listViewArea;
@@ -51,18 +57,17 @@ public class AreasActivity extends AppCompatActivity implements View.OnClickList
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_areas);
+        this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
 
         progressDialog= new ProgressDialog(this);
         firebaseAuth= FirebaseAuth.getInstance();
-
-
-
-
+        imageButtonFlechaAtras= findViewById(R.id.imgAtras);
+        imageButtonFlechaAtras.setOnClickListener(this);
+        imageViewLista= findViewById(R.id.imgLista);
 
         FirebaseUser user= firebaseAuth.getCurrentUser();
 
-        buttonSalir=(Button) findViewById(R.id.btnSalir);
-        buttonSalir.setOnClickListener(this);
+
 
         listViewArea= findViewById(R.id.lstArea);
         incializarFirebase();
@@ -88,6 +93,26 @@ public class AreasActivity extends AppCompatActivity implements View.OnClickList
         firebaseDatabase= FirebaseDatabase.getInstance();
         databaseReference= firebaseDatabase.getReference();
     }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu){
+        getMenuInflater().inflate(R.menu.menu_principal,menu);
+        return super.onCreateOptionsMenu(menu);
+
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item){
+
+        switch (item.getItemId()){
+            case R.id.icon_cerrar:{
+                firebaseAuth.signOut();//Permite salir al usuario es decir desloguearse
+                finish();
+                startActivity(new Intent(this, LoginActivity.class));//Llama a la pantalla de Logeo para ingresar de nuevo
+
+            }break;
+
+        }
+        return  true;
+    }
 
     private void listarAreas() {
         ValueEventListener area = databaseReference.child("Area").addValueEventListener(new ValueEventListener() {
@@ -99,10 +124,10 @@ public class AreasActivity extends AppCompatActivity implements View.OnClickList
 
                     boolean add = listArea.add(area);
 
+
                     arrayAdapterArea = new ArrayAdapter<Area>(AreasActivity.this, android.R.layout.simple_list_item_1, listArea);
                     listViewArea.setAdapter(arrayAdapterArea);
                 }
-
 
             }
 
@@ -116,11 +141,11 @@ public class AreasActivity extends AppCompatActivity implements View.OnClickList
     @Override
     public void onClick(View view) {
         //Condición que establece que si se da clic en el Boton desloguearse
-        if(view==buttonSalir){
-            firebaseAuth.signOut();//Permite salir al usuario es decir desloguearse
-            finish();
-            startActivity(new Intent(this, LoginActivity.class));//Llama a la pantalla de Logeo para ingresar de nuevo
+        if (view == imageButtonFlechaAtras){
+            startActivity(new Intent(this, MainPrincipalActivity.class));
+
         }
+
 
     }
 }

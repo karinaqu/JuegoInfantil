@@ -1,12 +1,17 @@
 package com.example.karinaquimbiamba.juegoinfantil;
 
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ListView;
 
 import com.google.firebase.FirebaseApp;
@@ -27,7 +32,8 @@ public class NivelesAre1Activity extends AppCompatActivity implements View.OnCli
     private StorageReference storageReference; //Definción de referencia para firebase
     private DatabaseReference databaseReference; //Definción de variable para la base de datos firebase
     FirebaseDatabase firebaseDatabase;
-    private Button buttonSalir;
+    private ImageButton imageButtonFlechaAtras;
+
     private FirebaseAuth firebaseAuth;
 
     private ListView listViewNivel;
@@ -40,14 +46,37 @@ public class NivelesAre1Activity extends AppCompatActivity implements View.OnCli
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_niveles_are1);
+        this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
 
         listViewNivel= findViewById(R.id.lstNivel);
-        buttonSalir=(Button) findViewById(R.id.btnSalir);
-        buttonSalir.setOnClickListener(this);
+
         firebaseAuth= FirebaseAuth.getInstance();
+
+        imageButtonFlechaAtras= findViewById(R.id.imgAtras);
+        imageButtonFlechaAtras.setOnClickListener(this);
 
         incializarFirebase();
         listarNiveles();
+        listViewNivel.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                if (position == 0){
+                    startActivity( new Intent(view.getContext(), JuegoNivel1Activity.class));
+
+                }
+                if(position == 1) {
+                    // Abre una nueva Activity:
+                    startActivity( new Intent(view.getContext(), JuegoNivel2Area1Activity.class));
+
+                }
+                if(position == 2) {
+                    // Abre una nueva Activity:
+                    startActivity( new Intent(view.getContext(), JuegoNivel3Area1Activity.class));
+
+                }
+
+            }
+        });
     }
     private void listarNiveles() {
         ValueEventListener nivel = databaseReference.child("Nivel").addValueEventListener(new ValueEventListener() {
@@ -80,13 +109,32 @@ public class NivelesAre1Activity extends AppCompatActivity implements View.OnCli
     }
     @Override
     public void onClick(View view) {
-        //Condición que establece que si se da clic en el Boton desloguearse
-        if(view==buttonSalir){
-            firebaseAuth.signOut();//Permite salir al usuario es decir desloguearse
-            finish();
-            startActivity(new Intent(this, LoginActivity.class));//Llama a la pantalla de Logeo para ingresar de nuevo
+        if (view == imageButtonFlechaAtras){
+            startActivity(new Intent(this, AreasActivity.class));
+
         }
 
+
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu){
+        getMenuInflater().inflate(R.menu.menu_principal,menu);
+        return super.onCreateOptionsMenu(menu);
+
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item){
+
+        switch (item.getItemId()){
+            case R.id.icon_cerrar:{
+                firebaseAuth.signOut();//Permite salir al usuario es decir desloguearse
+                finish();
+                startActivity(new Intent(this, LoginActivity.class));//Llama a la pantalla de Logeo para ingresar de nuevo
+
+            }break;
+
+        }
+        return  true;
     }
 
 }

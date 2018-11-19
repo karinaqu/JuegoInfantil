@@ -1,15 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".CrudsAdminActivity">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="133dp"
+            android:src="@drawable/administrador" />
 
         <TextView
             android:id="@+id/textView"
@@ -25,44 +31,53 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
+            android:visibility="gone"
             android:text="Logout" />
 
         <Button
             android:id="@+id/btnRoles"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="20dp"
+            android:layout_margin="10dp"
             android:gravity="center"
-            android:text="Crud Roles"
+            android:text="Roles"
             android:textSize="18sp" />
 
         <Button
             android:id="@+id/btnUsuarios"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="20dp"
+            android:layout_margin="10dp"
             android:gravity="center"
-            android:text="Crud Usuarios"
+            android:text="Usuarios"
             android:textSize="18sp" />
 
         <Button
             android:id="@+id/btnAreas"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="20dp"
+            android:layout_margin="10dp"
             android:gravity="center"
-            android:text="Crud Áreas"
+            android:text="Áreas"
             android:textSize="18sp" />
 
         <Button
             android:id="@+id/btnNiveles"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="20dp"
+            android:layout_margin="10dp"
             android:gravity="center"
-            android:text="Crud Niveles"
+            android:text="Niveles"
             android:textSize="18sp" />
+        <ImageButton
+        android:id="@+id/imgAtras"
+        android:layout_width="67dp"
+        android:layout_height="73dp"
+        android:src="@drawable/atras" />
+
+
+
 
     </LinearLayout>
 
-</LinearLayout>
+</ScrollView>

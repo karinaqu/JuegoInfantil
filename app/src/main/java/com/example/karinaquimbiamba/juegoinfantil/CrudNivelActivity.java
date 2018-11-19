@@ -11,6 +11,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -33,7 +34,8 @@ public class CrudNivelActivity extends AppCompatActivity implements View.OnClick
     private EditText editTexttNombre;
     private EditText editTextDescripcion;
     private EditText editTextAreaNombre;
-    private Button buttonRegresar;
+    private ImageButton imageButtonFlechaAtras;
+
     private ListView listViewNivel;
     private Spinner spinnerArea;
     DatabaseReference databaseReference;
@@ -57,8 +59,9 @@ public class CrudNivelActivity extends AppCompatActivity implements View.OnClick
         editTextDescripcion= findViewById(R.id.txtDescripcion);
         listViewNivel= findViewById(R.id.lstNivel);
         //editTextAreaNombre= findViewById(R.id.txtNombreArea);
-        buttonRegresar = (Button) findViewById(R.id.btnRegresar);
-        buttonRegresar.setOnClickListener(this);
+        imageButtonFlechaAtras= findViewById(R.id.imgAtras);
+        imageButtonFlechaAtras.setOnClickListener(this);
+
 
         spinnerArea= findViewById(R.id.spnArea);
 
@@ -225,9 +228,8 @@ public class CrudNivelActivity extends AppCompatActivity implements View.OnClick
 
     @Override
     public void onClick(View view) {
-        if (view == buttonRegresar) {
-            finish();
-            startActivity(new Intent(this, CrudsAdminActivity.class));//Abrir  pantalla para el registro
+        if (view == imageButtonFlechaAtras){
+            startActivity(new Intent(this, CrudsAdminActivity.class));
 
         }
     }

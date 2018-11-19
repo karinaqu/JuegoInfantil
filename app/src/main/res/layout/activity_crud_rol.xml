@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -9,7 +9,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="210dp"
+        android:layout_height="488dp"
         android:orientation="vertical">
 
         <TextView
@@ -17,9 +17,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="Crud de Roles"
+            android:text="Roles"
             android:textSize="24sp" />
-
 
 
         <EditText
@@ -47,20 +46,20 @@
             android:text="Lista de Roles"
             android:textSize="24sp" />
 
+        <ListView
+            android:id="@+id/lstRol"
+            android:layout_width="match_parent"
+            android:layout_height="210dp"></ListView>
+        <ImageButton
+            android:id="@+id/imgAtras"
+            android:layout_width="67dp"
+            android:layout_height="73dp"
+            android:src="@drawable/atras" />
+
     </LinearLayout>
 
 
-    <ListView
-        android:id="@+id/lstRol"
-        android:layout_width="match_parent"
-        android:layout_height="182dp"></ListView>
-    <Button
-        android:id="@+id/btnRegresar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="20dp"
-        android:gravity="center"
-        android:text="Regresar Menu PRINCIPAL"
-        android:textSize="18sp" />
 
-</LinearLayout>
+
+
+</ScrollView>

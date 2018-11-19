@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -17,10 +17,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="Crud de Usuarios"
-            android:textColor="#131946"
+            android:text="Usuarios"
             android:textSize="24sp"
-            android:textStyle="bold" />
+             />
 
         <EditText
             android:id="@+id/txtNombre"
@@ -48,9 +47,17 @@
             android:drawableLeft="@drawable/ic_contrasena"
             android:hint="   Ingresar su contraseña"
             android:inputType="textPassword" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:text="Slecciones un rol:"
+            android:textColor="#131946"
+            android:textSize="20sp" />
 
         <Spinner
             android:id="@+id/spnRol"
+            android:layout_gravity="center"
             android:layout_width="wrap_content"
             android:layout_margin="5dp"
             android:layout_height="wrap_content" />
@@ -62,22 +69,22 @@
             android:text="Lista de Usuarios"
             android:textSize="24sp" />
 
+        <ListView
+            android:id="@+id/lstUser"
+            android:layout_width="match_parent"
+            android:layout_height="115dp"
+            android:textSize="8px"></ListView>
+        <ImageButton
+            android:id="@+id/imgAtras"
+            android:layout_width="67dp"
+            android:layout_height="73dp"
+            android:src="@drawable/atras" />
+
     </LinearLayout>
 
-    <ListView
-        android:id="@+id/lstUser"
-        android:layout_width="match_parent"
-        android:layout_height="119dp"
-        android:textSize="8px"></ListView>
-
-    <Button
-        android:id="@+id/btnRegresar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="20dp"
-        android:gravity="center"
-        android:text="Regresar Menu PRINCIPAL"
-        android:textSize="18sp" />
 
 
-</LinearLayout>
+
+
+
+</ScrollView>

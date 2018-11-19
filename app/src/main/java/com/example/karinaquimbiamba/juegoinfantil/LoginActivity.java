@@ -32,6 +32,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private Button buttonIngresar; // Definición de variable para el botón Ingresar
     private EditText editTextEmail; // Definición de variable para el texto de email
     private EditText editTextPassword; //Definición de variable para el texto de contraseña
+    private TextView textViewRecuperarContrasena;
     private TextView textViewRegistrar;//Definición de variable para el texto de Registro
     private ProgressDialog progressDialog; //Definición de variable de Dialogo
     private FirebaseAuth firebaseAuth; //Definción de variable de Authenticación
@@ -47,22 +48,23 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
 
         //Asociar variables definidas con los elementos de las pantallas
-        buttonIngresar = (Button) findViewById(R.id.btnIngresar); //Asociación de la variable con el boton Ingresar
-        editTextEmail = (EditText) findViewById(R.id.txtEmail); //Asociación de la variable con el cajón de texto correo
-        editTextPassword = (EditText) findViewById(R.id.txtPassword); //Asociación de la variable con el cajón de texto contraseña
-        textViewRegistrar = (TextView) findViewById(R.id.txtvRegistrar); //Asociación de la variable con el texto de Registro
-
+        buttonIngresar =  findViewById(R.id.btnIngresar); //Asociación de la variable con el boton Ingresar
+        editTextEmail =  findViewById(R.id.txtEmail); //Asociación de la variable con el cajón de texto correo
+        editTextPassword =  findViewById(R.id.txtPassword); //Asociación de la variable con el cajón de texto contraseña
+        textViewRegistrar =  findViewById(R.id.txtvRegistrar); //Asociación de la variable con el texto de Registro
+        textViewRecuperarContrasena= findViewById(R.id.txtvRecuperarContrasena);
         buttonIngresar.setOnClickListener(this); //Definción del evento clic sobre el botón Ingresar
         textViewRegistrar.setOnClickListener(this); //Definición de evento clic sobre el texto Registrar
+        textViewRecuperarContrasena.setOnClickListener(this);
         incializarFirebase();
 
         progressDialog = new ProgressDialog(this);
         firebaseAuth = FirebaseAuth.getInstance();
-        if (firebaseAuth.getCurrentUser() != null) {
+        /*if (firebaseAuth.getCurrentUser() != null) {
             finish();
-            startActivity(new Intent(getApplicationContext(), AreasActivity.class));
+            startActivity(new Intent(getApplicationContext(), MainPrincipalActivity.class));
 
-        }
+        }*/
     }
 
     //Metodo de Ingreso de Usuario
@@ -107,10 +109,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                                     User user = dataSnapshot.getValue(User.class);{
                                         user.getRol();
                                         if (user.getRol().equals("Usuario")){
-
                                             startActivity(new Intent(getApplicationContext(), MainPrincipalActivity.class));
-
-
                                         }
                                         if (user.getRol().equals("Administrador")){
                                             startActivity(new Intent(getApplicationContext(), MainAdminActivity.class));
@@ -151,8 +150,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         }
         //condición de texto al dar clic sobre el
         if (view == textViewRegistrar) {
-            finish();
             startActivity(new Intent(this, MainActivity.class));//Abrir  pantalla para el registro
+
+        }
+        if(view== textViewRecuperarContrasena){
+            startActivity(new Intent(this, RecuperarContrasenaActivity.class));
 
         }
 

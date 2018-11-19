@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:orientation="vertical"
     android:layout_height="match_parent"
     tools:context=".NivelesAre1Activity">
+
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -20,21 +21,26 @@
             android:textSize="50sp"
             android:textStyle="bold" />
 
-
         <Button
             android:id="@+id/btnSalir"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:text="Logout" />
-
-
+            android:text="Logout"
+            android:visibility="gone"/>
 
         <ListView
             android:id="@+id/lstNivel"
             android:layout_width="match_parent"
-            android:layout_height="236dp"></ListView>
+            android:layout_height="160dp"></ListView>
+
+        <ImageButton
+            android:id="@+id/imgAtras"
+            android:layout_width="67dp"
+            android:layout_height="73dp"
+            android:src="@drawable/atras" />
+
 
     </LinearLayout>
 
-</LinearLayout>
+</android.support.constraint.ConstraintLayout>

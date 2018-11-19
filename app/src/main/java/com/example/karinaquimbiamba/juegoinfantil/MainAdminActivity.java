@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -24,8 +26,7 @@ public class MainAdminActivity extends AppCompatActivity implements View.OnClick
     private FirebaseAuth.AuthStateListener mAuthListener; //Definición de variable de autenticacipin
     private FirebaseAuth firebaseAuth; //Definción de variable Autenticación
     private TextView textViewNombre; //Definción de variable texto  para el nombre
-    private TextView textViewRol;
-    private Button buttonSalir; //Definición de variable para el botón Salir
+
     private ProgressDialog progressDialog; //Definición de variable para cuadros de Dialogo
     private StorageReference storageReference; //Definción de referencia para firebase
     private DatabaseReference databaseReference; //Definción de variable para la base de datos firebase
@@ -41,7 +42,7 @@ public class MainAdminActivity extends AppCompatActivity implements View.OnClick
         progressDialog= new ProgressDialog(this);
         firebaseAuth= FirebaseAuth.getInstance();
 
-        textViewRol=(TextView) findViewById(R.id.txtRol);
+
 
         buttonAdministrar=(Button) findViewById(R.id.btnAdminitrar);
         buttonAdministrar.setOnClickListener(this);
@@ -50,8 +51,7 @@ public class MainAdminActivity extends AppCompatActivity implements View.OnClick
 
         FirebaseUser user= firebaseAuth.getCurrentUser();
         textViewNombre=(TextView) findViewById(R.id.txtNombre);
-        buttonSalir=(Button) findViewById(R.id.btnSalir);
-        buttonSalir.setOnClickListener(this);
+
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
@@ -96,19 +96,35 @@ public class MainAdminActivity extends AppCompatActivity implements View.OnClick
 
     @Override
     public void onClick(View view) {
-        //Condición que establece que si se da clic en el Boton desloguearse
-        if(view==buttonSalir){
-            firebaseAuth.signOut();//Permite salir al usuario es decir desloguearse
-            finish();
-            startActivity(new Intent(this, LoginActivity.class));//Llama a la pantalla de Logeo para ingresar de nuevo
-        }
+
+
         //Condición que establece que si se da clic en el Boton desloguearse
         if(view==buttonAdministrar){
-            firebaseAuth.signOut();//Permite salir al usuario es decir desloguearse
-            finish();
+            //firebaseAuth.signOut();//Permite salir al usuario es decir desloguearse
+            //finish();
             startActivity(new Intent(this, CrudsAdminActivity.class));//Llama a la pantalla de Logeo para ingresar de nuevo
         }
 
 
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu){
+        getMenuInflater().inflate(R.menu.menu_principal,menu);
+        return super.onCreateOptionsMenu(menu);
+
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item){
+
+        switch (item.getItemId()){
+            case R.id.icon_cerrar:{
+                firebaseAuth.signOut();//Permite salir al usuario es decir desloguearse
+                finish();
+                startActivity(new Intent(this, LoginActivity.class));//Llama a la pantalla de Logeo para ingresar de nuevo
+
+            }break;
+
+        }
+        return  true;
     }
 }

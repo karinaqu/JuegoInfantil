@@ -10,6 +10,7 @@ import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,6 +29,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private EditText editTextNombre; // Definición de variable de texto para ingreso de nombre
     private EditText editTextEdad; // Definición de variable de texto para ingreso de nombre
     private TextView textViewRol;
+    private ImageButton imageButtonFlechaAtras;
 
     private ProgressDialog progressDialog; //Definición de variable de Dialogo
     private FirebaseAuth firebaseAuth; //Definición de variable para registro de usuarios en firebase
@@ -43,7 +45,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         firebaseAuth= FirebaseAuth.getInstance();
         if (firebaseAuth.getCurrentUser() !=null){
             finish();
-            startActivity(new Intent(getApplicationContext(),AreasActivity.class));
+            startActivity(new Intent(getApplicationContext(), MainPrincipalActivity.class));
 
         }
 
@@ -53,9 +55,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         textViewLogin =(TextView) findViewById(R.id.txtvLogin);
         textViewRol =(TextView) findViewById(R.id.txtRol);
         editTextNombre= (EditText) findViewById(R.id.txtNombre);
+        imageButtonFlechaAtras= findViewById(R.id.imgAtras);
 
         buttonRegister.setOnClickListener(this);
         textViewLogin.setOnClickListener(this);
+        imageButtonFlechaAtras.setOnClickListener(this);
     }
     @Override
     protected void onStart() {
@@ -158,6 +162,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             registerUser();
         }
         if (view == textViewLogin){
+            startActivity(new Intent(this,LoginActivity.class));
+
+        }
+        if (view == imageButtonFlechaAtras){
             startActivity(new Intent(this,LoginActivity.class));
 
         }

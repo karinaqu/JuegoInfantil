@@ -2,12 +2,16 @@ package com.example.karinaquimbiamba.juegoinfantil;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.google.firebase.FirebaseApp;
@@ -28,7 +32,6 @@ public class MainPrincipalActivity extends AppCompatActivity implements View.OnC
     private FirebaseAuth firebaseAuth; //Definción de variable Autenticación
     private TextView textViewNombre; //Definción de variable texto  para el nombre
     private TextView textViewRol;
-    private Button buttonSalir; //Definición de variable para el botón Salir
     private ProgressDialog progressDialog; //Definición de variable para cuadros de Dialogo
     private StorageReference storageReference; //Definción de referencia para firebase
     private DatabaseReference databaseReference; //Definción de variable para la base de datos firebase
@@ -36,10 +39,12 @@ public class MainPrincipalActivity extends AppCompatActivity implements View.OnC
     private Button buttonAdministrar;
     private Button buttonJugar;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_principal);
+        this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
 
         progressDialog= new ProgressDialog(this);
         firebaseAuth= FirebaseAuth.getInstance();
@@ -52,10 +57,11 @@ public class MainPrincipalActivity extends AppCompatActivity implements View.OnC
 
 
 
+
+
         FirebaseUser user= firebaseAuth.getCurrentUser();
         textViewNombre=(TextView) findViewById(R.id.txtNombre);
-        buttonSalir=(Button) findViewById(R.id.btnSalir);
-        buttonSalir.setOnClickListener(this);
+
 
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
@@ -64,8 +70,6 @@ public class MainPrincipalActivity extends AppCompatActivity implements View.OnC
 
                 if (firebaseAuth.getCurrentUser() !=null){
 
-
-                    //
                     storageReference = FirebaseStorage.getInstance().getReference();
                     databaseReference = FirebaseDatabase.getInstance().getReference().child("Users");//Refrenciar base de datos a la tabla Users creada
                     final ValueEventListener valueEventListener = databaseReference.child(firebaseAuth.getCurrentUser().getUid()).addValueEventListener(new ValueEventListener() {
@@ -101,17 +105,32 @@ public class MainPrincipalActivity extends AppCompatActivity implements View.OnC
     @Override
     public void onClick(View view) {
         //Condición que establece que si se da clic en el Boton desloguearse
-        if(view==buttonSalir){
-            firebaseAuth.signOut();//Permite salir al usuario es decir desloguearse
-            finish();
-            startActivity(new Intent(this, LoginActivity.class));//Llama a la pantalla de Logeo para ingresar de nuevo
-        }
+
         if(view==buttonJugar){
-            firebaseAuth.signOut();//Permite salir al usuario es decir desloguearse
-            finish();
             startActivity(new Intent(this, AreasActivity.class));//Llama a la pantalla de Logeo para ingresar de nuevo
         }
 
+
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu){
+        getMenuInflater().inflate(R.menu.menu_principal,menu);
+        return super.onCreateOptionsMenu(menu);
+
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item){
+
+        switch (item.getItemId()){
+            case R.id.icon_cerrar:{
+                firebaseAuth.signOut();//Permite salir al usuario es decir desloguearse
+                finish();
+                startActivity(new Intent(this, LoginActivity.class));//Llama a la pantalla de Logeo para ingresar de nuevo
+
+            }break;
+
+        }
+        return  true;
     }
 
 }

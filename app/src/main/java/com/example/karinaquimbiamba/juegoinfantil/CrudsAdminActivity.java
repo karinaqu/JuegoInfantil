@@ -3,18 +3,21 @@ package com.example.karinaquimbiamba.juegoinfantil;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 import com.google.firebase.auth.FirebaseAuth;
 
 public class CrudsAdminActivity extends AppCompatActivity implements View.OnClickListener{
 
-    Button buttonUsuarios;
-    Button buttonRoles;
-    Button buttonAreas;
-    Button buttonNiveles;
-    private Button buttonSalir;
+    private Button buttonUsuarios;
+    private Button buttonRoles;
+    private Button buttonAreas;
+    private Button buttonNiveles;
+    private ImageButton imageButtonFlechaAtras;
+
     private FirebaseAuth firebaseAuth;
 
 
@@ -31,9 +34,10 @@ public class CrudsAdminActivity extends AppCompatActivity implements View.OnClic
         buttonRoles.setOnClickListener(this);
         buttonAreas.setOnClickListener(this);
         buttonNiveles.setOnClickListener(this);
-        buttonSalir=(Button) findViewById(R.id.btnSalir);
-        buttonSalir.setOnClickListener(this);
+
         firebaseAuth= FirebaseAuth.getInstance();
+        imageButtonFlechaAtras= findViewById(R.id.imgAtras);
+        imageButtonFlechaAtras.setOnClickListener(this);
     }
 
     @Override
@@ -46,13 +50,13 @@ public class CrudsAdminActivity extends AppCompatActivity implements View.OnClic
         }
         //condición de texto al dar clic sobre el boton
         if (view == buttonRoles) {
-            finish();
+            //finish();
             startActivity(new Intent(this, CrudRolActivity.class));//Abrir  pantalla de roles
 
         }
         //condición de texto al dar clic sobre el boton
         if (view == buttonAreas) {
-            finish();
+            //finish();
             startActivity(new Intent(this, CrudAreaActivity.class));//Abrir  pantalla de areas
 
         }
@@ -62,12 +66,12 @@ public class CrudsAdminActivity extends AppCompatActivity implements View.OnClic
 
 
         }
-        //Condición que establece que si se da clic en el Boton desloguearse
-        if(view==buttonSalir){
-            firebaseAuth.signOut();//Permite salir al usuario es decir desloguearse
-            finish();
-            startActivity(new Intent(this, LoginActivity.class));//Llama a la pantalla de Logeo para ingresar de nuevo
+        if (view == imageButtonFlechaAtras){
+            startActivity(new Intent(this, MainAdminActivity.class));
+
         }
 
+
     }
+
 }

@@ -1,19 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
+        <ImageButton
+            android:id="@+id/imgAtras"
+            android:layout_width="67dp"
+            android:layout_height="73dp"
+            android:src="@drawable/atras" />
+
         <ImageView
             android:layout_width="match_parent"
-            android:layout_height="74dp"
+            android:layout_height="85dp"
             android:src="@drawable/registro" />
         <TextView
             android:id="@+id/textView"
@@ -30,7 +38,7 @@
             android:id="@+id/txtNombre"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="15dp"
+            android:layout_margin="5dp"
             android:drawableLeft="@drawable/ic_user"
             android:hint="   Ingresar su nombre"
             android:inputType="textEmailAddress" />
@@ -39,7 +47,7 @@
             android:id="@+id/txtEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
+            android:layout_margin="5dp"
             android:drawableLeft="@drawable/ic_email"
             android:hint="   Ingresar su correo"
             android:inputType="textEmailAddress" />
@@ -48,7 +56,7 @@
             android:id="@+id/txtPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
+            android:layout_margin="5dp"
             android:drawableLeft="@drawable/ic_contrasena"
             android:hint="   Ingresar su contraseña"
             android:inputType="textPassword" />
@@ -60,32 +68,35 @@
             android:layout_gravity="center"
             android:text="Usuario"
             android:textColor="#131946"
-
-            android:textSize="24sp"
+            android:textSize="10sp"
             android:textStyle="bold"
             android:visibility="invisible" />
+
 
         <Button
             android:id="@+id/btnRegistrar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="15dp"
+            android:layout_height="60dp"
+            android:layout_margin="5dp"
             android:text="Registrar Usuario"
             android:textSize="18sp"
             android:textStyle="bold" />
+
 
         <TextView
             android:id="@+id/txtvLogin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Acceder al aquí al Login"
+            android:layout_margin="10dp"
             android:textAlignment="center"
             android:textColor="#131946"
             android:textSize="18sp"
             android:textStyle="bold" />
 
 
+
     </LinearLayout>
 
 
-</LinearLayout>
+</ScrollView>

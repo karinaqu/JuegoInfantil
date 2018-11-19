@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -15,8 +15,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:text="Bienvenido"
-
+            android:text="Bienvenid@"
+            android:layout_margin="10dp"
             android:textSize="50sp"
             android:textStyle="bold" />
 
@@ -25,35 +25,21 @@
             android:id="@+id/txtNombre"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_margin="10dp"
             android:layout_gravity="center_horizontal"
             android:text=""
             android:textColor="#131946"
             android:textSize="30sp" />
 
-        <TextView
-            android:id="@+id/txtRol"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:text=""
-            android:visibility="gone"
-            android:textColor="#131946"
-            android:textSize="30sp" />
-
-        <Button
-            android:id="@+id/btnSalir"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:text="Logout" />
 
         <Button
             android:id="@+id/btnAdminitrar"
-            android:layout_width="266dp"
-            android:layout_height="139dp"
+            android:layout_width="297dp"
+            android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_margin="80dp"
+            android:layout_margin="11dp"
             android:background="#0febf7"
+            android:drawableBottom="@drawable/admin"
             android:text="ADMINISTRAR"
             android:textColor="@android:color/white"
             android:textSize="35sp"
@@ -61,4 +47,4 @@
     </LinearLayout>
 
 
-</LinearLayout>
+</ScrollView>

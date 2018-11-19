@@ -14,6 +14,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -36,14 +37,14 @@ import java.util.UUID;
 public class CrudUserActivity extends AppCompatActivity implements View.OnClickListener{
 
     private ListView listViewUser;
-    private Button buttonRegresar;
+
     private Spinner spinnerRol;
     private EditText editTextEmail; //Definición de variable de texto para ingresar el email
     private EditText editTextPassword; //Definción de variable de texto para el ingreso de contraseña
     private EditText editTextNombre; // Definición de variable de texto para ingreso de nombre
     private ProgressDialog progressDialog; //Definición de variable de Dialogo
     private FirebaseAuth firebaseAuth; //Definición de variable para registro de usuarios en firebase
-
+    private ImageButton imageButtonFlechaAtras;
     DatabaseReference databaseReference;
     FirebaseDatabase firebaseDatabase;
     private List<User> listUser = new ArrayList<User>();
@@ -66,10 +67,11 @@ public class CrudUserActivity extends AppCompatActivity implements View.OnClickL
         editTextPassword =(EditText) findViewById(R.id.txtPassword);
         editTextNombre= (EditText) findViewById(R.id.txtNombre);
         spinnerRol= findViewById(R.id.spnRol);
+        imageButtonFlechaAtras= findViewById(R.id.imgAtras);
+        imageButtonFlechaAtras.setOnClickListener(this);
 
         listViewUser= findViewById(R.id.lstUser);
-        buttonRegresar = (Button) findViewById(R.id.btnRegresar);
-        buttonRegresar.setOnClickListener(this);
+
         incializarFirebase();
         listarUsuarios();
         listarRoles();
@@ -269,9 +271,8 @@ public class CrudUserActivity extends AppCompatActivity implements View.OnClickL
 
     @Override
     public void onClick(View view) {
-        if (view == buttonRegresar) {
-            finish();
-            startActivity(new Intent(this, CrudsAdminActivity.class));//Abrir  pantalla para el registro
+        if (view == imageButtonFlechaAtras){
+            startActivity(new Intent(this, CrudsAdminActivity.class));
 
         }
 
