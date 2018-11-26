@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.karinaquimbiamba.juegoinfantil.CapaEntidades.User;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -32,7 +33,6 @@ public class MainAdminActivity extends AppCompatActivity implements View.OnClick
     private DatabaseReference databaseReference; //Definción de variable para la base de datos firebase
     FirebaseDatabase firebaseDatabase;
     private Button buttonAdministrar;
-    private Button buttonJugar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +41,8 @@ public class MainAdminActivity extends AppCompatActivity implements View.OnClick
 
         progressDialog= new ProgressDialog(this);
         firebaseAuth= FirebaseAuth.getInstance();
+
+
 
 
 
@@ -104,6 +106,7 @@ public class MainAdminActivity extends AppCompatActivity implements View.OnClick
             //finish();
             startActivity(new Intent(this, CrudsAdminActivity.class));//Llama a la pantalla de Logeo para ingresar de nuevo
         }
+
 
 
     }

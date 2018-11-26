@@ -34,12 +34,12 @@
 
         <Button
             android:id="@+id/btnAdminitrar"
-            android:layout_width="297dp"
+            android:layout_width="291dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_margin="11dp"
             android:background="#0febf7"
-            android:drawableBottom="@drawable/admin"
+            android:drawableBottom="@drawable/administrador"
             android:text="ADMINISTRAR"
             android:textColor="@android:color/white"
             android:textSize="35sp"

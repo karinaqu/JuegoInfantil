@@ -33,7 +33,7 @@
             android:id="@+id/txtDescripcion"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
+            android:layout_margin="5dp"
             android:hint="Ingresar Descripción"
             android:inputType="text" />
         <TextView
@@ -46,7 +46,7 @@
         <Spinner
             android:id="@+id/spnArea"
             android:layout_width="wrap_content"
-            android:layout_margin="5dp"
+            android:layout_margin="1dp"
             android:layout_gravity="center"
             android:layout_height="wrap_content" />
 
@@ -60,11 +60,10 @@
             android:textSize="24sp" />
 
 
-
         <ListView
             android:id="@+id/lstNivel"
-            android:layout_width="match_parent"
-            android:layout_height="152dp"
+            android:layout_width="343dp"
+            android:layout_height="172dp"
             android:textSize="8px"></ListView>
 
         <ImageButton

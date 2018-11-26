@@ -9,12 +9,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.example.karinaquimbiamba.juegoinfantil.CapaEntidades.Area;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -163,7 +163,7 @@ public class CrudAreaActivity extends AppCompatActivity implements View.OnClickL
         if (nombre.equals("")){
             editTexttNombre.setError("Se requiere el ingreso del nombre");
         }else if (descripcion.equals("")){
-            editTextDescripcion.setError("Se requiere el ingreso del nombre");
+            editTextDescripcion.setError("Se requiere el ingreso de descripción");
         }
 
     }

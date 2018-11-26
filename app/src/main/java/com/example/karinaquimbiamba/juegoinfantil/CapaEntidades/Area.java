@@ -1,4 +1,4 @@
-package com.example.karinaquimbiamba.juegoinfantil;
+package com.example.karinaquimbiamba.juegoinfantil.CapaEntidades;
 
 public class Area {
     public String uid;

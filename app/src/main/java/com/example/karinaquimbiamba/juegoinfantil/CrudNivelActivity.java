@@ -9,13 +9,14 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.example.karinaquimbiamba.juegoinfantil.CapaEntidades.Area;
+import com.example.karinaquimbiamba.juegoinfantil.CapaEntidades.Nivel;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -219,9 +220,9 @@ public class CrudNivelActivity extends AppCompatActivity implements View.OnClick
         String nombre = editTexttNombre.getText().toString();
         String descripcion = editTextDescripcion.getText().toString();
         if (nombre.equals("")){
-            editTexttNombre.setError("Se requiere el ingreso del nombre");
+            editTexttNombre.setError("Se requiere el ingreso del nombre del nivel");
         }else if (descripcion.equals("")){
-            editTextDescripcion.setError("Se requiere el ingreso del nombre");
+            editTextDescripcion.setError("Se requiere el ingreso de descripción");
         }
 
     }

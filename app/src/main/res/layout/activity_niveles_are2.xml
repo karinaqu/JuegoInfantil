@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/fondoprincipal"
     tools:context=".NivelesAre2Activity">
 
     <LinearLayout
@@ -16,13 +17,14 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="NIVELES"
+            android:textColor="#000"
             android:textSize="50sp"
             android:textStyle="bold" />
 
         <ListView
             android:id="@+id/lstNivel"
             android:layout_width="match_parent"
-            android:layout_height="154dp"></ListView>
+            android:layout_height="345dp"></ListView>
         <ImageButton
             android:id="@+id/imgAtras"
             android:layout_width="67dp"

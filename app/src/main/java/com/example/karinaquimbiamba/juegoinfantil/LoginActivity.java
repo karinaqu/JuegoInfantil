@@ -12,6 +12,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.karinaquimbiamba.juegoinfantil.CapaEntidades.Puntaje;
+import com.example.karinaquimbiamba.juegoinfantil.CapaEntidades.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseApp;
@@ -69,7 +71,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     //Metodo de Ingreso de Usuario
     private void userLogin() {
-        String email = editTextEmail.getText().toString().trim(); //Definción del tipo de variable email
+        final String email = editTextEmail.getText().toString().trim(); //Definción del tipo de variable email
         String password = editTextPassword.getText().toString().trim();// Definición de tipo de variable de contraseña
         //Condición para establecer un mensaje de ingreso de variabbles
         if (TextUtils.isEmpty(email)) {
@@ -110,6 +112,13 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                                         user.getRol();
                                         if (user.getRol().equals("Usuario")){
                                             startActivity(new Intent(getApplicationContext(), MainPrincipalActivity.class));
+                                            Intent nuevo =new Intent(getApplicationContext(),MainPrincipalActivity.class);
+                                            nuevo.putExtra(MainPrincipalActivity.user,email);
+                                            startActivity(nuevo);
+
+
+
+
                                         }
                                         if (user.getRol().equals("Administrador")){
                                             startActivity(new Intent(getApplicationContext(), MainAdminActivity.class));
