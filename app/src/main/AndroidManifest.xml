@@ -38,13 +38,28 @@
         <activity
             android:name=".JuegoNivel1Activity"
             android:screenOrientation="portrait" />
-        <activity android:name=".RecuperarContrasenaActivity" android:screenOrientation="portrait" />
-        <activity android:name=".JuegoNivel2Area1Activity" android:screenOrientation="portrait"/>
-        <activity android:name=".JuegoNivel3Area1Activity" android:screenOrientation="portrait" />
-        <activity android:name=".JuegoNivel1Area2Activity" android:screenOrientation="portrait"/>
-        <activity android:name=".JuegoNivel2Area2Activity" android:screenOrientation="portrait"/>
-        <activity android:name=".JuegoNivel3Area2Activity" android:screenOrientation="portrait" />
-        <activity android:name=".PuntajeUsuarioActivity" android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".RecuperarContrasenaActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".JuegoNivel2Area1Activity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".JuegoNivel3Area1Activity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".JuegoNivel1Area2Activity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".JuegoNivel2Area2Activity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".JuegoNivel3Area2Activity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".PuntajeUsuarioActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".PuntajesUsuariosTotalesActivity"></activity>
     </application>
 
 </manifest>

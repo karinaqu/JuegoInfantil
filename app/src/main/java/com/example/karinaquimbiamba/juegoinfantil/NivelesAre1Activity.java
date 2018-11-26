@@ -12,6 +12,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.example.karinaquimbiamba.juegoinfantil.CapaEntidades.Area;
 import com.example.karinaquimbiamba.juegoinfantil.CapaEntidades.Nivel;
@@ -33,6 +34,8 @@ public class NivelesAre1Activity extends AppCompatActivity implements View.OnCli
     private DatabaseReference databaseReference; //Definción de variable para la base de datos firebase
     FirebaseDatabase firebaseDatabase;
     private ImageButton imageButtonFlechaAtras;
+    private TextView txtArea;
+
 
     private FirebaseAuth firebaseAuth;
 
@@ -49,6 +52,8 @@ public class NivelesAre1Activity extends AppCompatActivity implements View.OnCli
         listViewNivel= findViewById(R.id.lstNivel);
 
         firebaseAuth= FirebaseAuth.getInstance();
+        txtArea=findViewById(R.id.txtArea);
+        //txtArea.setText("Matematicas");
 
         imageButtonFlechaAtras= findViewById(R.id.imgAtras);
         imageButtonFlechaAtras.setOnClickListener(this);
@@ -83,10 +88,11 @@ public class NivelesAre1Activity extends AppCompatActivity implements View.OnCli
                 listNivel.clear();
                 for (DataSnapshot objSnapshot : dataSnapshot.getChildren()) {
                     Nivel nivel = objSnapshot.getValue(Nivel.class);
-                    nivel.getUid_Area();
-                    boolean add = listNivel.add(nivel);
-                    arrayAdapterNivel = new ArrayAdapter<Nivel>(NivelesAre1Activity.this, android.R.layout.simple_list_item_1, listNivel);
-                    listViewNivel.setAdapter(arrayAdapterNivel);
+                    if (nivel.getUid_Area().equals("Matematicas")){
+                        boolean add = listNivel.add(nivel);
+                        arrayAdapterNivel = new ArrayAdapter<Nivel>(NivelesAre1Activity.this, android.R.layout.simple_list_item_1, listNivel);
+                        listViewNivel.setAdapter(arrayAdapterNivel);
+                    }
 
                 }
 

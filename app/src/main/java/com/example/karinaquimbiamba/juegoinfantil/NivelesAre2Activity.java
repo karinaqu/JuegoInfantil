@@ -12,6 +12,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.example.karinaquimbiamba.juegoinfantil.CapaEntidades.Area;
 import com.example.karinaquimbiamba.juegoinfantil.CapaEntidades.Nivel;
@@ -34,6 +35,7 @@ public class NivelesAre2Activity extends AppCompatActivity implements View.OnCli
     private DatabaseReference databaseReference; //Definción de variable para la base de datos firebase
     FirebaseDatabase firebaseDatabase;
     private ImageButton imageButtonFlechaAtras;
+    private TextView txtArea;
 
     private FirebaseAuth firebaseAuth;
 
@@ -47,6 +49,7 @@ public class NivelesAre2Activity extends AppCompatActivity implements View.OnCli
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_niveles_are2);
         this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+
 
         listViewNivel= findViewById(R.id.lstNivel);
         firebaseAuth= FirebaseAuth.getInstance();
@@ -84,10 +87,12 @@ public class NivelesAre2Activity extends AppCompatActivity implements View.OnCli
                 listNivel.clear();
                 for (DataSnapshot objSnapshot : dataSnapshot.getChildren()) {
                     Nivel nivel = objSnapshot.getValue(Nivel.class);
-                    nivel.getUid_Area();
-                    boolean add = listNivel.add(nivel);
+                    if (nivel.getUid_Area().equals("Lenguaje")){
+
+                        boolean add = listNivel.add(nivel);
                     arrayAdapterNivel = new ArrayAdapter<Nivel>(NivelesAre2Activity.this, android.R.layout.simple_list_item_1, listNivel);
                     listViewNivel.setAdapter(arrayAdapterNivel);
+                    }
 
                 }
 

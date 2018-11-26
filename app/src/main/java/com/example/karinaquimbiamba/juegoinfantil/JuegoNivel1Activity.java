@@ -68,35 +68,24 @@ public class JuegoNivel1Activity extends AppCompatActivity {
         }
 
         textViewNombre=(TextView) findViewById(R.id.txtNombre);
-        mAuthListener = new FirebaseAuth.AuthStateListener() {
+
+        firebaseDatabase.getReference("Users").child(firebaseAuth.getCurrentUser().getUid()).addValueEventListener(new ValueEventListener() {
             @Override
-            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                User user = dataSnapshot.getValue(User.class);{
+                    textViewNombre.setText(String.valueOf(dataSnapshot.child("name").getValue()));//Traer desde la base de datos firebase el nombre para colocarlo en el cajón de texto
+                    //listarNiveles();
 
-
-                if (firebaseAuth.getCurrentUser() !=null){
-
-                    storageReference = FirebaseStorage.getInstance().getReference();
-                    databaseReference = FirebaseDatabase.getInstance().getReference().child("Users");//Refrenciar base de datos a la tabla Users creada
-                    final ValueEventListener valueEventListener = databaseReference.child(firebaseAuth.getCurrentUser().getUid()).addValueEventListener(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(DataSnapshot dataSnapshot) {
-                            User user = dataSnapshot.getValue(User.class);{
-                                textViewNombre.setText(String.valueOf(dataSnapshot.child("name").getValue()));//Traer desde la base de datos firebase el nombre para colocarlo en el cajón de texto
-
-
-                            }
-                        }
-
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                        }
-
-                    });
                 }
 
             }
-        };
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
 
 
         buttonJuegoTerminado.setOnClickListener(new View.OnClickListener() {
@@ -123,11 +112,6 @@ public class JuegoNivel1Activity extends AppCompatActivity {
 
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-        firebaseAuth.addAuthStateListener(mAuthListener);
-    }
 
     //Iniciar cronometro
     public void startCronometro(View v){

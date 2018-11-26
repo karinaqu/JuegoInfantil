@@ -16,6 +16,7 @@ public class CrudsAdminActivity extends AppCompatActivity implements View.OnClic
     private Button buttonRoles;
     private Button buttonAreas;
     private Button buttonNiveles;
+    private Button buttonPuntajes;
     private ImageButton imageButtonFlechaAtras;
 
     private FirebaseAuth firebaseAuth;
@@ -29,11 +30,13 @@ public class CrudsAdminActivity extends AppCompatActivity implements View.OnClic
         buttonRoles = (Button) findViewById(R.id.btnRoles);
         buttonAreas = (Button) findViewById(R.id.btnAreas);
         buttonNiveles = (Button) findViewById(R.id.btnNiveles);
+        buttonPuntajes = (Button) findViewById(R.id.btnPuntajes);
 
         buttonUsuarios.setOnClickListener(this);
         buttonRoles.setOnClickListener(this);
         buttonAreas.setOnClickListener(this);
         buttonNiveles.setOnClickListener(this);
+        buttonPuntajes.setOnClickListener(this);
 
         firebaseAuth= FirebaseAuth.getInstance();
         imageButtonFlechaAtras= findViewById(R.id.imgAtras);
@@ -68,6 +71,10 @@ public class CrudsAdminActivity extends AppCompatActivity implements View.OnClic
         }
         if (view == imageButtonFlechaAtras){
             startActivity(new Intent(this, MainAdminActivity.class));
+
+        }
+        if (view == buttonPuntajes){
+            startActivity(new Intent(this, PuntajesUsuariosTotalesActivity.class));
 
         }
 

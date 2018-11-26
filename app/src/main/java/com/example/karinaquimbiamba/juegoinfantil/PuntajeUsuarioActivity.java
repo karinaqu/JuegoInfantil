@@ -70,7 +70,7 @@ public class PuntajeUsuarioActivity extends AppCompatActivity implements View.On
         imageButtonFlechaAtras.setOnClickListener(this);
 
         incializarFirebase();
-        listarNiveles();
+        listarPuntajes();
 
 
         textViewNombre=(TextView) findViewById(R.id.txtNombre);
@@ -80,7 +80,7 @@ public class PuntajeUsuarioActivity extends AppCompatActivity implements View.On
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 User user = dataSnapshot.getValue(User.class);{
                     textViewNombre.setText(String.valueOf(dataSnapshot.child("name").getValue()));//Traer desde la base de datos firebase el nombre para colocarlo en el cajón de texto
-                    listarNiveles();
+                    listarPuntajes();
 
                 }
 
@@ -93,48 +93,12 @@ public class PuntajeUsuarioActivity extends AppCompatActivity implements View.On
         });
 
 
-        /*mAuthListener = new FirebaseAuth.AuthStateListener() {
-            @Override
-            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-
-
-                if (firebaseAuth.getCurrentUser() !=null){
-
-                    storageReference = FirebaseStorage.getInstance().getReference();
-                    databaseReference = FirebaseDatabase.getInstance().getReference().child("Users");//Refrenciar base de datos a la tabla Users creada
-                    final ValueEventListener valueEventListener = databaseReference.child(firebaseAuth.getCurrentUser().getUid()).addValueEventListener(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(DataSnapshot dataSnapshot) {
-                            User user = dataSnapshot.getValue(User.class);{
-                                //textViewNombre.setText(String.valueOf(dataSnapshot.child("name").getValue()));//Traer desde la base de datos firebase el nombre para colocarlo en el cajón de texto
-                                listarNiveles();
-
-                            }
-                        }
-
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                        }
-
-                    });
-                }
-
-            }
-        };*/
-
-
-
     }
-    /*@Override
-    protected void onStart() {
-        super.onStart();
-        firebaseAuth.addAuthStateListener(mAuthListener);
-    }*/
 
 
-    private void listarNiveles() {
-        ValueEventListener nivel = databaseReference.child("Users/Puntaje").addValueEventListener(new ValueEventListener() {
+
+    private void listarPuntajes() {
+        ValueEventListener nivel = databaseReference.child("Puntaje").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 listPuntaje.clear();

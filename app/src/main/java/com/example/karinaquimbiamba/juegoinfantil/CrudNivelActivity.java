@@ -157,7 +157,7 @@ public class CrudNivelActivity extends AppCompatActivity implements View.OnClick
     public boolean onOptionsItemSelected(MenuItem item){
         String nombre = editTexttNombre.getText().toString();
         String descripcion = editTextDescripcion.getText().toString();
-        //String uid_Area = editTextAreaNombre.getText().toString();
+        String uid_Area = spinnerArea.getSelectedItem().toString();
 
 
         switch (item.getItemId()){
@@ -171,10 +171,7 @@ public class CrudNivelActivity extends AppCompatActivity implements View.OnClick
                     nivel.setUid(UUID.randomUUID().toString());
                     nivel.setName(nombre);
                     nivel.setDescripcion(descripcion);
-                    nivel.setUid_Area(areaSeleccionado.getName());
-
-
-
+                    nivel.setUid_Area(uid_Area);
                     databaseReference.child("Nivel").child(nivel.getUid()).setValue(nivel);
                     Toast.makeText(this,"Añadido", Toast.LENGTH_LONG).show();;
                     CasillasBlancas();
@@ -189,6 +186,7 @@ public class CrudNivelActivity extends AppCompatActivity implements View.OnClick
                 nivel.setUid(nivelSeleccionado.getUid());
                 nivel.setName(editTexttNombre.getText().toString().trim());
                 nivel.setDescripcion(editTextDescripcion.getText().toString().trim());
+                nivel.setUid_Area(spinnerArea.getSelectedItem().toString());
                 databaseReference.child("Nivel").child(nivel.getUid()).setValue(nivel);
                 Toast.makeText(this,"Modificado", Toast.LENGTH_LONG).show();;
                 CasillasBlancas();
@@ -219,10 +217,13 @@ public class CrudNivelActivity extends AppCompatActivity implements View.OnClick
     private void validacionIngreso(){
         String nombre = editTexttNombre.getText().toString();
         String descripcion = editTextDescripcion.getText().toString();
+        String uid_Area = spinnerArea.getSelectedItem().toString();
         if (nombre.equals("")){
             editTexttNombre.setError("Se requiere el ingreso del nombre del nivel");
         }else if (descripcion.equals("")){
             editTextDescripcion.setError("Se requiere el ingreso de descripción");
+        }else if(uid_Area.equals("")){
+
         }
 
     }
