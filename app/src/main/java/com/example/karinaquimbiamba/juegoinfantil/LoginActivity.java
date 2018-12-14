@@ -62,11 +62,14 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         progressDialog = new ProgressDialog(this);
         firebaseAuth = FirebaseAuth.getInstance();
-        /*if (firebaseAuth.getCurrentUser() != null) {
-            finish();
+
+        if (firebaseAuth.getCurrentUser() != null) {
+            //finish();
             startActivity(new Intent(getApplicationContext(), MainPrincipalActivity.class));
 
-        }*/
+        }
+
+
     }
 
     //Metodo de Ingreso de Usuario
@@ -103,6 +106,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
                             storageReference = FirebaseStorage.getInstance().getReference();
                             databaseReference = FirebaseDatabase.getInstance().getReference().child("Users");//Refrenciar base de datos a la tabla Users creada
+
                             final ValueEventListener valueEventListener = databaseReference.child(firebaseAuth.getCurrentUser().getUid()).addValueEventListener(new ValueEventListener() {
                                 @Override
                                 public void onDataChange(DataSnapshot dataSnapshot) {
@@ -111,18 +115,16 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                                     User user = dataSnapshot.getValue(User.class);{
                                         user.getRol();
                                         if (user.getRol().equals("Usuario")){
+
                                             startActivity(new Intent(getApplicationContext(), MainPrincipalActivity.class));
                                             Intent nuevo =new Intent(getApplicationContext(),MainPrincipalActivity.class);
                                             nuevo.putExtra(MainPrincipalActivity.user,email);
                                             startActivity(nuevo);
 
 
-
-
-                                        }
+     }
                                         if (user.getRol().equals("Administrador")){
                                             startActivity(new Intent(getApplicationContext(), MainAdminActivity.class));
-
 
                                         }
 
@@ -136,6 +138,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                                 }
 
                             });
+
 
                             //finish();
                             //startActivity(new Intent(getApplicationContext(), MainPrincipalActivity.class));//Muestra pantalla de Áreas del usuario

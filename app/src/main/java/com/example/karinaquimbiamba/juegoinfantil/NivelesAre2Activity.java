@@ -48,7 +48,7 @@ public class NivelesAre2Activity extends AppCompatActivity implements View.OnCli
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_niveles_are2);
-        this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
 
 
         listViewNivel= findViewById(R.id.lstNivel);
@@ -87,10 +87,10 @@ public class NivelesAre2Activity extends AppCompatActivity implements View.OnCli
                 listNivel.clear();
                 for (DataSnapshot objSnapshot : dataSnapshot.getChildren()) {
                     Nivel nivel = objSnapshot.getValue(Nivel.class);
-                    if (nivel.getUid_Area().equals("Lenguaje")){
+                    if (nivel.getUid_Area().equals("Matemáticas")){
 
                         boolean add = listNivel.add(nivel);
-                    arrayAdapterNivel = new ArrayAdapter<Nivel>(NivelesAre2Activity.this, android.R.layout.simple_list_item_1, listNivel);
+                    arrayAdapterNivel = new ArrayAdapter<Nivel>(NivelesAre2Activity.this, R.layout.tamanoletra_listview, listNivel);
                     listViewNivel.setAdapter(arrayAdapterNivel);
                     }
 
@@ -115,7 +115,7 @@ public class NivelesAre2Activity extends AppCompatActivity implements View.OnCli
     @Override
     public void onClick(View view) {
         if (view == imageButtonFlechaAtras){
-            startActivity(new Intent(this,LoginActivity.class));
+            startActivity(new Intent(this,AreasActivity.class));
 
         }
 
@@ -134,7 +134,7 @@ public class NivelesAre2Activity extends AppCompatActivity implements View.OnCli
             case R.id.icon_cerrar:{
                 firebaseAuth.signOut();//Permite salir al usuario es decir desloguearse
                 finish();
-                startActivity(new Intent(this, AreasActivity.class));//Llama a la pantalla de Logeo para ingresar de nuevo
+                //startActivity(new Intent(this, AreasActivity.class));//Llama a la pantalla de Logeo para ingresar de nuevo
 
             }break;
 

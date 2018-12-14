@@ -31,7 +31,6 @@ import java.util.List;
 
 public class AreasActivity extends AppCompatActivity implements View.OnClickListener {
 
-
     private FirebaseAuth firebaseAuth; //Definción de variable Autenticación
     private ImageView imageViewLista;
 
@@ -47,13 +46,12 @@ public class AreasActivity extends AppCompatActivity implements View.OnClickList
     ArrayAdapter<Area> arrayAdapterArea;
     Area areaSeleccionado;
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_areas);
-        this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+
+        this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
 
         progressDialog= new ProgressDialog(this);
         firebaseAuth= FirebaseAuth.getInstance();
@@ -121,7 +119,7 @@ public class AreasActivity extends AppCompatActivity implements View.OnClickList
                     boolean add = listArea.add(area);
 
 
-                    arrayAdapterArea = new ArrayAdapter<Area>(AreasActivity.this, android.R.layout.simple_list_item_1, listArea);
+                    arrayAdapterArea = new ArrayAdapter<Area>(AreasActivity.this, R.layout.tamanoletra_listview, listArea);
                     listViewArea.setAdapter(arrayAdapterArea);
                 }
 

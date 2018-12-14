@@ -47,7 +47,7 @@ public class NivelesAre1Activity extends AppCompatActivity implements View.OnCli
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_niveles_are1);
-        this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
 
         listViewNivel= findViewById(R.id.lstNivel);
 
@@ -88,9 +88,9 @@ public class NivelesAre1Activity extends AppCompatActivity implements View.OnCli
                 listNivel.clear();
                 for (DataSnapshot objSnapshot : dataSnapshot.getChildren()) {
                     Nivel nivel = objSnapshot.getValue(Nivel.class);
-                    if (nivel.getUid_Area().equals("Matematicas")){
+                    if (nivel.getUid_Area().equals("Lenguaje")){
                         boolean add = listNivel.add(nivel);
-                        arrayAdapterNivel = new ArrayAdapter<Nivel>(NivelesAre1Activity.this, android.R.layout.simple_list_item_1, listNivel);
+                        arrayAdapterNivel = new ArrayAdapter<Nivel>(NivelesAre1Activity.this, R.layout.tamanoletra_listview, listNivel);
                         listViewNivel.setAdapter(arrayAdapterNivel);
                     }
 

@@ -49,8 +49,6 @@ public class MainAdminActivity extends AppCompatActivity implements View.OnClick
         buttonAdministrar=(Button) findViewById(R.id.btnAdminitrar);
         buttonAdministrar.setOnClickListener(this);
 
-
-
         FirebaseUser user= firebaseAuth.getCurrentUser();
         textViewNombre=(TextView) findViewById(R.id.txtNombre);
 

@@ -16,7 +16,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="NIVELES"
+            android:text="Niveles"
             android:textColor="#000"
             android:textSize="50sp"
             android:textStyle="bold" />
@@ -24,7 +24,8 @@
         <ListView
             android:id="@+id/lstNivel"
             android:layout_width="match_parent"
-            android:layout_height="345dp"></ListView>
+            android:layout_height="268dp"
+            android:layout_margin="50dp"></ListView>
         <ImageButton
             android:id="@+id/imgAtras"
             android:layout_width="67dp"

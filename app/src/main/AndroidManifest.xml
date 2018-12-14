@@ -19,9 +19,6 @@
             </intent-filter>
         </activity>
         <activity android:name=".MainActivity" />
-        <activity
-            android:name=".AreasActivity"
-            android:screenOrientation="portrait" />
         <activity android:name=".CrudAreaActivity" />
         <activity android:name=".CrudRolActivity" />
         <activity android:name=".MainAdminActivity" />
@@ -29,37 +26,49 @@
         <activity android:name=".CrudUserActivity" />
         <activity
             android:name=".NivelesAre1Activity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="landscape" />
         <activity
             android:name=".NivelesAre2Activity"
-            android:screenOrientation="portrait" />
-        <activity android:name=".MainPrincipalActivity" />
+            android:screenOrientation="landscape"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".MainPrincipalActivity"
+            android:screenOrientation="landscape"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity android:name=".CrudsAdminActivity" />
         <activity
             android:name=".JuegoNivel1Activity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="landscape"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
             android:name=".RecuperarContrasenaActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".JuegoNivel2Area1Activity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="landscape"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
             android:name=".JuegoNivel3Area1Activity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="landscape"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
             android:name=".JuegoNivel1Area2Activity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="landscape"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
             android:name=".JuegoNivel2Area2Activity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
             android:name=".JuegoNivel3Area2Activity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="landscape"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
             android:name=".PuntajeUsuarioActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".PuntajesUsuariosTotalesActivity"></activity>
+        <activity android:name=".PuntajesUsuariosTotalesActivity" />
+        <activity android:name=".FinalizarJuegoArea2Nivel3Activity" />
+        <activity android:name=".AreasActivity"></activity>
     </application>
 
 </manifest>

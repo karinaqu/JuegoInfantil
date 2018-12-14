@@ -16,7 +16,7 @@ public class JuegoNivel1Area2Activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_juego_nivel1_area2);
-        this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
 
         chronometer= findViewById(R.id.chCronometro);
         //chronometer.setFormat("Time: %s");
