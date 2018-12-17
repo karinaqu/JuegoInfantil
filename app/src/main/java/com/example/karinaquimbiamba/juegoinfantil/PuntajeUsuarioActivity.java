@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -34,6 +35,7 @@ public class PuntajeUsuarioActivity extends AppCompatActivity implements View.On
 
     private TextView edtUsuario;
     public static final String user= "names";
+    private ImageView imgFlechaAtras;
 
 
     private DatabaseReference databaseReference; //Definción de variable para la base de datos firebase
@@ -52,7 +54,11 @@ public class PuntajeUsuarioActivity extends AppCompatActivity implements View.On
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_puntaje_usuario);
-        this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+
+        imgFlechaAtras=findViewById(R.id.imgFlechaAtras);
+        imgFlechaAtras.setOnClickListener(this);
+
 
         edtUsuario= findViewById(R.id.edtNombre);
         final String user= getIntent().getStringExtra("names");
@@ -66,8 +72,8 @@ public class PuntajeUsuarioActivity extends AppCompatActivity implements View.On
 
         }
 
-        imageButtonFlechaAtras= findViewById(R.id.imgAtras);
-        imageButtonFlechaAtras.setOnClickListener(this);
+        //imageButtonFlechaAtras= findViewById(R.id.imgAtras);
+        //imageButtonFlechaAtras.setOnClickListener(this);
 
         incializarFirebase();
         listarPuntajes();
@@ -135,7 +141,7 @@ public class PuntajeUsuarioActivity extends AppCompatActivity implements View.On
     }
     @Override
     public void onClick(View view) {
-        if (view == imageButtonFlechaAtras){
+        if (view == imgFlechaAtras){
             startActivity(new Intent(this, MainPrincipalActivity.class));
 
         }

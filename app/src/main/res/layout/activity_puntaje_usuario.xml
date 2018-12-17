@@ -4,8 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/fondoprincipal"
+    android:background="@drawable/fondo_principal"
     tools:context=".PuntajeUsuarioActivity">
+
+    <ImageView
+        android:id="@+id/imgFlechaAtras"
+        android:layout_width="70dp"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:src="@drawable/atras" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -23,31 +31,27 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="Puntajes"
-            android:textColor="#000"
+            android:textColor="#fff"
             android:textSize="50sp"
             android:textStyle="bold" />
 
-        <ListView
-            android:id="@+id/lstPuntaje"
-            android:layout_width="match_parent"
-            android:layout_height="304dp">
-
-        </ListView>
-
-        <ImageButton
-            android:id="@+id/imgAtras"
-            android:layout_width="67dp"
-            android:layout_height="73dp"
-            android:src="@drawable/atras" />
 
         <TextView
             android:id="@+id/txtNombre"
+            android:visibility="gone"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:text=""
             android:textColor="#131946"
             android:textSize="30sp" />
+
+        <ListView
+            android:id="@+id/lstPuntaje"
+            android:layout_width="match_parent"
+            android:layout_height="302dp">
+
+        </ListView>
 
     </LinearLayout>
 

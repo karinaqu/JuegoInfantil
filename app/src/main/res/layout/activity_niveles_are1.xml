@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:orientation="vertical"
     android:layout_height="match_parent"
-    android:background="@drawable/fondoprincipal"
+    android:background="@drawable/fondo_secundario"
     tools:context=".NivelesAre1Activity">
 
 
@@ -39,10 +39,10 @@
 
         <ListView
             android:id="@+id/lstNivel"
-            android:layout_width="match_parent"
+            android:layout_width="197dp"
             android:layout_height="272dp"
             android:layout_gravity="center"
-            android:layout_margin="50dp"></ListView>
+            android:layout_margin="30dp"></ListView>
 
         <ImageButton
             android:id="@+id/imgAtras"
@@ -50,7 +50,7 @@
             android:layout_height="73dp"
             android:src="@drawable/atras" />
 
-
     </LinearLayout>
 
-</android.support.constraint.ConstraintLayout>
+
+</RelativeLayout>

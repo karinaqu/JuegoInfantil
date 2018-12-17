@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/fondoprincipal"
+    android:background="@drawable/fondo_secundario"
+    android:orientation="vertical"
     tools:context=".NivelesAre2Activity">
+
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -23,9 +25,10 @@
 
         <ListView
             android:id="@+id/lstNivel"
-            android:layout_width="match_parent"
+            android:layout_width="197dp"
             android:layout_height="268dp"
-            android:layout_margin="50dp"></ListView>
+            android:layout_gravity="center"
+            android:layout_margin="30dp"></ListView>
         <ImageButton
             android:id="@+id/imgAtras"
             android:layout_width="67dp"
@@ -34,4 +37,4 @@
 
     </LinearLayout>
 
-</LinearLayout>
+</RelativeLayout>

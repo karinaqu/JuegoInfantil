@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/fondo_juego"
     android:orientation="vertical"
     tools:context=".JuegoNivel2Area1Activity">
     <TextView
@@ -114,38 +115,46 @@
         app:layout_constraintVertical_bias="0.0" />
 
 
-
-
-
-
+    <ImageView
+        android:id="@+id/imgFoto"
+        android:layout_width="219dp"
+        android:layout_height="191dp"
+        android:layout_margin="25dp"
+        android:src="@drawable/vaca"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.52"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.72" />
 
 
     <LinearLayout
-        android:layout_width="390dp"
-        android:layout_height="match_parent"
+        android:layout_width="280dp"
+        android:layout_height="70dp"
         android:orientation="vertical"
 
-        >
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.103">
 
-        <ImageView
-            android:id="@+id/imgFoto"
-            android:layout_width="match_parent"
-            android:layout_height="279dp"
-            android:layout_margin="25dp"
-            android:src="@drawable/vaca" />
 
         <LinearLayout
             android:id="@+id/ly_palabra"
-            android:layout_width="match_parent"
-            android:layout_height="65dp"
+            android:layout_width="271dp"
+            android:layout_height="67dp"
             android:gravity="center"
-            android:orientation="horizontal" />
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_bias="0.277"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.451" />
 
     </LinearLayout>
-
-
-
-
 
 
     <Button
@@ -157,11 +166,11 @@
         android:textColor="#fff"
         android:textSize="35dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.951"
+        app:layout_constraintHorizontal_bias="0.737"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.949" />
+        app:layout_constraintVertical_bias="0.388" />
 
     <Button
         android:id="@+id/btnLetra1"
@@ -172,11 +181,11 @@
         android:textColor="#fff"
         android:textSize="35dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.085"
+        app:layout_constraintHorizontal_bias="0.277"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.949" />
+        app:layout_constraintVertical_bias="0.451" />
 
     <Button
         android:id="@+id/btnLetra2"
@@ -187,25 +196,26 @@
         android:textColor="#fff"
         android:textSize="35dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.288"
+        app:layout_constraintHorizontal_bias="0.923"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.949" />
+        app:layout_constraintVertical_bias="0.388" />
 
     <Button
         android:id="@+id/btnLetra3"
         android:layout_width="55dp"
         android:layout_height="73dp"
-        android:textColor="#fff"
         android:background="#0f1953"
         android:text="I"
+        android:textColor="#fff"
         android:textSize="35dp"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.811"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.947" />
+        app:layout_constraintVertical_bias="0.706" />
 
     <Button
         android:id="@+id/btnLetra4"
@@ -216,11 +226,11 @@
         android:textColor="#fff"
         android:textSize="35dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.723"
+        app:layout_constraintHorizontal_bias="0.113"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.949" />
+        app:layout_constraintVertical_bias="0.332" />
 
 
 </android.support.constraint.ConstraintLayout>

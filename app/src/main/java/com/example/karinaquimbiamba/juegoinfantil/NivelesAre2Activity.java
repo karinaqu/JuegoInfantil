@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -90,8 +91,8 @@ public class NivelesAre2Activity extends AppCompatActivity implements View.OnCli
                     if (nivel.getUid_Area().equals("Matemáticas")){
 
                         boolean add = listNivel.add(nivel);
-                    arrayAdapterNivel = new ArrayAdapter<Nivel>(NivelesAre2Activity.this, R.layout.tamanoletra_listview, listNivel);
-                    listViewNivel.setAdapter(arrayAdapterNivel);
+                        arrayAdapterNivel = new ArrayAdapter<Nivel>(NivelesAre2Activity.this, R.layout.tamanoletra_listview, listNivel);
+                        listViewNivel.setAdapter(arrayAdapterNivel);
                     }
 
                 }
@@ -115,7 +116,7 @@ public class NivelesAre2Activity extends AppCompatActivity implements View.OnCli
     @Override
     public void onClick(View view) {
         if (view == imageButtonFlechaAtras){
-            startActivity(new Intent(this,AreasActivity.class));
+            startActivity(new Intent(this,LoginActivity.class));
 
         }
 
@@ -134,7 +135,7 @@ public class NivelesAre2Activity extends AppCompatActivity implements View.OnCli
             case R.id.icon_cerrar:{
                 firebaseAuth.signOut();//Permite salir al usuario es decir desloguearse
                 finish();
-                //startActivity(new Intent(this, AreasActivity.class));//Llama a la pantalla de Logeo para ingresar de nuevo
+                startActivity(new Intent(this, AreasActivity.class));//Llama a la pantalla de Logeo para ingresar de nuevo
 
             }break;
 
