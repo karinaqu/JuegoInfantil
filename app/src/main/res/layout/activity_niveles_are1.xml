@@ -8,6 +8,33 @@
     android:background="@drawable/fondo_secundario"
     tools:context=".NivelesAre1Activity">
 
+    <Button
+        android:id="@+id/Nivel1"
+        android:layout_width="105dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="75dp"
+        android:text="Button" />
+
+    <Button
+        android:id="@+id/Nivel2"
+        android:layout_width="116dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="138dp"
+        android:text="Button" />
+
+    <Button
+        android:id="@+id/Nivel3"
+        android:layout_width="114dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="116dp"
+        android:text="Button" />
+
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -36,6 +63,7 @@
             android:layout_gravity="center_horizontal"
             android:text="Logout"
             android:visibility="gone"/>
+
 
         <ListView
             android:id="@+id/lstNivel"

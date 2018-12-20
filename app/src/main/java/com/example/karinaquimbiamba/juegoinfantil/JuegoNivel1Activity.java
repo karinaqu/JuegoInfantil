@@ -3,6 +3,7 @@ package com.example.karinaquimbiamba.juegoinfantil;
 import android.content.ClipData;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.media.MediaPlayer;
 import android.os.SystemClock;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -33,40 +34,63 @@ import com.google.firebase.storage.StorageReference;
 import java.util.Random;
 import java.util.UUID;
 
-public class JuegoNivel1Activity extends AppCompatActivity implements View.OnTouchListener{
+public class JuegoNivel1Activity extends AppCompatActivity implements View.OnTouchListener, View.OnClickListener{
 
+    //Variables definidas para la realización del menú al finalizar el juego
+    private RelativeLayout rlPerder;
+    private Button btnIntentar;
+    private Button btnMenu;
+
+    //Variables para la parte grafica del juego
+    private TextView txtResultado;
     private Chronometer chronometer;
     private boolean empezarCronometro;
+    private TextView txtPuntaje;
     private long pausarOffSet;
+    private TextView txtNombre;
     private ImageView imgReiniciar;
     private ImageView imgVidas, imgInicio;
     int contadorPuntaje=0,vidas=3;
-
     LinearLayout lyVocal1, lyVocal2, lyVocal3, lyVocal4, lyVocal5;
     ImageView imgLetraa, imgLetrae, imgLetrai, imgLetrao, imgLetrau;
-    int[] aleatorio1={R.id.imgLetraA,R.id.imgLetraE,R.id.imgLetraI, R.id.imgLetraO,R.id.imgLetraU};
-
-    Random r1= new Random();
-    int a1=r1.nextInt(4);
+    Button vocalA, vocalE, vocalI, vocalO, vocalU;
 
 
-    Button vocalA, vocalE, vocalI, vocalO, vocalU, btnA, btnE, btnI, btnO, btnU;
-
+    //Variables definidas para la base de datos
     DatabaseReference databaseReference;
     FirebaseDatabase firebaseDatabase;
     private FirebaseAuth firebaseAuth;
+
+    //sonidos de letras
+    private MediaPlayer sonidoLetraa;
+    private MediaPlayer sonidoLetrae;
+    private MediaPlayer sonidoLetrai;
+    private MediaPlayer sonidoLetrao;
+    private MediaPlayer sonidoLetrau;
+    private MediaPlayer sonidoIndicacion;
+    private MediaPlayer respuestaIncorrecta;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_juego_nivel1);
-        this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+        //this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
 
+        //Varibles definidas para el menu cuando el juego termine
+        btnIntentar= findViewById(R.id.btnIntentar);
+        btnMenu= findViewById(R.id.btnMenu);
+        txtResultado= findViewById(R.id.txtResultado);
+        rlPerder= findViewById(R.id.rlPerder);
+
+
+        txtPuntaje= findViewById(R.id.txtPuntaje);
+        txtNombre= findViewById(R.id.txtNombre);
         chronometer= findViewById(R.id.chCronometro);
         imgInicio= findViewById(R.id.imgInicio);
         imgReiniciar=findViewById(R.id.imgReiniciar);
         imgVidas=findViewById(R.id.imgVidas);
+        txtNombre=(TextView) findViewById(R.id.txtNombre);
         firebaseAuth= FirebaseAuth.getInstance();
         incializarFirebase();
 
@@ -88,25 +112,22 @@ public class JuegoNivel1Activity extends AppCompatActivity implements View.OnTou
         vocalO= findViewById(R.id.vocalO);
         vocalU= findViewById(R.id.vocalU);
 
-
         imgLetraa.setOnTouchListener(this);
         imgLetrae.setOnTouchListener(this);
         imgLetrai.setOnTouchListener(this);
         imgLetrao.setOnTouchListener(this);
         imgLetrau.setOnTouchListener(this);
 
-        imgLetraa.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        //declarion de sonidos para letras
+        sonidoLetraa =MediaPlayer.create(this, R.raw.sonidoa);
+        sonidoLetrae =MediaPlayer.create(this, R.raw.sonidoe);
+        sonidoLetrai =MediaPlayer.create(this, R.raw.sonidoi);
+        sonidoLetrao =MediaPlayer.create(this, R.raw.sonidoo);
+        sonidoLetrau =MediaPlayer.create(this, R.raw.sonidou);
+        respuestaIncorrecta= MediaPlayer.create(this, R.raw.incorrecto);
+        sonidoIndicacion= MediaPlayer.create(this,R.raw.buscar_letras);
+        sonidoIndicacion.start();
 
-            }
-        });
-
-        /*btnA.setOnLongClickListener(longclickLister);
-        btnE.setOnLongClickListener(longclickLister);
-        btnI.setOnLongClickListener(longclickLister);
-        btnO.setOnLongClickListener(longclickLister);
-        btnU.setOnLongClickListener(longclickLister);*/
 
         lyVocal1.setOnDragListener(dragListener);
         lyVocal2.setOnDragListener(dragListener);
@@ -114,21 +135,7 @@ public class JuegoNivel1Activity extends AppCompatActivity implements View.OnTou
         lyVocal4.setOnDragListener(dragListener);
         lyVocal5.setOnDragListener(dragListener);
 
-        imgInicio.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent= new Intent(getApplicationContext(),NivelesAre2Activity.class);
-                startActivity(intent);
-            }
-        });
-        imgReiniciar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent= new Intent(getApplicationContext(),JuegoNivel1Activity.class);
-                startActivity(intent);
-            }
-        });
-
+        //Cronometro de tiempo defindo en el juego
         chronometer.setBase(SystemClock.elapsedRealtime());
         if(!empezarCronometro){
             chronometer.setBase(SystemClock.elapsedRealtime()-pausarOffSet);
@@ -136,19 +143,16 @@ public class JuegoNivel1Activity extends AppCompatActivity implements View.OnTou
             empezarCronometro=true;
 
         }
+
+        //Evento clic defindo para los botones
+        imgInicio.setOnClickListener(this);
+        imgReiniciar.setOnClickListener(this);
+        btnMenu.setOnClickListener(this);
+        btnIntentar.setOnClickListener(this);
+
     }
 
-
-    View.OnLongClickListener longclickLister= new View.OnLongClickListener() {
-        @Override
-        public boolean onLongClick(View v) {
-            ClipData data= ClipData.newPlainText("","");
-            View.DragShadowBuilder builder= new View.DragShadowBuilder(v);
-            v.startDrag(data,builder,v,0);
-            return true;
-        }
-    };
-
+    //Metodo que permite colocar los objetos en una parte definidad
     View.OnDragListener dragListener= new View.OnDragListener() {
         @Override
         public boolean onDrag(View v, DragEvent event) {
@@ -169,32 +173,104 @@ public class JuegoNivel1Activity extends AppCompatActivity implements View.OnTou
                         LinearLayout nuevo =(LinearLayout)v;
                         vocalA.setVisibility(View.GONE);
                         nuevo.addView(view);
+                        sonidoLetraa.start();
+                        contadorPuntaje=contadorPuntaje+1;
+                        txtPuntaje.setText(""+contadorPuntaje);
+                        if(contadorPuntaje==5){
+                            guardarDatos();
+                            txtResultado.setText("Juego Terminado");
+                            rlPerder.setVisibility(View.VISIBLE);
+
+                        }
+
                     }else if(view.getId()==R.id.imgLetraE && v.getId()==R.id.lyVocal2){
                         RelativeLayout antiguo=(RelativeLayout) view.getParent();
                         antiguo.removeView(view);
                         LinearLayout nuevo =(LinearLayout)v;
                         vocalE.setVisibility(View.GONE);
                         nuevo.addView(view);
+                        contadorPuntaje=contadorPuntaje+1;
+                        sonidoLetrae.start();
+                        txtPuntaje.setText(""+contadorPuntaje);
+                        if(contadorPuntaje==5){
+                            guardarDatos();
+                            txtResultado.setText("Juegi Terminado");
+                            rlPerder.setVisibility(View.VISIBLE);
+                        }
+
+
                     }else if (view.getId()==R.id.imgLetraI && v.getId()==R.id.lyVocal3){
                         RelativeLayout antiguo=(RelativeLayout) view.getParent();
                         antiguo.removeView(view);
                         LinearLayout nuevo =(LinearLayout)v;
                         vocalI.setVisibility(View.GONE);
                         nuevo.addView(view);
+                        contadorPuntaje=contadorPuntaje+1;
+                        sonidoLetrai.start();
+                        txtPuntaje.setText(""+contadorPuntaje);
+                        if(contadorPuntaje==5){
+                            guardarDatos();
+                            txtResultado.setText("Juego Terminado");
+                            rlPerder.setVisibility(View.VISIBLE);
+                        }
+
+
                     }else if (view.getId()==R.id.imgLetraO && v.getId()==R.id.lyVocal4) {
                         RelativeLayout antiguo = (RelativeLayout) view.getParent();
                         antiguo.removeView(view);
                         LinearLayout nuevo = (LinearLayout) v;
                         vocalO.setVisibility(View.GONE);
                         nuevo.addView(view);
+                        contadorPuntaje=contadorPuntaje+1;
+                        sonidoLetrao.start();
+                        txtPuntaje.setText(""+contadorPuntaje);
+                        if(contadorPuntaje==5){
+                            guardarDatos();
+                            txtResultado.setText("Juego Terminado");
+                            rlPerder.setVisibility(View.VISIBLE);
+                        }
+
+
                     }else if (view.getId()==R.id.imgLetraU && v.getId()==R.id.lyVocal5) {
                         RelativeLayout antiguo = (RelativeLayout) view.getParent();
                         antiguo.removeView(view);
                         LinearLayout nuevo = (LinearLayout) v;
                         vocalU.setVisibility(View.GONE);
                         nuevo.addView(view);
+                        contadorPuntaje=contadorPuntaje+1;
+                        txtPuntaje.setText(""+contadorPuntaje);
+                        sonidoLetrau.start();
+                        if(contadorPuntaje==5){
+                            guardarDatos();
+                            txtResultado.setText("Juego Terminado");
+                            rlPerder.setVisibility(View.VISIBLE);
+
+                        }
+
                     }else {
-                        Toast.makeText(JuegoNivel1Activity.this,"Te equivocaste", Toast.LENGTH_SHORT).show();
+                        vidas--;
+                        respuestaIncorrecta.start();
+
+                        switch (vidas){
+                            case 0:
+                                guardarDatos();
+                                imgVidas.setImageResource(vidas);
+                                txtResultado.setText("Perdiste");
+                                rlPerder.setVisibility(View.VISIBLE);
+                                break;
+                            case 1:
+                                Toast.makeText(JuegoNivel1Activity.this, "Tienes una vida",Toast.LENGTH_LONG).show();
+                                imgVidas.setImageResource(R.drawable.unavida);
+                                break;
+                            case 2:
+                                Toast.makeText(JuegoNivel1Activity.this, "Tienes dos vidas",Toast.LENGTH_LONG).show();
+                                imgVidas.setImageResource(R.drawable.dosvidas);
+                                break;
+                            case 3:
+                                imgVidas.setImageResource(R.drawable.tresvidas);
+                                break;
+
+                        }
 
                     }
 
@@ -204,7 +280,7 @@ public class JuegoNivel1Activity extends AppCompatActivity implements View.OnTou
         }
     };
 
-
+    //Implementacion del metodo touch para arrastrar elementos
     @Override
     public boolean onTouch(View view, MotionEvent event) {
         // TODO Auto-generated method stub
@@ -221,9 +297,58 @@ public class JuegoNivel1Activity extends AppCompatActivity implements View.OnTou
         chronometer.setBase(SystemClock.elapsedRealtime());
 
     }
+
+    //Iniicalizacion de Firebase para obtner datos del usuario logueado
     public void incializarFirebase(){
         FirebaseApp.initializeApp(this);
         firebaseDatabase= FirebaseDatabase.getInstance();
         databaseReference= firebaseDatabase.getReference();
+
+        firebaseDatabase.getReference("Users").child(firebaseAuth.getCurrentUser().getUid()).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                User user = dataSnapshot.getValue(User.class);{
+                    txtNombre.setText(String.valueOf(dataSnapshot.child("name").getValue()));//Traer desde la base de datos firebase el nombre para colocarlo en el cajón de texto
+
+
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }
+
+    //Guardar datos Puntaje del usuario obtneido durante el juego
+    public void guardarDatos(){
+        Puntaje puntaje= new Puntaje();
+        puntaje.setUid(UUID.randomUUID().toString());
+        puntaje.setPuntaje(contadorPuntaje);
+        puntaje.setIdArea("Lenguaje");
+        puntaje.setIdNivel("Nivel 1");
+        puntaje.setIdUsuario(String.valueOf(txtNombre.getText()));
+        puntaje.setVidas(vidas);
+        puntaje.setTiempo(String.valueOf(chronometer.getText()));
+        databaseReference.child("Puntaje").child(puntaje.getUid()).setValue(puntaje);
+    }
+
+    //Implematación del metodo de clic para los botones definidos
+    @Override
+    public void onClick(View v) {
+        if(v==imgInicio){
+            startActivity(new Intent(getApplicationContext(),NivelesAre1Activity.class));
+        }
+        if (v== imgReiniciar){
+            startActivity(new Intent(getApplicationContext(),JuegoNivel1Activity.class));
+        }
+        if (v==btnMenu){
+            startActivity(new Intent(getApplicationContext(),NivelesAre1Activity.class));
+        }
+        if (v==btnIntentar){
+            startActivity(new Intent(getApplicationContext(),JuegoNivel1Activity.class));
+        }
     }
 }

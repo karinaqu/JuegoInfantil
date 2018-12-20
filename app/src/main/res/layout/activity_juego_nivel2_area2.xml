@@ -103,6 +103,7 @@
         app:layout_constraintVertical_bias="0.284" />
 
     <Button
+        android:id="@+id/btnComparar"
         android:layout_width="120dp"
         android:layout_height="64dp"
         android:onClick="compararResultado"
@@ -129,54 +130,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.21" />
 
-    <Button
-        android:id="@+id/btnMenuTerminado"
-        android:layout_width="359dp"
-        android:layout_height="373dp"
-        android:background="@drawable/forma_listview"
-        android:text="Perdiste"
-        android:textColor="#eb4a10"
-        android:textSize="30dp"
-        android:textStyle="bold"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.439" />
-
-    <Button
-        android:id="@+id/btnMenu"
-        android:layout_width="164dp"
-        android:layout_height="69dp"
-        android:background="#48b128"
-        android:text="Menu"
-        android:textColor="#ffffff"
-        android:textSize="30dp"
-        android:textStyle="bold"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.649" />
-
-    <Button
-        android:id="@+id/btnIntentar"
-        android:layout_width="189dp"
-        android:layout_height="77dp"
-        android:background="#966dea"
-        android:text="Jugar de nuevo"
-        android:textColor="#fcfbfb"
-        android:textSize="30dp"
-        android:textStyle="bold"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.287" />
 
     <TextView
         android:id="@+id/txtNombre"
@@ -206,6 +159,113 @@
         app:layout_constraintVertical_bias="0.994">
 
     </GridView>
+
+    <Button
+        android:id="@+id/btnCorrecto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawableBottom="@drawable/visto"
+        android:text="CORRECTO"
+        android:textColor="#0e8116"
+        android:textStyle="bold"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.562"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.228" />
+
+    <Button
+        android:id="@+id/btnIncorrecto"
+        android:layout_width="181dp"
+        android:layout_height="158dp"
+        android:drawableBottom="@drawable/equis"
+        android:text="INCORRECTO"
+        android:textColor="#da2b2b"
+        android:textStyle="bold"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.596"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.333" />
+
+    <TextView
+        android:id="@+id/txtEspera"
+        android:layout_width="67dp"
+        android:layout_height="28dp"
+        android:text=""
+        android:visibility="invisible"
+        android:textColor="#000000"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.05"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.25" />
+
+    <RelativeLayout
+        android:id="@+id/rlPerder"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#00ffff"
+        android:visibility="gone"
+        tools:layout_editor_absoluteX="126dp"
+        tools:layout_editor_absoluteY="16dp">
+
+        <TextView
+            android:id="@+id/txtResultado"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="44dp"
+            android:text="PERDISTE"
+            android:textColor="#f4b219"
+            android:textSize="50dp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/btnMenu"
+            android:layout_width="164dp"
+            android:layout_height="69dp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="46dp"
+            android:background="#48b128"
+            android:text="Menu"
+            android:textColor="#ffffff"
+            android:textSize="30dp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.649" />
+
+        <Button
+            android:id="@+id/btnIntentar"
+            android:layout_width="188dp"
+            android:layout_height="77dp"
+            android:layout_below="@+id/txtResultado"
+            android:layout_centerHorizontal="true"
+            android:background="#966dea"
+            android:text="Jugar de nuevo"
+            android:textColor="#fcfbfb"
+            android:textSize="30dp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_bias="0.502"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.287" />
+
+    </RelativeLayout>
 
 
 </android.support.constraint.ConstraintLayout>

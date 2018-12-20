@@ -72,9 +72,9 @@ public class Puntaje {
     @Override
     public String toString() {
         return "" +
-                "Usuario:" + idUsuario+ '\n'  +
-                "Area:" + idArea  +'\n'+
-                "Nivel:" + idNivel + '\n' +
-                "puntaje:" + puntaje ;
+                "Usuario: " + idUsuario  +
+                ", Area: " + idArea +
+                ", Nivel: " + idNivel  +
+                ", Puntaje : " + puntaje ;
     }
 }

@@ -109,21 +109,16 @@ public class PuntajeUsuarioActivity extends AppCompatActivity implements View.On
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 listPuntaje.clear();
 
-
                 for (DataSnapshot objSnapshot : dataSnapshot.getChildren()) {
                     Puntaje puntaje = objSnapshot.getValue(Puntaje.class);
-                    if(puntaje.idUsuario.toString().equals(textViewNombre.getText())){
 
-                    boolean add = listPuntaje.add(puntaje);
-
-
-                    arrayAdapterPuntaje = new ArrayAdapter<Puntaje>(PuntajeUsuarioActivity.this, android.R.layout.simple_list_item_1, listPuntaje);
+                    if(puntaje.getIdUsuario().equals(textViewNombre.getText())){
+                        boolean add = listPuntaje.add(puntaje);
+                        arrayAdapterPuntaje = new ArrayAdapter<Puntaje>(PuntajeUsuarioActivity.this, android.R.layout.simple_list_item_1, listPuntaje);
                         listViewPuntaje.setAdapter(arrayAdapterPuntaje);
                     }
 
-
                 }
-
 
             }
 

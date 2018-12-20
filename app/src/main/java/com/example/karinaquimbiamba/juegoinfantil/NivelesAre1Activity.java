@@ -10,6 +10,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -36,19 +37,50 @@ public class NivelesAre1Activity extends AppCompatActivity implements View.OnCli
     FirebaseDatabase firebaseDatabase;
     private ImageButton imageButtonFlechaAtras;
     private TextView txtArea;
-
-
     private FirebaseAuth firebaseAuth;
 
     private ListView listViewNivel;
     private List<Nivel> listNivel = new ArrayList<Nivel>();
     ArrayAdapter<Nivel> arrayAdapterNivel;
 
+    //butones pruebaa
+    private Button btnNivel1;
+    private Button btnNivel2;
+    private Button btnNivel3;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_niveles_are1);
         this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+
+        btnNivel1=findViewById(R.id.Nivel1);
+        btnNivel2=findViewById(R.id.Nivel2);
+        btnNivel3=findViewById(R.id.Nivel3);
+
+
+        btnNivel1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity( new Intent(getApplicationContext(), JuegoNivel1Activity.class));
+
+            }
+        });
+        btnNivel2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity( new Intent(getApplicationContext(), JuegoNivel2Area1Activity.class));
+
+            }
+        });
+        btnNivel3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity( new Intent(getApplicationContext(), JuegoNivel3Area1Activity.class));
+
+            }
+        });
 
         listViewNivel= findViewById(R.id.lstNivel);
 

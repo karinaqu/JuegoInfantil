@@ -2,6 +2,7 @@ package com.example.karinaquimbiamba.juegoinfantil;
 
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.media.MediaPlayer;
 import android.os.CountDownTimer;
 import android.os.SystemClock;
 import android.support.annotation.NonNull;
@@ -14,6 +15,7 @@ import android.widget.Chronometer;
 import android.widget.GridView;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,8 +31,10 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.UUID;
 
-public class JuegoNivel3Area2Activity extends AppCompatActivity {
+public class JuegoNivel3Area2Activity extends AppCompatActivity implements View.OnClickListener{
 
+    private RelativeLayout rlPerder;
+    private TextView txtResultado;
     private Chronometer chronometer;
     private boolean empezarCronometro;
     private long pausarOffSet;
@@ -43,7 +47,7 @@ public class JuegoNivel3Area2Activity extends AppCompatActivity {
     private TextView edtRespuesta;
     private ImageView imgVidas, imgInicio;
     private Button imgBtnIntentar;
-    private Button btnMenuTerminado;
+    private Button btnComparar;
     private Button btnMenu;
     private GridView grvNumeros;
     private TextView textViewNombre;
@@ -68,12 +72,17 @@ public class JuegoNivel3Area2Activity extends AppCompatActivity {
     FirebaseDatabase firebaseDatabase;
     private FirebaseAuth firebaseAuth;
 
+    //Sonido Indicación
+    private MediaPlayer sonidoIndicacion;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_juego_nivel3_area2);
         this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
 
+        txtResultado= findViewById(R.id.txtResultado);
+        btnComparar=findViewById(R.id.btnComparar);
         imgCantidad1= findViewById(R.id.imgCantidades1);
         imgCantidad2=findViewById(R.id.imgCantidades2);
         chronometer= findViewById(R.id.chCronometro);
@@ -87,27 +96,18 @@ public class JuegoNivel3Area2Activity extends AppCompatActivity {
         imgVidas=findViewById(R.id.imgVidas);
         imgBtnIntentar=findViewById(R.id.imgBtnIntentar);
         grvNumeros=findViewById(R.id.grvNumeros);
-        btnMenuTerminado=findViewById(R.id.btnMenuTerminado);
+        rlPerder= findViewById(R.id.rlPerder);
         btnMenu=findViewById(R.id.btnMenu);
         btnCorrecto=findViewById(R.id.btnCorrecto);
         btnIncorrecto=findViewById(R.id.btnIncorrecto);
+        textViewNombre=findViewById(R.id.txtNombre);
         firebaseAuth= FirebaseAuth.getInstance();
         incializarFirebase();
 
-        imgInicio.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent= new Intent(getApplicationContext(),NivelesAre2Activity.class);
-                startActivity(intent);
-            }
-        });
-        imgReiniciar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent= new Intent(getApplicationContext(),JuegoNivel3Area2Activity.class);
-                startActivity(intent);
-            }
-        });
+        btnMenu.setOnClickListener(this);
+        imgBtnIntentar.setOnClickListener(this);
+        imgInicio.setOnClickListener(this);
+        imgReiniciar.setOnClickListener(this);
 
 
         chronometer.setBase(SystemClock.elapsedRealtime());
@@ -129,24 +129,11 @@ public class JuegoNivel3Area2Activity extends AppCompatActivity {
             }
         });
 
-        textViewNombre=(TextView) findViewById(R.id.txtNombre);
-
-        firebaseDatabase.getReference("Users").child(firebaseAuth.getCurrentUser().getUid()).addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                User user = dataSnapshot.getValue(User.class);{
-                    textViewNombre.setText(String.valueOf(dataSnapshot.child("name").getValue()));//Traer desde la base de datos firebase el nombre para colocarlo en el cajón de texto
+        //Sonidos
+        sonidoIndicacion= MediaPlayer.create(this,R.raw.seleccionar_suma);
+        sonidoIndicacion.start();
 
 
-                }
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
 
     }
     public void numerosAleatorios(){
@@ -171,47 +158,10 @@ public class JuegoNivel3Area2Activity extends AppCompatActivity {
             }
 
         }else {
-            //Intent intent= new Intent(this,NivelesAre2Activity.class);
-            //startActivity(intent);
-            Puntaje puntaje= new Puntaje();
-            puntaje.setUid(UUID.randomUUID().toString());
-            puntaje.setPuntaje(contadorPuntaje);
-            puntaje.setIdArea("Matematica");
-            puntaje.setIdNivel("Nivel 3");
-            puntaje.setIdUsuario(String.valueOf(textViewNombre.getText()));
-            puntaje.setVidas(vidas);
-            puntaje.setTiempo(String.valueOf(chronometer.getText()));
-            //puntaje.setCronometro(chronometer);
-            databaseReference.child("Puntaje").child(puntaje.getUid()).setValue(puntaje);
-
-            btnMenuTerminado.setText("GANASTE");
-            imgBtnIntentar.setVisibility(View.VISIBLE);
-            btnMenu.setVisibility(View.VISIBLE);
-            btnMenuTerminado.setVisibility(View.VISIBLE);
             chronometer.stop();
-            btnMenu.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent intent= new Intent(getApplicationContext(),NivelesAre2Activity.class);
-                    startActivity(intent);
-
-                }
-            });
-            imgBtnIntentar.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    imgBtnIntentar.setVisibility(View.INVISIBLE);
-                    btnMenu.setVisibility(View.INVISIBLE);
-                    btnMenuTerminado.setVisibility(View.INVISIBLE);
-                    imgVidas.setImageResource(R.drawable.tresvidas);
-                    txtPuntaje.setText("");
-                    reiniciarCronometro();
-                    chronometer.start();
-                    vidas=3;
-                    contadorPuntaje=0;
-
-                }
-            });
+            txtResultado.setText("JUEGO TERMINADO");
+            rlPerder.setVisibility(View.VISIBLE);
+            guardarPuntaje();
 
 
         }
@@ -230,45 +180,12 @@ public class JuegoNivel3Area2Activity extends AppCompatActivity {
                 vidas--;
                 switch (vidas){
                     case 0:
-                        Puntaje puntaje= new Puntaje();
-                        puntaje.setUid(UUID.randomUUID().toString());
-                        puntaje.setPuntaje(contadorPuntaje);
-                        puntaje.setIdArea("Matemáticas");
-                        puntaje.setIdNivel("Nivel 3");
-                        puntaje.setIdUsuario(String.valueOf(textViewNombre.getText()));
-                        puntaje.setVidas(vidas);
-                        puntaje.setTiempo(String.valueOf(chronometer.getText()));
-                        databaseReference.child("Puntaje").child(puntaje.getUid()).setValue(puntaje);
-                        //startActivity(new Intent(getApplicationContext(), NivelesAre1Activity.class));
-
+                        txtResultado.setText("PERDISTE");
+                        rlPerder.setVisibility(View.VISIBLE);
+                        guardarPuntaje();
                         imgVidas.setImageResource(vidas);
-                        imgBtnIntentar.setVisibility(View.VISIBLE);
-                        btnMenu.setVisibility(View.VISIBLE);
-                        btnMenuTerminado.setVisibility(View.VISIBLE);
                         chronometer.stop();
-                        btnMenu.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                Intent intent= new Intent(getApplicationContext(),NivelesAre2Activity.class);
-                                startActivity(intent);
 
-                            }
-                        });
-                        imgBtnIntentar.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                imgBtnIntentar.setVisibility(View.INVISIBLE);
-                                btnMenu.setVisibility(View.INVISIBLE);
-                                btnMenuTerminado.setVisibility(View.INVISIBLE);
-                                imgVidas.setImageResource(R.drawable.tresvidas);
-                                txtPuntaje.setText("");
-                                reiniciarCronometro();
-                                chronometer.start();
-                                contadorPuntaje=0;
-                                vidas=3;
-
-                            }
-                        });
                         break;
                     case 1:
                         Toast.makeText(this, "Tienes una vida",Toast.LENGTH_LONG).show();
@@ -299,6 +216,20 @@ public class JuegoNivel3Area2Activity extends AppCompatActivity {
         FirebaseApp.initializeApp(this);
         firebaseDatabase= FirebaseDatabase.getInstance();
         databaseReference= firebaseDatabase.getReference();
+
+        firebaseDatabase.getReference("Users").child(firebaseAuth.getCurrentUser().getUid()).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                User user = dataSnapshot.getValue(User.class);{
+                    textViewNombre.setText(String.valueOf(dataSnapshot.child("name").getValue()));//Traer desde la base de datos firebase el nombre para colocarlo en el cajón de texto
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
     }
 
     void imgCorrecto(){
@@ -332,6 +263,34 @@ public class JuegoNivel3Area2Activity extends AppCompatActivity {
             }
         }.start();
 
+
+    }
+    public void guardarPuntaje(){
+        btnComparar.setVisibility(View.GONE);
+        Puntaje puntaje= new Puntaje();
+        puntaje.setUid(UUID.randomUUID().toString());
+        puntaje.setPuntaje(contadorPuntaje);
+        puntaje.setIdArea("Matemáticas");
+        puntaje.setIdNivel("Nivel 3");
+        puntaje.setIdUsuario(String.valueOf(textViewNombre.getText()));
+        puntaje.setVidas(vidas);
+        puntaje.setTiempo(String.valueOf(chronometer.getText()));
+        databaseReference.child("Puntaje").child(puntaje.getUid()).setValue(puntaje);
+    }
+
+    @Override
+    public void onClick(View v) {
+        if(v==btnMenu){
+            startActivity(new Intent(getApplicationContext(),NivelesAre2Activity.class));
+        }if (v==imgBtnIntentar){
+            startActivity(new Intent(getApplicationContext(),JuegoNivel3Area2Activity.class));
+        }
+        if(v==imgInicio){
+            startActivity(new Intent(getApplicationContext(),NivelesAre2Activity.class));
+        }
+        if(v==imgReiniciar){
+            startActivity(new Intent(getApplicationContext(),JuegoNivel3Area2Activity.class));
+        }
 
     }
 }
