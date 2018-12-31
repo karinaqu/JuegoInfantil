@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/fondo_completar"
     tools:context=".JuegoCompletarPalabra">
 
     <ImageView
@@ -110,6 +111,7 @@
         android:layout_width="67dp"
         android:layout_height="28dp"
         android:text=""
+        android:visibility="gone"
         android:textColor="#000000"
         android:textSize="14sp"
         android:textStyle="bold"
@@ -152,7 +154,7 @@
         android:id="@+id/btnLetra5"
         android:layout_width="55dp"
         android:layout_height="73dp"
-        android:background="#0f1953"
+        android:background="@drawable/btn_circulo"
         android:text="U"
         android:textColor="#fff"
         android:textSize="35dp"
@@ -167,7 +169,7 @@
         android:id="@+id/btnLetra1"
         android:layout_width="55dp"
         android:layout_height="73dp"
-        android:background="#0f1953"
+        android:background="@drawable/btn_circulo"
         android:text="A"
         android:textColor="#fff"
         android:textSize="35dp"
@@ -182,7 +184,7 @@
         android:id="@+id/btnLetra2"
         android:layout_width="55dp"
         android:layout_height="73dp"
-        android:background="#0f1953"
+        android:background="@drawable/btn_circulo"
         android:text="E"
         android:textColor="#fff"
         android:textSize="35dp"
@@ -198,7 +200,7 @@
         android:layout_width="55dp"
         android:layout_height="73dp"
         android:textColor="#fff"
-        android:background="#0f1953"
+        android:background="@drawable/btn_circulo"
         android:text="I"
         android:textSize="35dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -211,7 +213,7 @@
         android:id="@+id/btnLetra4"
         android:layout_width="55dp"
         android:layout_height="73dp"
-        android:background="#0f1953"
+        android:background="@drawable/btn_circulo"
         android:text="O"
         android:textColor="#fff"
         android:textSize="35dp"
@@ -260,7 +262,7 @@
         android:id="@+id/rlMenu"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#00ffff"
+        android:background="@drawable/terminado_completar"
         android:visibility="gone">
 
         <TextView
@@ -269,10 +271,10 @@
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="44dp"
+            android:layout_marginTop="12dp"
             android:gravity="center"
             android:text="PERDISTE"
-            android:textColor="#f4b219"
+            android:textColor="#00f"
             android:textSize="50dp"
             android:textStyle="bold" />
 

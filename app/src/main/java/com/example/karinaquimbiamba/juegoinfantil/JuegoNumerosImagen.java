@@ -1,6 +1,7 @@
 package com.example.karinaquimbiamba.juegoinfantil;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.CountDownTimer;
 import android.os.SystemClock;
 import android.support.v7.app.AppCompatActivity;
@@ -44,6 +45,14 @@ public class JuegoNumerosImagen extends AppCompatActivity implements View.OnClic
             R.drawable.numero7,R.drawable.numero8,R.drawable.numero9,
             R.drawable.numero10};
 
+    int numerosSonido[]={R.raw.sonido0,R.raw.sonido1, R.raw.sonido2,
+            R.raw.sonido3,R.raw.sonido4, R.raw.sonido5,R.raw.sonido6,
+            R.raw.sonido7,R.raw.sonido8,R.raw.sonido9,
+            R.raw.sonido10};
+
+    private String[] sonidoNumeros={"sonido0","sonido1","sonido2","sonido3","sonido4","sonido5","sonido6","sonido7","sonido8","sonido9",
+    "sonido10"};
+
     private ImageView imgRepetir;
     private ImageView imgMenu;
     private ImageView imgSiguiente;
@@ -58,7 +67,13 @@ public class JuegoNumerosImagen extends AppCompatActivity implements View.OnClic
     DatabaseReference databaseReference;
     FirebaseDatabase firebaseDatabase;
 
-
+    //Definción de variables para los sonidos
+    private MediaPlayer respuestIncorrecta;
+    private MediaPlayer respuestCorrecta;
+    private MediaPlayer sonidoIndicacion;
+    private MediaPlayer perdiste;
+    private MediaPlayer juegoTerminado;
+    private MediaPlayer sonidosNumeros;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -94,6 +109,14 @@ public class JuegoNumerosImagen extends AppCompatActivity implements View.OnClic
         imgSiguiente.setOnClickListener(this);
 
 
+        respuestIncorrecta= MediaPlayer.create(this, R.raw.incorrecto);
+        respuestCorrecta= MediaPlayer.create(this, R.raw.correcto);
+        perdiste= MediaPlayer.create(this, R.raw.perdiste);
+        juegoTerminado= MediaPlayer.create(this, R.raw.juego_terminado);
+        sonidoIndicacion=MediaPlayer.create(this, R.raw.numero_figura);
+        sonidoIndicacion.start();
+
+
         numerosAleatorios();
         incializarFirebase();
 
@@ -110,8 +133,47 @@ public class JuegoNumerosImagen extends AppCompatActivity implements View.OnClic
         grvNumeros.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                //Toast.makeText(MainActivity.this,"Clic:"+opciones[position],Toast.LENGTH_SHORT).show();
                 edtRespuesta.setText(""+ opciones[position]);
+                //int sonido= getResources().getIdentifier(sonidoNumeros[position],"raw",getPackageName());
+                sonidosNumeros =MediaPlayer.create(getApplicationContext(),numerosSonido[position]);
+                sonidosNumeros.start();
+                String respuesta= edtRespuesta.getText().toString();
+                if(!respuesta.equals("")){
+                    int cantidadJugador= Integer.parseInt(respuesta);
+                    if(cantidad==cantidadJugador){
+                        contadorPuntaje++;
+                        txtPuntaje.setText(""+contadorPuntaje);
+                        edtRespuesta.setText("");
+                        imgCorrecto();
+                    }else{
+                        vidas--;
+                        imgIncorrecto();
+                        switch (vidas){
+                            case 0:
+                                imgVidas.setImageResource(vidas);
+                                PerdisteJuego();
+                                guardarPuntaje();
+                                chronometer.stop();
+                                break;
+                            case 1:
+                                Toast.makeText(getApplicationContext(), "Tienes una vida",Toast.LENGTH_LONG).show();
+                                imgVidas.setImageResource(R.drawable.unavida);
+                                break;
+                            case 2:
+                                Toast.makeText(getApplicationContext(), "Tienes dos vidas",Toast.LENGTH_LONG).show();
+                                imgVidas.setImageResource(R.drawable.dosvidas);
+                                break;
+                            case 3:
+                                imgVidas.setImageResource(R.drawable.tresvidas);
+                                break;
+
+                        } edtRespuesta.setText("");
+
+                    }numerosAleatorios();
+                }
+                else {
+                    Toast.makeText(getApplicationContext(), "Escribir tu respuesta", Toast.LENGTH_SHORT).show();
+                }
 
             }
         });
@@ -201,6 +263,7 @@ public class JuegoNumerosImagen extends AppCompatActivity implements View.OnClic
             @Override
             public void onFinish() {
                 imgCorrecto.setVisibility(View.INVISIBLE);
+                respuestCorrecta.start();
 
             }
         }.start();
@@ -213,6 +276,7 @@ public class JuegoNumerosImagen extends AppCompatActivity implements View.OnClic
             public void onTick(long millisUntilFinished) {
                 txtEspera.setText(""+(millisUntilFinished/1000)+1);
                 imgIncorrecto.setVisibility(View.VISIBLE);
+                respuestIncorrecta.start();
             }
 
             @Override
@@ -234,6 +298,7 @@ public class JuegoNumerosImagen extends AppCompatActivity implements View.OnClic
             public void onFinish() {
                 txtResultado.setText("Juego Terminado");
                 rlMenu.setVisibility(View.VISIBLE);
+                juegoTerminado.start();
             }
         }.start();
 
@@ -249,6 +314,7 @@ public class JuegoNumerosImagen extends AppCompatActivity implements View.OnClic
             public void onFinish() {
                 txtResultado.setText("PERDISTE");
                 rlMenu.setVisibility(View.VISIBLE);
+                perdiste.start();
             }
         }.start();
 

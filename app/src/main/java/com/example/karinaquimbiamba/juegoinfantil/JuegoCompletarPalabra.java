@@ -69,7 +69,10 @@ public class JuegoCompletarPalabra extends AppCompatActivity implements View.OnC
     private MediaPlayer sonidoLetrao;
     private MediaPlayer sonidoLetrau;
     private MediaPlayer respuestIncorrecta;
+    private MediaPlayer respuestCorrecta;
     private MediaPlayer sonidoIndicacion;
+    private MediaPlayer perdiste;
+    private MediaPlayer juegoTerminado;
 
     DatabaseReference databaseReference;
     FirebaseDatabase firebaseDatabase;
@@ -124,7 +127,10 @@ public class JuegoCompletarPalabra extends AppCompatActivity implements View.OnC
         sonidoLetrai =MediaPlayer.create(this, R.raw.sonidoi);
         sonidoLetrao =MediaPlayer.create(this, R.raw.sonidoo);
         sonidoLetrau =MediaPlayer.create(this, R.raw.sonidou);
-        //respuestIncorrecta= MediaPlayer.create(this, R.raw.incorrecto);
+        respuestIncorrecta= MediaPlayer.create(this, R.raw.incorrecto);
+        respuestCorrecta= MediaPlayer.create(this, R.raw.correcto);
+        perdiste= MediaPlayer.create(this, R.raw.perdiste);
+        juegoTerminado= MediaPlayer.create(this, R.raw.juego_terminado);
         sonidoIndicacion=MediaPlayer.create(this, R.raw.completar_palabra);
         sonidoIndicacion.start();
 
@@ -187,7 +193,7 @@ public class JuegoCompletarPalabra extends AppCompatActivity implements View.OnC
                         controles[3].setText("A");
                         if(espaciosBlancos()){
                             if(traerTexto().equals(palabras[numeroCambio])){
-                                Toast.makeText(getApplicationContext(),"palabra correcta", Toast.LENGTH_LONG).show();
+                                Toast.makeText(getApplicationContext(),"palabra correcta", Toast.LENGTH_SHORT).show();
                                 contadorPuntaje++;
                                 txtPuntaje.setText(""+contadorPuntaje);
                                 esperaCambio();
@@ -216,7 +222,7 @@ public class JuegoCompletarPalabra extends AppCompatActivity implements View.OnC
                         controles[1].setText("E");
                         if(espaciosBlancos()){
                             if(traerTexto().equals(palabras[numeroCambio])){
-                                Toast.makeText(getApplicationContext(),"palabra correcta", Toast.LENGTH_LONG).show();
+                                Toast.makeText(getApplicationContext(),"palabra correcta", Toast.LENGTH_SHORT).show();
                                 contadorPuntaje++;
                                 txtPuntaje.setText(""+contadorPuntaje);
                                 esperaCambio();
@@ -234,7 +240,7 @@ public class JuegoCompletarPalabra extends AppCompatActivity implements View.OnC
                         controles[4].setText("O");
                         if(espaciosBlancos()){
                             if(traerTexto().equals(palabras[numeroCambio])){
-                                Toast.makeText(getApplicationContext(),"palabra correcta", Toast.LENGTH_LONG).show();
+                                Toast.makeText(getApplicationContext(),"palabra correcta", Toast.LENGTH_SHORT).show();
                                 contadorPuntaje++;
                                 txtPuntaje.setText(""+contadorPuntaje);
                                 esperaCambio();
@@ -262,7 +268,7 @@ public class JuegoCompletarPalabra extends AppCompatActivity implements View.OnC
 
                         if(espaciosBlancos()){
                             if(traerTexto().equals(palabras[numeroCambio])){
-                                Toast.makeText(getApplicationContext(),"palabra correcta", Toast.LENGTH_LONG).show();
+                                Toast.makeText(getApplicationContext(),"palabra correcta", Toast.LENGTH_SHORT).show();
                                 contadorPuntaje++;
                                 txtPuntaje.setText(""+contadorPuntaje);
                                 esperaCambio();
@@ -282,7 +288,7 @@ public class JuegoCompletarPalabra extends AppCompatActivity implements View.OnC
                         controles[3].setText("O");
                         if(espaciosBlancos()){
                             if(traerTexto().equals(palabras[numeroCambio])){
-                                Toast.makeText(getApplicationContext(),"palabra correcta", Toast.LENGTH_LONG).show();
+                                Toast.makeText(getApplicationContext(),"palabra correcta", Toast.LENGTH_SHORT).show();
                                 contadorPuntaje++;
                                 txtPuntaje.setText(""+contadorPuntaje);
                                 esperaCambio();
@@ -306,7 +312,7 @@ public class JuegoCompletarPalabra extends AppCompatActivity implements View.OnC
                         controles[2].setText("O");
                         if(espaciosBlancos()){
                             if(traerTexto().equals(palabras[numeroCambio])){
-                                Toast.makeText(getApplicationContext(),"palabra correcta", Toast.LENGTH_LONG).show();
+                                Toast.makeText(getApplicationContext(),"palabra correcta", Toast.LENGTH_SHORT).show();
                                 contadorPuntaje++;
                                 txtPuntaje.setText(""+contadorPuntaje);
                                 esperaCambio();
@@ -333,7 +339,7 @@ public class JuegoCompletarPalabra extends AppCompatActivity implements View.OnC
                         controles[1].setText("A");
                         if(espaciosBlancos()){
                             if(traerTexto().equals(palabras[numeroCambio])){
-                                Toast.makeText(getApplicationContext(),"palabra correcta", Toast.LENGTH_LONG).show();
+                                Toast.makeText(getApplicationContext(),"palabra correcta", Toast.LENGTH_SHORT).show();
                                 contadorPuntaje++;
                                 txtPuntaje.setText(""+contadorPuntaje);
                                 esperaCambio();
@@ -355,7 +361,7 @@ public class JuegoCompletarPalabra extends AppCompatActivity implements View.OnC
                         controles[3].setText("O");
                         if(espaciosBlancos()){
                             if(traerTexto().equals(palabras[numeroCambio])){
-                                Toast.makeText(getApplicationContext(),"palabra correcta", Toast.LENGTH_LONG).show();
+                                Toast.makeText(getApplicationContext(),"palabra correcta", Toast.LENGTH_SHORT).show();
                                 contadorPuntaje++;
                                 txtPuntaje.setText(""+contadorPuntaje);
                                 esperaCambio();
@@ -385,7 +391,7 @@ public class JuegoCompletarPalabra extends AppCompatActivity implements View.OnC
                         controles[1].setText("U");
                         if(espaciosBlancos()){
                             if(traerTexto().equals(palabras[numeroCambio])){
-                                Toast.makeText(getApplicationContext(),"palabra correcta", Toast.LENGTH_LONG).show();
+                                Toast.makeText(getApplicationContext(),"palabra correcta", Toast.LENGTH_SHORT).show();
                                 contadorPuntaje++;
                                 txtPuntaje.setText(""+contadorPuntaje);
                                 esperaCambio();
@@ -403,7 +409,7 @@ public class JuegoCompletarPalabra extends AppCompatActivity implements View.OnC
                         controles[4].setText("O");
                         if(espaciosBlancos()){
                             if(traerTexto().equals(palabras[numeroCambio])){
-                                Toast.makeText(getApplicationContext(),"palabra correcta", Toast.LENGTH_LONG).show();
+                                Toast.makeText(getApplicationContext(),"palabra correcta", Toast.LENGTH_SHORT).show();
                                 contadorPuntaje++;
                                 txtPuntaje.setText(""+contadorPuntaje);
                                 esperaCambio();
@@ -434,7 +440,7 @@ public class JuegoCompletarPalabra extends AppCompatActivity implements View.OnC
                         controles[3].setText("O");
                         if(espaciosBlancos()){
                             if(traerTexto().equals(palabras[numeroCambio])){
-                                Toast.makeText(getApplicationContext(),"palabra correcta", Toast.LENGTH_LONG).show();
+                                Toast.makeText(getApplicationContext(),"palabra correcta", Toast.LENGTH_SHORT).show();
                                 contadorPuntaje++;
                                 txtPuntaje.setText(""+contadorPuntaje);
                                 esperaCambio();
@@ -463,7 +469,7 @@ public class JuegoCompletarPalabra extends AppCompatActivity implements View.OnC
                         controles[1].setText("E");
                         if(espaciosBlancos()){
                             if(traerTexto().equals(palabras[numeroCambio])){
-                                Toast.makeText(getApplicationContext(),"palabra correcta", Toast.LENGTH_LONG).show();
+                                Toast.makeText(getApplicationContext(),"palabra correcta", Toast.LENGTH_SHORT).show();
                                 contadorPuntaje++;
                                 txtPuntaje.setText(""+contadorPuntaje);
                                 esperaCambio();
@@ -482,7 +488,7 @@ public class JuegoCompletarPalabra extends AppCompatActivity implements View.OnC
                         controles[4].setText("O");
                         if(espaciosBlancos()){
                             if(traerTexto().equals(palabras[numeroCambio])){
-                                Toast.makeText(getApplicationContext(),"palabra correcta", Toast.LENGTH_LONG).show();
+                                Toast.makeText(getApplicationContext(),"palabra correcta", Toast.LENGTH_SHORT).show();
                                 contadorPuntaje++;
                                 txtPuntaje.setText(""+contadorPuntaje);
                                 esperaCambio();
@@ -508,7 +514,7 @@ public class JuegoCompletarPalabra extends AppCompatActivity implements View.OnC
                         controles[0].setText("O");
                         if(espaciosBlancos()){
                             if(traerTexto().equals(palabras[numeroCambio])){
-                                Toast.makeText(getApplicationContext(),"palabra correcta", Toast.LENGTH_LONG).show();
+                                Toast.makeText(getApplicationContext(),"palabra correcta", Toast.LENGTH_SHORT).show();
                                 contadorPuntaje++;
                                 txtPuntaje.setText(""+contadorPuntaje);
                                 esperaCambio();
@@ -528,7 +534,7 @@ public class JuegoCompletarPalabra extends AppCompatActivity implements View.OnC
                         sonidoLetrae.start();
                         if(espaciosBlancos()){
                             if(traerTexto().equals(palabras[numeroCambio])){
-                                Toast.makeText(getApplicationContext(),"palabra correcta", Toast.LENGTH_LONG).show();
+                                Toast.makeText(getApplicationContext(),"palabra correcta", Toast.LENGTH_SHORT).show();
                                 contadorPuntaje++;
                                 txtPuntaje.setText(""+contadorPuntaje);
                                 esperaCambio();
@@ -547,7 +553,7 @@ public class JuegoCompletarPalabra extends AppCompatActivity implements View.OnC
                         controles[2].setText("E");
                         if(espaciosBlancos()){
                             if(traerTexto().equals(palabras[numeroCambio])){
-                                Toast.makeText(getApplicationContext(),"palabra correcta", Toast.LENGTH_LONG).show();
+                                Toast.makeText(getApplicationContext(),"palabra correcta", Toast.LENGTH_SHORT).show();
                                 contadorPuntaje++;
                                 txtPuntaje.setText(""+contadorPuntaje);
                                 esperaCambio();
@@ -572,7 +578,7 @@ public class JuegoCompletarPalabra extends AppCompatActivity implements View.OnC
                         controles[3].setText("A");
                         if(espaciosBlancos()){
                             if(traerTexto().equals(palabras[numeroCambio])){
-                                Toast.makeText(getApplicationContext(),"palabra correcta", Toast.LENGTH_LONG).show();
+                                Toast.makeText(getApplicationContext(),"palabra correcta", Toast.LENGTH_SHORT).show();
                                 contadorPuntaje++;
                                 txtPuntaje.setText(""+contadorPuntaje);
                                 guardarDatos();
@@ -601,9 +607,8 @@ public class JuegoCompletarPalabra extends AppCompatActivity implements View.OnC
             @Override
             public void onClick(View v) {
                 sonidoLetraa.start();
-                Toast.makeText(getApplicationContext(),"Error letra incorrecta", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(),"Error letra incorrecta", Toast.LENGTH_SHORT).show();
                 vidas(vidas--);
-                //respuestIncorrecta.start();
                 imgIncorrecto();
 
             }
@@ -617,9 +622,8 @@ public class JuegoCompletarPalabra extends AppCompatActivity implements View.OnC
             @Override
             public void onClick(View v) {
                 sonidoLetrae.start();
-                Toast.makeText(getApplicationContext(),"Error letra incorrecta", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(),"Error letra incorrecta", Toast.LENGTH_SHORT).show();
                 vidas(vidas--);
-                //respuestIncorrecta.start();
                 imgIncorrecto();
 
             }
@@ -631,9 +635,8 @@ public class JuegoCompletarPalabra extends AppCompatActivity implements View.OnC
             @Override
             public void onClick(View v) {
                 sonidoLetrai.start();
-                Toast.makeText(getApplicationContext(),"Error letra incorrecta", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(),"Error letra incorrecta", Toast.LENGTH_SHORT).show();
                 vidas(vidas--);
-                //respuestIncorrecta.start();
                 imgIncorrecto();
 
             }
@@ -645,9 +648,8 @@ public class JuegoCompletarPalabra extends AppCompatActivity implements View.OnC
             @Override
             public void onClick(View v) {
                 sonidoLetrao.start();
-                Toast.makeText(getApplicationContext(),"Error letra incorrecta", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(),"Error letra incorrecta", Toast.LENGTH_SHORT).show();
                 vidas(vidas--);
-                //respuestIncorrecta.start();
                 imgIncorrecto();
             }
         });
@@ -659,15 +661,15 @@ public class JuegoCompletarPalabra extends AppCompatActivity implements View.OnC
             @Override
             public void onClick(View v) {
                 sonidoLetrau.start();
-                Toast.makeText(getApplicationContext(),"Error letra incorrecta", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(),"Error letra incorrecta", Toast.LENGTH_SHORT).show();
                 vidas(vidas--);
-                //respuestIncorrecta.start();
                 imgIncorrecto();
             }
         });
 
     }
     void vidas(int numero){
+        numero--;
 
         switch (numero){
             case 0:
@@ -676,11 +678,11 @@ public class JuegoCompletarPalabra extends AppCompatActivity implements View.OnC
                 guardarDatos();
                 break;
             case 1:
-                Toast.makeText(this, "Tienes una vida",Toast.LENGTH_LONG).show();
+                Toast.makeText(this, "Tienes una vida",Toast.LENGTH_SHORT).show();
                 imgVidas.setImageResource(R.drawable.unavida);
                 break;
             case 2:
-                Toast.makeText(this, "Tienes dos vidas",Toast.LENGTH_LONG).show();
+                Toast.makeText(this, "Tienes dos vidas",Toast.LENGTH_SHORT).show();
                 imgVidas.setImageResource(R.drawable.dosvidas);
                 break;
             case 3:
@@ -693,7 +695,7 @@ public class JuegoCompletarPalabra extends AppCompatActivity implements View.OnC
 
 
     void esperaCambio(){
-        new CountDownTimer(1000, 1) {
+        new CountDownTimer(2000, 1) {
             @Override
             public void onTick(long millisUntilFinished) {
                 txtEspera.setText(""+(millisUntilFinished/1000));
@@ -702,7 +704,6 @@ public class JuegoCompletarPalabra extends AppCompatActivity implements View.OnC
 
             @Override
             public void onFinish() {
-                //btnComprobar.setVisibility(View.VISIBLE);
                 txtEspera.setText("");
                 numeroCambio=numeroCambio+1;
                 insertarBotones(numeroCambio);
@@ -724,6 +725,8 @@ public class JuegoCompletarPalabra extends AppCompatActivity implements View.OnC
             @Override
             public void onFinish() {
                 imgCorrecto.setVisibility(View.INVISIBLE);
+                respuestCorrecta.start();
+
 
             }
         }.start();
@@ -736,6 +739,7 @@ public class JuegoCompletarPalabra extends AppCompatActivity implements View.OnC
             public void onTick(long millisUntilFinished) {
                 txtEspera.setText(""+(millisUntilFinished/1000)+1);
                 imgIncorrecto.setVisibility(View.VISIBLE);
+                respuestIncorrecta.start();
             }
 
             @Override
@@ -757,6 +761,7 @@ public class JuegoCompletarPalabra extends AppCompatActivity implements View.OnC
             public void onFinish() {
                 txtResultado.setText("Juego Terminado");
                 rlMenu.setVisibility(View.VISIBLE);
+                juegoTerminado.start();
             }
         }.start();
 
@@ -772,6 +777,7 @@ public class JuegoCompletarPalabra extends AppCompatActivity implements View.OnC
             public void onFinish() {
                 txtResultado.setText("PERDISTE");
                 rlMenu.setVisibility(View.VISIBLE);
+                perdiste.start();
             }
         }.start();
 

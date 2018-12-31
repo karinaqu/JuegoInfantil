@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/fondo_vocal"
     tools:context=".JuegoOrdenarVocales">
 
     <ImageView
@@ -138,37 +139,12 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.25" />
 
-    <ImageView
-        android:id="@+id/imgCorrecto"
-        android:layout_width="246dp"
-        android:layout_height="233dp"
-        android:src="@drawable/correcto"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.572"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageView
-        android:id="@+id/imgIncorrecto"
-        android:layout_width="246dp"
-        android:layout_height="233dp"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="153dp"
-        android:layout_toEndOf="@+id/imgLetraE"
-        android:src="@drawable/incorrecto"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.572"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="center"
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"
         android:orientation="horizontal">
@@ -176,21 +152,21 @@
         <LinearLayout
             android:id="@+id/lyVocal1"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="0"
             android:background="@android:color/holo_purple"
             android:padding="5dp">
 
             <Button
                 android:id="@+id/vocalA"
-                android:layout_width="64dp"
+                android:layout_width="65dp"
                 android:layout_height="match_parent" />
         </LinearLayout>
 
         <LinearLayout
             android:id="@+id/lyVocal2"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="0"
             android:background="@android:color/holo_green_dark"
             android:orientation="vertical"
@@ -198,15 +174,15 @@
 
             <Button
                 android:id="@+id/vocalE"
-                android:layout_width="64dp"
+                android:layout_width="65dp"
                 android:layout_height="match_parent" />
 
         </LinearLayout>
 
         <LinearLayout
             android:id="@+id/lyVocal3"
-            android:layout_width="67dp"
-            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="0"
             android:background="@android:color/holo_orange_dark"
             android:orientation="vertical"
@@ -214,14 +190,14 @@
 
             <Button
                 android:id="@+id/vocalI"
-                android:layout_width="64dp"
-                android:layout_height="wrap_content" />
+                android:layout_width="70dp"
+                android:layout_height="match_parent" />
         </LinearLayout>
 
         <LinearLayout
             android:id="@+id/lyVocal4"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="0"
             android:background="@android:color/darker_gray"
             android:orientation="vertical"
@@ -229,7 +205,7 @@
 
             <Button
                 android:id="@+id/vocalO"
-                android:layout_width="64dp"
+                android:layout_width="65dp"
                 android:layout_height="wrap_content" />
 
         </LinearLayout>
@@ -237,15 +213,15 @@
         <LinearLayout
             android:id="@+id/lyVocal5"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="0"
             android:background="@android:color/holo_blue_light"
             android:padding="5dp">
 
             <Button
                 android:id="@+id/vocalU"
-                android:layout_width="64dp"
-                android:layout_height="match_parent" />
+                android:layout_width="65dp"
+                android:layout_height="wrap_content" />
         </LinearLayout>
 
     </LinearLayout>
@@ -255,7 +231,9 @@
         android:id="@+id/imgLetraA"
         android:layout_width="46dp"
         android:layout_height="41dp"
-        android:layout_above="@+id/imgLetraU"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="148dp"
         android:src="@drawable/letraa" />
 
     <ImageView
@@ -274,9 +252,10 @@
         android:id="@+id/imgLetraO"
         android:layout_width="41dp"
         android:layout_height="43dp"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="181dp"
-        android:layout_toEndOf="@+id/imgAtras"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="198dp"
+        android:layout_marginEnd="112dp"
         android:layout_weight="0.5"
         android:src="@drawable/letrao" />
 
@@ -287,7 +266,6 @@
         android:layout_height="44dp"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="99dp"
-        android:layout_toEndOf="@+id/imgLetraA"
         android:layout_weight="0.5"
         android:src="@drawable/letrae" />
 
@@ -296,9 +274,8 @@
         android:id="@+id/imgLetraI"
         android:layout_width="41dp"
         android:layout_height="53dp"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="119dp"
-        android:layout_toEndOf="@+id/imgLetraO"
+        android:layout_alignBottom="@+id/imgLetraU"
+        android:layout_toStartOf="@+id/txtPuntaje"
         android:layout_weight="0.5"
         android:src="@drawable/letrai" />
 
@@ -306,18 +283,17 @@
         android:id="@+id/rlMenu"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#00ffff"
+        android:background="@drawable/terminado_vocal"
         android:visibility="gone">
 
         <TextView
             android:id="@+id/txtResultado"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="44dp"
             android:gravity="center"
-            android:text="PERDISTE"
+            android:text="JUEGO TERMINADO"
             android:textColor="#f4b219"
             android:textSize="50dp"
             android:textStyle="bold" />
@@ -353,5 +329,31 @@
             android:src="@drawable/icono_derecha"/>
 
     </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/imgCorrecto"
+        android:layout_width="246dp"
+        android:layout_height="233dp"
+        android:layout_centerInParent="true"
+        android:src="@drawable/correcto"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.572"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imgIncorrecto"
+        android:layout_width="246dp"
+        android:layout_height="233dp"
+        android:layout_centerInParent="true"
+        android:src="@drawable/incorrecto"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.572"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </RelativeLayout>

@@ -1,6 +1,7 @@
 package com.example.karinaquimbiamba.juegoinfantil;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.CountDownTimer;
 import android.os.SystemClock;
 import android.support.annotation.NonNull;
@@ -63,6 +64,11 @@ public class JuegoSumaNumeros extends AppCompatActivity implements View.OnClickL
             R.drawable.numero7,R.drawable.numero8,R.drawable.numero9,
             R.drawable.numero10};
 
+    int numerosSonido[]={R.raw.sonido0,R.raw.sonido1, R.raw.sonido2,
+            R.raw.sonido3,R.raw.sonido4, R.raw.sonido5,R.raw.sonido6,
+            R.raw.sonido7,R.raw.sonido8,R.raw.sonido9,
+            R.raw.sonido10};
+
     DatabaseReference databaseReference;
     FirebaseDatabase firebaseDatabase;
     private FirebaseAuth firebaseAuth;
@@ -72,6 +78,14 @@ public class JuegoSumaNumeros extends AppCompatActivity implements View.OnClickL
     private ImageView imgSiguiente;
     private ImageView imgCantidad1;
     private ImageView imgCantidad2;
+
+    //Definción de variables para los sonidos
+    private MediaPlayer respuestIncorrecta;
+    private MediaPlayer respuestCorrecta;
+    private MediaPlayer sonidoIndicacion;
+    private MediaPlayer perdiste;
+    private MediaPlayer juegoTerminado;
+    private MediaPlayer sonidosNumeros;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -106,6 +120,13 @@ public class JuegoSumaNumeros extends AppCompatActivity implements View.OnClickL
         imgRepetir.setOnClickListener(this);
         imgSiguiente.setOnClickListener(this);
 
+        respuestIncorrecta= MediaPlayer.create(this, R.raw.incorrecto);
+        respuestCorrecta= MediaPlayer.create(this, R.raw.correcto);
+        perdiste= MediaPlayer.create(this, R.raw.perdiste);
+        juegoTerminado= MediaPlayer.create(this, R.raw.juego_terminado);
+        sonidoIndicacion=MediaPlayer.create(this, R.raw.seleccionar_suma);
+        sonidoIndicacion.start();
+
         incializarFirebase();
 
 
@@ -123,6 +144,8 @@ public class JuegoSumaNumeros extends AppCompatActivity implements View.OnClickL
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 edtRespuesta.setText(""+ opciones[position]);
+                sonidosNumeros = MediaPlayer.create(getApplicationContext(),numerosSonido[position]);
+                sonidosNumeros.start();
 
             }
         });
@@ -254,6 +277,7 @@ public class JuegoSumaNumeros extends AppCompatActivity implements View.OnClickL
             @Override
             public void onFinish() {
                 imgCorrecto.setVisibility(View.INVISIBLE);
+                respuestCorrecta.start();
 
             }
         }.start();
@@ -266,6 +290,7 @@ public class JuegoSumaNumeros extends AppCompatActivity implements View.OnClickL
             public void onTick(long millisUntilFinished) {
                 txtEspera.setText(""+(millisUntilFinished/1000)+1);
                 imgIncorrecto.setVisibility(View.VISIBLE);
+                respuestIncorrecta.start();
 
             }
 
@@ -289,6 +314,7 @@ public class JuegoSumaNumeros extends AppCompatActivity implements View.OnClickL
             public void onFinish() {
                 txtResultado.setText("Juego Terminado");
                 rlMenu.setVisibility(View.VISIBLE);
+                juegoTerminado.start();
             }
         }.start();
 
@@ -304,6 +330,7 @@ public class JuegoSumaNumeros extends AppCompatActivity implements View.OnClickL
             public void onFinish() {
                 txtResultado.setText("PERDISTE");
                 rlMenu.setVisibility(View.VISIBLE);
+                perdiste.start();
             }
         }.start();
 

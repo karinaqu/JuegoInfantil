@@ -67,6 +67,9 @@ public class JuegoOrdenarVocales extends AppCompatActivity implements View.OnTou
     private MediaPlayer sonidoLetrau;
     private MediaPlayer sonidoIndicacion;
     private MediaPlayer respuestaIncorrecta;
+    private MediaPlayer respuestaCorrecta;
+    private MediaPlayer perdiste;
+    private MediaPlayer juegoTerminado;
 
 
     @Override
@@ -146,7 +149,10 @@ public class JuegoOrdenarVocales extends AppCompatActivity implements View.OnTou
         sonidoLetrai =MediaPlayer.create(this, R.raw.sonidoi);
         sonidoLetrao =MediaPlayer.create(this, R.raw.sonidoo);
         sonidoLetrau =MediaPlayer.create(this, R.raw.sonidou);
-        //respuestaIncorrecta= MediaPlayer.create(this, R.raw.incorrecto);
+        respuestaIncorrecta= MediaPlayer.create(this, R.raw.incorrecto);
+        respuestaCorrecta= MediaPlayer.create(this, R.raw.correcto);
+        perdiste= MediaPlayer.create(this, R.raw.perdiste);
+        juegoTerminado= MediaPlayer.create(this, R.raw.juego_terminado);
         sonidoIndicacion= MediaPlayer.create(this,R.raw.buscar_letras);
         sonidoIndicacion.start();
 
@@ -259,13 +265,13 @@ public class JuegoOrdenarVocales extends AppCompatActivity implements View.OnTou
                     }else {
                         vidas--;
                         imgIncorrecto();
-                        //respuestaIncorrecta.start();
 
                         switch (vidas){
                             case 0:
                                 guardarDatos();
                                 imgVidas.setImageResource(vidas);
                                 PerdisteJuego();
+
                                 break;
                             case 1:
                                 Toast.makeText(JuegoOrdenarVocales.this, "Tienes una vida",Toast.LENGTH_SHORT).show();
@@ -306,11 +312,13 @@ public class JuegoOrdenarVocales extends AppCompatActivity implements View.OnTou
             public void onTick(long millisUntilFinished) {
                 txtEspera.setText(""+(millisUntilFinished/1000)+1);
                 imgCorrecto.setVisibility(View.VISIBLE);
+
             }
 
             @Override
             public void onFinish() {
                 imgCorrecto.setVisibility(View.INVISIBLE);
+                respuestaCorrecta.start();
 
             }
         }.start();
@@ -323,11 +331,14 @@ public class JuegoOrdenarVocales extends AppCompatActivity implements View.OnTou
             public void onTick(long millisUntilFinished) {
                 txtEspera.setText(""+(millisUntilFinished/1000)+1);
                 imgIncorrecto.setVisibility(View.VISIBLE);
+                respuestaIncorrecta.start();
+
             }
 
             @Override
             public void onFinish() {
                 imgIncorrecto.setVisibility(View.INVISIBLE);
+
             }
         }.start();
 
@@ -350,6 +361,7 @@ public class JuegoOrdenarVocales extends AppCompatActivity implements View.OnTou
             public void onFinish() {
                 txtResultado.setText("Juego Terminado");
                 rlMenu.setVisibility(View.VISIBLE);
+                juegoTerminado.start();
             }
         }.start();
 
@@ -365,6 +377,7 @@ public class JuegoOrdenarVocales extends AppCompatActivity implements View.OnTou
             public void onFinish() {
                 txtResultado.setText("PERDISTE");
                 rlMenu.setVisibility(View.VISIBLE);
+                perdiste.start();
             }
         }.start();
 
@@ -403,5 +416,4 @@ public class JuegoOrdenarVocales extends AppCompatActivity implements View.OnTou
         }
 
     }
-
 }
