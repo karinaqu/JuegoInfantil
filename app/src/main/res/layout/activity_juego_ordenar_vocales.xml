@@ -1,0 +1,357 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".JuegoOrdenarVocales">
+
+    <ImageView
+        android:id="@+id/imgAtras"
+        android:layout_width="58dp"
+        android:layout_height="49dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:src="@drawable/atras" />
+
+    <TextView
+        android:layout_width="49dp"
+        android:layout_height="28dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="156dp"
+        android:text="Vidas"
+        android:textColor="#000000"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Chronometer
+        android:id="@+id/chCronometro"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_alignBottom="@+id/imgAtras"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="13dp"
+        android:textSize="14dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.956"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.029" />
+
+
+    <ImageView
+
+        android:layout_width="37dp"
+        android:layout_height="20dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.979"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/reloj" />
+
+    <ImageView
+        android:id="@+id/imgVidas"
+        android:layout_width="88dp"
+        android:layout_height="30dp"
+        android:layout_alignBottom="@+id/imgAtras"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="131dp"
+        android:src="@drawable/tresvidas"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.466"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.029" />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="29dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginEnd="73dp"
+        android:text="Puntaje"
+        android:textColor="#000"
+        android:textSize="15dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.767"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/txtPuntaje"
+        android:layout_width="21dp"
+        android:layout_height="26dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignTop="@+id/chCronometro"
+        android:layout_marginEnd="84dp"
+        android:text="0"
+        android:textColor="#000"
+        android:textSize="14dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.746"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.029" />
+
+    <TextView
+        android:id="@+id/txtNombre"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text=""
+        android:textColor="#131946"
+        android:textSize="30sp"
+        android:visibility="invisible" />
+    <TextView
+        android:id="@+id/txtEspera"
+        android:layout_width="67dp"
+        android:layout_height="28dp"
+        android:text=""
+        android:visibility="invisible"
+        android:textColor="#000000"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.05"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.25" />
+
+    <ImageView
+        android:id="@+id/imgCorrecto"
+        android:layout_width="246dp"
+        android:layout_height="233dp"
+        android:src="@drawable/correcto"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.572"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imgIncorrecto"
+        android:layout_width="246dp"
+        android:layout_height="233dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="153dp"
+        android:layout_toEndOf="@+id/imgLetraE"
+        android:src="@drawable/incorrecto"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.572"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:id="@+id/lyVocal1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
+            android:background="@android:color/holo_purple"
+            android:padding="5dp">
+
+            <Button
+                android:id="@+id/vocalA"
+                android:layout_width="64dp"
+                android:layout_height="match_parent" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/lyVocal2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
+            android:background="@android:color/holo_green_dark"
+            android:orientation="vertical"
+            android:padding="5dp">
+
+            <Button
+                android:id="@+id/vocalE"
+                android:layout_width="64dp"
+                android:layout_height="match_parent" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/lyVocal3"
+            android:layout_width="67dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
+            android:background="@android:color/holo_orange_dark"
+            android:orientation="vertical"
+            android:padding="5dp">
+
+            <Button
+                android:id="@+id/vocalI"
+                android:layout_width="64dp"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/lyVocal4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
+            android:background="@android:color/darker_gray"
+            android:orientation="vertical"
+            android:padding="5dp">
+
+            <Button
+                android:id="@+id/vocalO"
+                android:layout_width="64dp"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/lyVocal5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
+            android:background="@android:color/holo_blue_light"
+            android:padding="5dp">
+
+            <Button
+                android:id="@+id/vocalU"
+                android:layout_width="64dp"
+                android:layout_height="match_parent" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+    <ImageView
+        android:id="@+id/imgLetraA"
+        android:layout_width="46dp"
+        android:layout_height="41dp"
+        android:layout_above="@+id/imgLetraU"
+        android:src="@drawable/letraa" />
+
+    <ImageView
+        android:id="@+id/imgLetraU"
+        android:layout_width="66dp"
+        android:layout_height="41dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="127dp"
+        android:layout_marginStart="124dp"
+        android:layout_weight="0.5"
+        android:src="@drawable/letrau" />
+
+
+    <ImageView
+        android:id="@+id/imgLetraO"
+        android:layout_width="41dp"
+        android:layout_height="43dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="181dp"
+        android:layout_toEndOf="@+id/imgAtras"
+        android:layout_weight="0.5"
+        android:src="@drawable/letrao" />
+
+
+    <ImageView
+        android:id="@+id/imgLetraE"
+        android:layout_width="44dp"
+        android:layout_height="44dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="99dp"
+        android:layout_toEndOf="@+id/imgLetraA"
+        android:layout_weight="0.5"
+        android:src="@drawable/letrae" />
+
+
+    <ImageView
+        android:id="@+id/imgLetraI"
+        android:layout_width="41dp"
+        android:layout_height="53dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="119dp"
+        android:layout_toEndOf="@+id/imgLetraO"
+        android:layout_weight="0.5"
+        android:src="@drawable/letrai" />
+
+    <RelativeLayout
+        android:id="@+id/rlMenu"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#00ffff"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/txtResultado"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="44dp"
+            android:gravity="center"
+            android:text="PERDISTE"
+            android:textColor="#f4b219"
+            android:textSize="50dp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/imgMenu"
+            android:layout_width="105dp"
+            android:layout_height="79dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginBottom="66dp"
+            android:layout_marginEnd="128dp"
+            android:src="@drawable/icono_casa" />
+
+        <ImageView
+            android:id="@+id/imgRepetir"
+            android:layout_width="105dp"
+            android:layout_height="79dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginBottom="66dp"
+            android:layout_marginStart="18dp"
+            android:src="@drawable/icono_repetir" />
+
+        <ImageView
+            android:id="@+id/imgSiguiente"
+            android:layout_width="105dp"
+            android:layout_height="79dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginBottom="66dp"
+            android:layout_marginEnd="18dp"
+            android:src="@drawable/icono_derecha"/>
+
+    </RelativeLayout>
+
+</RelativeLayout>

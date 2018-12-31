@@ -75,6 +75,7 @@ public class Puntaje {
                 "Usuario: " + idUsuario  +
                 ", Area: " + idArea +
                 ", Nivel: " + idNivel  +
-                ", Puntaje : " + puntaje ;
+                ", Puntaje: " + puntaje+
+                ", Tiempo: " +tiempo;
     }
 }

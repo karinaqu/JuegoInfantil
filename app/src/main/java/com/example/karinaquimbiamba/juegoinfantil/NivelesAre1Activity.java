@@ -35,61 +35,27 @@ public class NivelesAre1Activity extends AppCompatActivity implements View.OnCli
 
     private DatabaseReference databaseReference; //Definción de variable para la base de datos firebase
     FirebaseDatabase firebaseDatabase;
-    private ImageButton imageButtonFlechaAtras;
-    private TextView txtArea;
-    private FirebaseAuth firebaseAuth;
+    private ImageView imgFlechaAtras;
+
 
     private ListView listViewNivel;
     private List<Nivel> listNivel = new ArrayList<Nivel>();
     ArrayAdapter<Nivel> arrayAdapterNivel;
 
-    //butones pruebaa
-    private Button btnNivel1;
-    private Button btnNivel2;
-    private Button btnNivel3;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_niveles_are1);
-        this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
 
-        btnNivel1=findViewById(R.id.Nivel1);
-        btnNivel2=findViewById(R.id.Nivel2);
-        btnNivel3=findViewById(R.id.Nivel3);
-
-
-        btnNivel1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity( new Intent(getApplicationContext(), JuegoNivel1Activity.class));
-
-            }
-        });
-        btnNivel2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity( new Intent(getApplicationContext(), JuegoNivel2Area1Activity.class));
-
-            }
-        });
-        btnNivel3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity( new Intent(getApplicationContext(), JuegoNivel3Area1Activity.class));
-
-            }
-        });
 
         listViewNivel= findViewById(R.id.lstNivel);
 
-        firebaseAuth= FirebaseAuth.getInstance();
-        txtArea=findViewById(R.id.txtArea);
-        //txtArea.setText("Matematicas");
 
-        imageButtonFlechaAtras= findViewById(R.id.imgAtras);
-        imageButtonFlechaAtras.setOnClickListener(this);
+
+        imgFlechaAtras= findViewById(R.id.imgAtras);
+        imgFlechaAtras.setOnClickListener(this);
 
         incializarFirebase();
         listarNiveles();
@@ -97,12 +63,12 @@ public class NivelesAre1Activity extends AppCompatActivity implements View.OnCli
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 if (position == 0){
-                    startActivity( new Intent(view.getContext(), JuegoNivel1Activity.class));
+                    startActivity( new Intent(view.getContext(), JuegoOrdenarVocales.class));
 
                 }
                 if(position == 1) {
                     // Abre una nueva Activity:
-                    startActivity( new Intent(view.getContext(), JuegoNivel2Area1Activity.class));
+                    startActivity( new Intent(view.getContext(), JuegoCompletarPalabra.class));
 
                 }
                 if(position == 2) {
@@ -146,32 +112,12 @@ public class NivelesAre1Activity extends AppCompatActivity implements View.OnCli
     }
     @Override
     public void onClick(View view) {
-        if (view == imageButtonFlechaAtras){
+        if (view == imgFlechaAtras){
             startActivity(new Intent(this, AreasActivity.class));
 
         }
 
-
     }
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu){
-        getMenuInflater().inflate(R.menu.menu_principal,menu);
-        return super.onCreateOptionsMenu(menu);
 
-    }
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item){
-
-        switch (item.getItemId()){
-            case R.id.icon_cerrar:{
-                firebaseAuth.signOut();//Permite salir al usuario es decir desloguearse
-                finish();
-                startActivity(new Intent(this, LoginActivity.class));//Llama a la pantalla de Logeo para ingresar de nuevo
-
-            }break;
-
-        }
-        return  true;
-    }
 
 }

@@ -32,12 +32,11 @@ import java.util.List;
 
 public class NivelesAre2Activity extends AppCompatActivity implements View.OnClickListener {
 
-    ListView lstViewNivel;
+
     private StorageReference storageReference; //Definción de referencia para firebase
     private DatabaseReference databaseReference; //Definción de variable para la base de datos firebase
     FirebaseDatabase firebaseDatabase;
-    private ImageButton imageButtonFlechaAtras;
-    private TextView txtArea;
+    private ImageView imgFlechaAtras;
 
     private FirebaseAuth firebaseAuth;
 
@@ -46,52 +45,18 @@ public class NivelesAre2Activity extends AppCompatActivity implements View.OnCli
     ArrayAdapter<Nivel> arrayAdapterNivel;
     Area areaSeleccionado;
 
-    //butones pruebaa
-    private Button btnNivel1;
-    private Button btnNivel2;
-    private Button btnNivel3;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_niveles_are2);
-        this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
-
-        btnNivel1=findViewById(R.id.Nivel1);
-        btnNivel2=findViewById(R.id.Nivel2);
-        btnNivel3=findViewById(R.id.Nivel3);
-
-        btnNivel1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //startActivity( new Intent(getApplicationContext(), JuegoNivel1Activity.class));
-                startActivity( new Intent(getApplicationContext(), JuegoNivel1Area2Activity.class));
-
-            }
-        });
-        btnNivel2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //startActivity( new Intent(getApplicationContext(), JuegoNivel2Area1Activity.class));
-                startActivity( new Intent(getApplicationContext(), JuegoNivel2Area2Activity.class));
-
-
-            }
-        });
-        btnNivel3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //startActivity( new Intent(getApplicationContext(), JuegoNivel3Area1Activity.class));
-                startActivity( new Intent(getApplicationContext(), JuegoNivel3Area2Activity.class));
-
-            }
-        });
 
 
         listViewNivel= findViewById(R.id.lstNivel);
-        firebaseAuth= FirebaseAuth.getInstance();
-        imageButtonFlechaAtras= findViewById(R.id.imgAtras);
-        imageButtonFlechaAtras.setOnClickListener(this);
+
+        imgFlechaAtras= findViewById(R.id.imgAtras);
+        imgFlechaAtras.setOnClickListener(this);
 
         incializarFirebase();
         listarNiveles();
@@ -100,17 +65,17 @@ public class NivelesAre2Activity extends AppCompatActivity implements View.OnCli
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 if (position == 0){
-                    startActivity( new Intent(view.getContext(), JuegoNivel1Area2Activity.class));
+                    startActivity( new Intent(view.getContext(), JuegoNumerosImagen.class));
 
                 }
                 if(position == 1) {
                     // Abre una nueva Activity:
-                    startActivity( new Intent(view.getContext(), JuegoNivel2Area2Activity.class));
+                    startActivity( new Intent(view.getContext(), JuegoSumaNumeros.class));
 
                 }
                 if(position == 2) {
                     // Abre una nueva Activity:
-                    startActivity( new Intent(view.getContext(), JuegoNivel3Area2Activity.class));
+                    startActivity( new Intent(view.getContext(), JuegoRestaNumeros.class));
 
                 }
 
@@ -133,7 +98,6 @@ public class NivelesAre2Activity extends AppCompatActivity implements View.OnCli
 
                 }
 
-
             }
 
             @Override
@@ -151,33 +115,12 @@ public class NivelesAre2Activity extends AppCompatActivity implements View.OnCli
 
     @Override
     public void onClick(View view) {
-        if (view == imageButtonFlechaAtras){
-            startActivity(new Intent(this,LoginActivity.class));
+        if (view == imgFlechaAtras){
+            startActivity(new Intent(this, AreasActivity.class));
 
         }
 
 
     }
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu){
-        getMenuInflater().inflate(R.menu.menu_principal,menu);
-        return super.onCreateOptionsMenu(menu);
-
-    }
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item){
-
-        switch (item.getItemId()){
-            case R.id.icon_cerrar:{
-                firebaseAuth.signOut();//Permite salir al usuario es decir desloguearse
-                finish();
-                startActivity(new Intent(this, AreasActivity.class));//Llama a la pantalla de Logeo para ingresar de nuevo
-
-            }break;
-
-        }
-        return  true;
-    }
-
 
 }

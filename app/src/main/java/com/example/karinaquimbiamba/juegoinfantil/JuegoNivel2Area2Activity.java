@@ -72,7 +72,7 @@ public class JuegoNivel2Area2Activity extends AppCompatActivity implements View.
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_juego_nivel2_area2);
-        //this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+        this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
 
         btnComparar=findViewById(R.id.btnComparar);
         txtResultado= findViewById(R.id.txtResultado);

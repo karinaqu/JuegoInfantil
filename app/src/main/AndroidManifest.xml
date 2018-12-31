@@ -26,11 +26,11 @@
         <activity android:name=".CrudUserActivity" />
         <activity
             android:name=".NivelesAre1Activity"
-            android:screenOrientation="landscape"
+            android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
             android:name=".NivelesAre2Activity"
-            android:screenOrientation="landscape"
+            android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
             android:name=".MainPrincipalActivity"
@@ -66,24 +66,36 @@
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
             android:name=".PuntajeUsuarioActivity"
-            android:screenOrientation="landscape"
+            android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity android:name=".PuntajesUsuariosTotalesActivity" />
-        <activity android:name=".FinalizarJuegoArea2Nivel3Activity" />
         <activity
             android:name=".AreasActivity"
-            android:screenOrientation="landscape"
+            android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-        <activity android:name=".FinJuegoArea2Activity"
-            android:screenOrientation="landscape"
+
+        <activity android:name=".MainUsuarioActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
 
-        <activity android:name=".FinJuegoArea1Activity"
-            android:screenOrientation="landscape"
+        <activity android:name=".JuegoSumaNumeros"
+            android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
 
-        <activity android:name=".PerderJuegoNivel1Area1Activity"
-            android:screenOrientation="landscape"
+        <activity android:name=".JuegoRestaNumeros"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+
+        <activity android:name=".JuegoOrdenarVocales"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+
+        <activity android:name=".JuegoCompletarPalabra"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+
+        <activity android:name=".JuegoNumerosImagen"
+            android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
     </application>
 

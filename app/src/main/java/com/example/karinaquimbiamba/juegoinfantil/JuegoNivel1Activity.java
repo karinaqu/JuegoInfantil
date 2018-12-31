@@ -75,7 +75,7 @@ public class JuegoNivel1Activity extends AppCompatActivity implements View.OnTou
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_juego_nivel1);
-        //this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+        this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
 
         //Varibles definidas para el menu cuando el juego termine
         btnIntentar= findViewById(R.id.btnIntentar);

@@ -33,17 +33,13 @@ import java.util.List;
 
 public class PuntajeUsuarioActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private TextView edtUsuario;
-    public static final String user= "names";
     private ImageView imgFlechaAtras;
 
 
     private DatabaseReference databaseReference; //Definción de variable para la base de datos firebase
-    FirebaseDatabase firebaseDatabase=FirebaseDatabase.getInstance();
-    private ImageButton imageButtonFlechaAtras;
+    FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
     public TextView textViewNombre; //Definción de variable texto  para el nombre
     private StorageReference storageReference; //Definción de referencia para firebase
-    private FirebaseAuth.AuthStateListener mAuthListener; //Definición de variable de autenticacipin
     private FirebaseAuth firebaseAuth;
 
     private ListView listViewPuntaje;
@@ -54,32 +50,21 @@ public class PuntajeUsuarioActivity extends AppCompatActivity implements View.On
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_puntaje_usuario);
-        this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
 
-        imgFlechaAtras=findViewById(R.id.imgFlechaAtras);
+        imgFlechaAtras=findViewById(R.id.imgAtras);
         imgFlechaAtras.setOnClickListener(this);
 
 
-        edtUsuario= findViewById(R.id.edtNombre);
-        final String user= getIntent().getStringExtra("names");
-        edtUsuario.setText("Bienvenido "+user);
 
-        listViewPuntaje= findViewById(R.id.lstPuntaje);
-
+        listViewPuntaje = findViewById(R.id.lstPuntaje);
         firebaseAuth= FirebaseAuth.getInstance();
-        if(firebaseAuth!=null){
-            edtUsuario.setText(""+firebaseAuth.getCurrentUser().getEmail());
 
-        }
-
-        //imageButtonFlechaAtras= findViewById(R.id.imgAtras);
-        //imageButtonFlechaAtras.setOnClickListener(this);
 
         incializarFirebase();
         listarPuntajes();
 
 
-        textViewNombre=(TextView) findViewById(R.id.txtNombre);
+        textViewNombre = findViewById(R.id.txtNombre);
 
         firebaseDatabase.getReference("Users").child(firebaseAuth.getCurrentUser().getUid()).addValueEventListener(new ValueEventListener() {
             @Override
@@ -142,26 +127,6 @@ public class PuntajeUsuarioActivity extends AppCompatActivity implements View.On
         }
 
 
-    }
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu){
-        getMenuInflater().inflate(R.menu.menu_principal,menu);
-        return super.onCreateOptionsMenu(menu);
-
-    }
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item){
-
-        switch (item.getItemId()){
-            case R.id.icon_cerrar:{
-                firebaseAuth.signOut();//Permite salir al usuario es decir desloguearse
-                finish();
-                startActivity(new Intent(this, LoginActivity.class));//Llama a la pantalla de Logeo para ingresar de nuevo
-
-            }break;
-
-        }
-        return  true;
     }
 
 

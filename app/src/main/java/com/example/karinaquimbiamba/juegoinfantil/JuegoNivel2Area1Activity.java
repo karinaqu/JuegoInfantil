@@ -46,7 +46,9 @@ public class JuegoNivel2Area1Activity extends AppCompatActivity implements View.
     //Variables definidas para el juego
     private ImageView imagen, imgVidas;
     private final String[] palabras={"VACA","PERRO","GATO","OSO","PATO","BURRO","MONO","CERDO","OVEJA","RANA"};
-    private String[] imagenes={"vaca","perro","gato","oso","pato","burro","mono","cerdo","oveja","rana"};
+    private int imagenes[]={R.drawable.vaca,R.drawable.perro,R.drawable.gato,
+            R.drawable.oso,R.drawable.pato,R.drawable.burro,R.drawable.mono,
+            R.drawable.cerdo,R.drawable.oveja,R.drawable.rana};
     private String[] sonidos={"vaca","perro","gato","oso","pato","burro","mono","cerdo","oveja","rana"};
     LinearLayout ly_palabra;
     private TextView controles[];
@@ -76,7 +78,7 @@ public class JuegoNivel2Area1Activity extends AppCompatActivity implements View.
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_juego_nivel2_area1);
 
-        //this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+        this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
 
         //Definición de variables para el menu
         btnIntentar= findViewById(R.id.btnIntentar);
@@ -161,9 +163,8 @@ public class JuegoNivel2Area1Activity extends AppCompatActivity implements View.
 
 
         for(int i = 0; i<controles.length; i++){
-            int id= getResources().getIdentifier(imagenes[numero],"drawable",getPackageName());
             int sonido= getResources().getIdentifier(sonidos[numero],"raw",getPackageName());
-            imagen.setImageResource(id);
+            imagen.setImageResource(imagenes[numero]);
             sonidoAnimales= MediaPlayer.create(JuegoNivel2Area1Activity.this,sonido);
             sonidoAnimales.start();
 
@@ -192,7 +193,7 @@ public class JuegoNivel2Area1Activity extends AppCompatActivity implements View.
                                 contadorPuntaje++;
                                 txtPuntaje.setText(""+contadorPuntaje);
                                 esperaCambio();
-
+                                numeroCambio=numeroCambio+1;
 
                             }
 

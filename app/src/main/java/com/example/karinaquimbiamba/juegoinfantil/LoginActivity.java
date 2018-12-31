@@ -65,7 +65,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         if (firebaseAuth.getCurrentUser() != null) {
             //finish();
-            startActivity(new Intent(getApplicationContext(), MainPrincipalActivity.class));
+            startActivity(new Intent(getApplicationContext(), MainUsuarioActivity.class));
 
         }
 
@@ -116,10 +116,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                                         user.getRol();
                                         if (user.getRol().equals("Usuario")){
 
-                                            startActivity(new Intent(getApplicationContext(), MainPrincipalActivity.class));
-                                            Intent nuevo =new Intent(getApplicationContext(),MainPrincipalActivity.class);
-                                            nuevo.putExtra(MainPrincipalActivity.user,email);
-                                            startActivity(nuevo);
+                                            startActivity(new Intent(getApplicationContext(), MainUsuarioActivity.class));
+                                            //Intent nuevo =new Intent(getApplicationContext(),MainPrincipalActivity.class);
+                                            //nuevo.putExtra(MainPrincipalActivity.user,email);
+                                            //startActivity(nuevo);
 
 
      }

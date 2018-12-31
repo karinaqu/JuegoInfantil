@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:weightSum="3">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:layout_weight="1"
+        android:weightSum="4">
+
+        <ImageView
+            android:id="@+id/imgCarta1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:src="@drawable/carta_reves" />
+
+        <ImageView
+            android:id="@+id/imgCarta2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:src="@drawable/carta_reves" />
+
+        <ImageView
+            android:id="@+id/imgCarta3"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:src="@drawable/carta_reves" />
+
+        <ImageView
+            android:id="@+id/imgCarta4"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:src="@drawable/carta_reves" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_weight="1"
+        android:weightSum="4"
+        android:layout_height="match_parent">
+        <ImageView
+            android:layout_width="match_parent"
+            android:id="@+id/imgCarta5"
+            android:layout_weight="1"
+            android:scaleType="centerInside"
+            android:src="@drawable/carta_reves"
+            android:layout_height="match_parent" />
+        <ImageView
+            android:layout_width="match_parent"
+            android:id="@+id/imgCarta6"
+            android:layout_weight="1"
+            android:src="@drawable/carta_reves"
+            android:layout_height="match_parent" />
+        <ImageView
+            android:layout_width="match_parent"
+            android:id="@+id/imgCarta7"
+            android:layout_weight="1"
+            android:src="@drawable/carta_reves"
+            android:layout_height="match_parent" />
+        <ImageView
+            android:layout_width="match_parent"
+            android:id="@+id/imgCarta8"
+            android:layout_weight="1"
+            android:src="@drawable/carta_reves"
+            android:layout_height="match_parent" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_weight="1"
+        android:weightSum="4"
+        android:layout_height="match_parent">
+        <ImageView
+            android:layout_width="match_parent"
+            android:id="@+id/imgCarta9"
+            android:layout_weight="1"
+            android:scaleType="centerInside"
+            android:src="@drawable/carta_reves"
+            android:layout_height="match_parent" />
+        <ImageView
+            android:layout_width="match_parent"
+            android:id="@+id/imgCarta10"
+            android:layout_weight="1"
+            android:src="@drawable/carta_reves"
+            android:layout_height="match_parent" />
+        <ImageView
+            android:layout_width="match_parent"
+            android:id="@+id/imgCarta11"
+            android:layout_weight="1"
+            android:src="@drawable/carta_reves"
+            android:layout_height="match_parent" />
+        <ImageView
+            android:layout_width="match_parent"
+            android:id="@+id/imgCarta12"
+            android:layout_weight="1"
+            android:src="@drawable/carta_reves"
+            android:layout_height="match_parent" />
+
+    </LinearLayout>
+
+</LinearLayout>
