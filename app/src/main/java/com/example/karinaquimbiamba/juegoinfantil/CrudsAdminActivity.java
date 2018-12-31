@@ -7,6 +7,7 @@ import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -17,7 +18,7 @@ public class CrudsAdminActivity extends AppCompatActivity implements View.OnClic
     private Button buttonAreas;
     private Button buttonNiveles;
     private Button buttonPuntajes;
-    private ImageButton imageButtonFlechaAtras;
+    private ImageView imgFlechaAtras;
 
     private FirebaseAuth firebaseAuth;
 
@@ -39,8 +40,8 @@ public class CrudsAdminActivity extends AppCompatActivity implements View.OnClic
         buttonPuntajes.setOnClickListener(this);
 
         firebaseAuth= FirebaseAuth.getInstance();
-        imageButtonFlechaAtras= findViewById(R.id.imgAtras);
-        imageButtonFlechaAtras.setOnClickListener(this);
+        imgFlechaAtras= findViewById(R.id.imgAtras);
+        imgFlechaAtras.setOnClickListener(this);
     }
 
     @Override
@@ -69,7 +70,7 @@ public class CrudsAdminActivity extends AppCompatActivity implements View.OnClic
 
 
         }
-        if (view == imageButtonFlechaAtras){
+        if (view == imgFlechaAtras){
             startActivity(new Intent(this, MainAdminActivity.class));
 
         }

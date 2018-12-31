@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -27,7 +28,7 @@ public class PuntajesUsuariosTotalesActivity extends AppCompatActivity implement
 
     private DatabaseReference databaseReference; //Definción de variable para la base de datos firebase
     FirebaseDatabase firebaseDatabase=FirebaseDatabase.getInstance();
-    private ImageButton imageButtonFlechaAtras;
+    private ImageView imgFlechaAtras;
 
 
     private ListView listViewPuntaje;
@@ -40,8 +41,8 @@ public class PuntajesUsuariosTotalesActivity extends AppCompatActivity implement
         setContentView(R.layout.activity_puntajes_usuarios_totales);
 
         listViewPuntaje= findViewById(R.id.lstPuntajes);
-        imageButtonFlechaAtras= findViewById(R.id.imgAtras);
-        imageButtonFlechaAtras.setOnClickListener(this);
+        imgFlechaAtras= findViewById(R.id.imgAtras);
+        imgFlechaAtras.setOnClickListener(this);
 
         incializarFirebase();
         listarPuntajes();
@@ -78,7 +79,7 @@ public class PuntajesUsuariosTotalesActivity extends AppCompatActivity implement
     }
     @Override
     public void onClick(View view) {
-        if (view == imageButtonFlechaAtras){
+        if (view == imgFlechaAtras){
             startActivity(new Intent(this, CrudsAdminActivity.class));
 
         }

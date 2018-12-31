@@ -122,7 +122,7 @@ public class PuntajeUsuarioActivity extends AppCompatActivity implements View.On
     @Override
     public void onClick(View view) {
         if (view == imgFlechaAtras){
-            startActivity(new Intent(this, MainPrincipalActivity.class));
+            startActivity(new Intent(this, MainUsuarioActivity.class));
 
         }
 

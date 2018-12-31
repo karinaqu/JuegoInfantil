@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -17,7 +18,7 @@ import com.google.firebase.auth.FirebaseAuth;
 public class RecuperarContrasenaActivity extends AppCompatActivity implements View.OnClickListener {
     EditText editTextCorreo;
     Button buttonEnviar;
-    private ImageButton imageButtonFlechaAtras;
+    private ImageView imgFlechaAtras;
 
     FirebaseAuth firebaseAuth;
 
@@ -27,8 +28,8 @@ public class RecuperarContrasenaActivity extends AppCompatActivity implements Vi
         setContentView(R.layout.activity_recuperar_contrasena);
         editTextCorreo= findViewById(R.id.txtEmail);
         buttonEnviar= findViewById(R.id.btnEnviar);
-        imageButtonFlechaAtras= findViewById(R.id.imgAtras);
-        imageButtonFlechaAtras.setOnClickListener(this);
+        imgFlechaAtras= findViewById(R.id.imgAtras);
+        imgFlechaAtras.setOnClickListener(this);
 
 
         firebaseAuth= FirebaseAuth.getInstance();
@@ -57,7 +58,7 @@ public class RecuperarContrasenaActivity extends AppCompatActivity implements Vi
 
     @Override
     public void onClick(View view) {
-        if (view == imageButtonFlechaAtras){
+        if (view == imgFlechaAtras){
             startActivity(new Intent(this,LoginActivity.class));
 
         }

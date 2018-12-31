@@ -5,11 +5,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@drawable/fondo_principal1"
     tools:context=".PuntajesUsuariosTotalesActivity">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
+        <ImageView
+            android:id="@+id/imgAtras"
+            android:layout_width="67dp"
+            android:layout_height="73dp"
+            android:src="@drawable/atras" />
         <TextView
 
             android:layout_width="wrap_content"
@@ -24,13 +30,6 @@
             android:layout_width="match_parent"
             android:layout_height="371dp"
             android:textSize="8px"></ListView>
-
-        <ImageButton
-            android:id="@+id/imgAtras"
-            android:layout_width="67dp"
-            android:layout_height="73dp"
-            android:src="@drawable/atras" />
-
 
     </LinearLayout>
 

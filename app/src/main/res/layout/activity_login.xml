@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/fondo_principal1"
     tools:context=".LoginActivity">
 
 
@@ -13,11 +14,16 @@
         android:orientation="vertical">
 
 
-
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="184dp"
-            android:src="@drawable/login2" />
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/animation_view"
+            android:layout_width="317dp"
+            android:layout_height="196dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center"
+            app:lottie_autoPlay="true"
+            app:lottie_fileName="little_girl_jumping_-_loader.json"
+            app:lottie_loop="true" />
 
         <TextView
             android:id="@+id/textView"
@@ -32,45 +38,55 @@
         <EditText
             android:id="@+id/txtEmail"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="51dp"
             android:layout_margin="5dp"
             android:drawableLeft="@drawable/ic_email"
             android:hint="    Ingresar su correo"
-            android:inputType="textEmailAddress" />
+            android:inputType="textEmailAddress"
+            android:textColorHint="#0509fa"
+            android:textSize="18sp" />
 
         <EditText
             android:id="@+id/txtPassword"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:layout_margin="5dp"
             android:drawableLeft="@drawable/ic_contrasena"
             android:hint="   Ingresar su contraseña"
-            android:inputType="textPassword" />
+            android:inputType="textPassword"
+            android:textColorHint="#0509fa"
+            android:textSize="18sp" />
 
         <Button
             android:id="@+id/btnIngresar"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_width="155dp"
+            android:layout_height="69dp"
+            android:layout_gravity="center"
             android:layout_margin="10dp"
-            android:drawableBottom="@drawable/ic_key"
+            android:drawableLeft="@drawable/ic_key"
+            android:gravity="center"
             android:text="Ingresar"
             android:textSize="18sp"
             android:textStyle="normal|bold" />
+
 
         <TextView
             android:id="@+id/txtvRegistrar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+
             android:text="No tiene una cuenta? Registrate aquí"
             android:textAlignment="center"
             android:textColor="#131946"
             android:textSize="18sp"
             android:textStyle="bold" />
+
         <TextView
             android:id="@+id/txtvRecuperarContrasena"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
+
             android:text="Olvido su contraseña clic aquí"
             android:textAlignment="center"
             android:textColor="#131946"

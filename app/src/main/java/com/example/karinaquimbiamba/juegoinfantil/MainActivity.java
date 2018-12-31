@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,7 +31,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private EditText editTextNombre; // Definición de variable de texto para ingreso de nombre
     private EditText editTextEdad; // Definición de variable de texto para ingreso de nombre
     private TextView textViewRol;
-    private ImageButton imageButtonFlechaAtras;
+    private ImageView imgFlechaAtras;
 
     private ProgressDialog progressDialog; //Definición de variable de Dialogo
     private FirebaseAuth firebaseAuth; //Definición de variable para registro de usuarios en firebase
@@ -46,7 +47,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         firebaseAuth= FirebaseAuth.getInstance();
         if (firebaseAuth.getCurrentUser() !=null){
             finish();
-            startActivity(new Intent(getApplicationContext(), MainPrincipalActivity.class));
+            startActivity(new Intent(getApplicationContext(), MainUsuarioActivity.class));
 
         }
 
@@ -56,11 +57,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         textViewLogin =(TextView) findViewById(R.id.txtvLogin);
         textViewRol =(TextView) findViewById(R.id.txtRol);
         editTextNombre= (EditText) findViewById(R.id.txtNombre);
-        imageButtonFlechaAtras= findViewById(R.id.imgAtras);
+        imgFlechaAtras= findViewById(R.id.imgAtras);
 
         buttonRegister.setOnClickListener(this);
         textViewLogin.setOnClickListener(this);
-        imageButtonFlechaAtras.setOnClickListener(this);
+        imgFlechaAtras.setOnClickListener(this);
     }
     @Override
     protected void onStart() {
@@ -133,7 +134,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                                     if (task.isSuccessful()){
 
                                         if (textViewRol.getText().toString().equals("Usuario")){
-                                            startActivity(new Intent(getApplicationContext(),MainPrincipalActivity.class));
+                                            startActivity(new Intent(getApplicationContext(),MainUsuarioActivity.class));
 
                                         }
                                         if (textViewRol.getText().toString().equals("Administrador")){
@@ -166,7 +167,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             startActivity(new Intent(this,LoginActivity.class));
 
         }
-        if (view == imageButtonFlechaAtras){
+        if (view == imgFlechaAtras){
             startActivity(new Intent(this,LoginActivity.class));
 
         }

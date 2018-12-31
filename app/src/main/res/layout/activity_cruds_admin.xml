@@ -5,12 +5,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@drawable/fondo_principal1"
     tools:context=".CrudsAdminActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/imgAtras"
+            android:layout_width="67dp"
+            android:layout_height="73dp"
+            android:src="@drawable/atras" />
 
         <ImageView
             android:layout_width="match_parent"
@@ -78,11 +85,6 @@
             android:text="Puntajes"
             android:textSize="18sp"/>
 
-        <ImageButton
-            android:id="@+id/imgAtras"
-            android:layout_width="67dp"
-            android:layout_height="73dp"
-            android:src="@drawable/atras" />
     </LinearLayout>
 
 </ScrollView>

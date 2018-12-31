@@ -11,6 +11,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -20,6 +21,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
@@ -37,7 +39,7 @@ public class CrudRolActivity extends AppCompatActivity implements View.OnClickLi
     private List<Rol> listRol = new ArrayList<Rol>();
     ArrayAdapter<Rol> arrayAdapterRol;
     Rol rolSeleccionado;
-    private ImageButton imageButtonFlechaAtras;
+    private ImageView imgFlechaAtras;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,8 +52,8 @@ public class CrudRolActivity extends AppCompatActivity implements View.OnClickLi
 
         incializarFirebase();
         listarRoles();
-        imageButtonFlechaAtras= findViewById(R.id.imgAtras);
-        imageButtonFlechaAtras.setOnClickListener(this);
+        imgFlechaAtras= findViewById(R.id.imgAtras);
+        imgFlechaAtras.setOnClickListener(this);
 
         listViewRol.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -101,8 +103,8 @@ public class CrudRolActivity extends AppCompatActivity implements View.OnClickLi
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item){
-        String nombre = editTexttNombre.getText().toString();
-        String descripcion = editTextDescripcion.getText().toString();
+        final String nombre = editTexttNombre.getText().toString();
+        final String descripcion = editTextDescripcion.getText().toString();
 
 
         switch (item.getItemId()){
@@ -112,14 +114,29 @@ public class CrudRolActivity extends AppCompatActivity implements View.OnClickLi
 
                     break;
                 }else {
-                    Rol rol= new Rol();
-                    rol.setUid(UUID.randomUUID().toString());
-                    rol.setName(nombre);
-                    rol.setDescripcion(descripcion);
-                    databaseReference.child("Rol").child(rol.getUid()).setValue(rol);
-                    Toast.makeText(this,"Añadido", Toast.LENGTH_LONG).show();;
-                    CasillasBlancas();
-                    break;
+                    Query buequeda= FirebaseDatabase.getInstance().getReference().child("Rol").orderByChild("name").equalTo(nombre);
+                    buequeda.addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            if(dataSnapshot.getChildrenCount()>0){
+                                Toast.makeText(CrudRolActivity.this,"Nombre ya existente ingrese otro", Toast.LENGTH_SHORT).show();
+                            }else{
+
+                                Rol rol= new Rol();
+                                rol.setUid(UUID.randomUUID().toString());
+                                rol.setName(nombre);
+                                rol.setDescripcion(descripcion);
+                                databaseReference.child("Rol").child(rol.getUid()).setValue(rol);
+                                Toast.makeText(CrudRolActivity.this,"Añadido con éxito", Toast.LENGTH_SHORT).show();
+                                CasillasBlancas();
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                        }
+                    });
                 }
 
 
@@ -169,7 +186,7 @@ public class CrudRolActivity extends AppCompatActivity implements View.OnClickLi
 
     @Override
     public void onClick(View view) {
-        if (view == imageButtonFlechaAtras){
+        if (view == imgFlechaAtras){
             startActivity(new Intent(this, CrudsAdminActivity.class));
 
         }

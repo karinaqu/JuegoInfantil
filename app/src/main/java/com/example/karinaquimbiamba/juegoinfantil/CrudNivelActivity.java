@@ -11,6 +11,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -22,6 +23,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
@@ -35,7 +37,7 @@ public class CrudNivelActivity extends AppCompatActivity implements View.OnClick
     private EditText editTexttNombre;
     private EditText editTextDescripcion;
     private EditText editTextAreaNombre;
-    private ImageButton imageButtonFlechaAtras;
+    private ImageView imgFlechaAtras;
 
     private ListView listViewNivel;
     private Spinner spinnerArea;
@@ -60,8 +62,8 @@ public class CrudNivelActivity extends AppCompatActivity implements View.OnClick
         editTextDescripcion= findViewById(R.id.txtDescripcion);
         listViewNivel= findViewById(R.id.lstNivel);
         //editTextAreaNombre= findViewById(R.id.txtNombreArea);
-        imageButtonFlechaAtras= findViewById(R.id.imgAtras);
-        imageButtonFlechaAtras.setOnClickListener(this);
+        imgFlechaAtras= findViewById(R.id.imgAtras);
+        imgFlechaAtras.setOnClickListener(this);
 
 
         spinnerArea= findViewById(R.id.spnArea);
@@ -155,9 +157,9 @@ public class CrudNivelActivity extends AppCompatActivity implements View.OnClick
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item){
-        String nombre = editTexttNombre.getText().toString();
-        String descripcion = editTextDescripcion.getText().toString();
-        String uid_Area = spinnerArea.getSelectedItem().toString();
+        final String nombre = editTexttNombre.getText().toString();
+        final String descripcion = editTextDescripcion.getText().toString();
+        final String uid_Area = spinnerArea.getSelectedItem().toString();
 
 
         switch (item.getItemId()){
@@ -167,15 +169,32 @@ public class CrudNivelActivity extends AppCompatActivity implements View.OnClick
 
                     break;
                 }else {
-                    final Nivel nivel= new Nivel();
-                    nivel.setUid(UUID.randomUUID().toString());
-                    nivel.setName(nombre);
-                    nivel.setDescripcion(descripcion);
-                    nivel.setUid_Area(uid_Area);
-                    databaseReference.child("Nivel").child(nivel.getUid()).setValue(nivel);
-                    Toast.makeText(this,"Añadido", Toast.LENGTH_LONG).show();;
-                    CasillasBlancas();
-                    break;
+                    Query buequeda= FirebaseDatabase.getInstance().getReference().child("Nivel").orderByChild("name").equalTo(nombre);
+                    buequeda.addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            if(dataSnapshot.getChildrenCount()>0){
+                                Toast.makeText(CrudNivelActivity.this,"Nombre ya existente ingrese otro", Toast.LENGTH_SHORT).show();
+                            }else{
+
+                                final Nivel nivel= new Nivel();
+                                nivel.setUid(UUID.randomUUID().toString());
+                                nivel.setName(nombre);
+                                nivel.setDescripcion(descripcion);
+                                nivel.setUid_Area(uid_Area);
+                                databaseReference.child("Nivel").child(nivel.getUid()).setValue(nivel);
+                                Toast.makeText(CrudNivelActivity.this,"Añadido con exito", Toast.LENGTH_SHORT).show();
+                                CasillasBlancas();
+
+
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                        }
+                    });
                 }
 
 
@@ -230,7 +249,7 @@ public class CrudNivelActivity extends AppCompatActivity implements View.OnClick
 
     @Override
     public void onClick(View view) {
-        if (view == imageButtonFlechaAtras){
+        if (view == imgFlechaAtras){
             startActivity(new Intent(this, CrudsAdminActivity.class));
 
         }

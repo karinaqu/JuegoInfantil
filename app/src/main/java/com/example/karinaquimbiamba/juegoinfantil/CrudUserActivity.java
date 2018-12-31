@@ -14,6 +14,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -44,7 +45,7 @@ public class CrudUserActivity extends AppCompatActivity implements View.OnClickL
     private EditText editTextNombre; // Definición de variable de texto para ingreso de nombre
     private ProgressDialog progressDialog; //Definición de variable de Dialogo
     private FirebaseAuth firebaseAuth; //Definición de variable para registro de usuarios en firebase
-    private ImageButton imageButtonFlechaAtras;
+    private ImageView imgFlechaAtras;
     DatabaseReference databaseReference;
     FirebaseDatabase firebaseDatabase;
     private List<User> listUser = new ArrayList<User>();
@@ -67,8 +68,8 @@ public class CrudUserActivity extends AppCompatActivity implements View.OnClickL
         editTextPassword =(EditText) findViewById(R.id.txtPassword);
         editTextNombre= (EditText) findViewById(R.id.txtNombre);
         spinnerRol= findViewById(R.id.spnRol);
-        imageButtonFlechaAtras= findViewById(R.id.imgAtras);
-        imageButtonFlechaAtras.setOnClickListener(this);
+        imgFlechaAtras= findViewById(R.id.imgAtras);
+        imgFlechaAtras.setOnClickListener(this);
 
         listViewUser= findViewById(R.id.lstUser);
 
@@ -271,7 +272,7 @@ public class CrudUserActivity extends AppCompatActivity implements View.OnClickL
 
     @Override
     public void onClick(View view) {
-        if (view == imageButtonFlechaAtras){
+        if (view == imgFlechaAtras){
             startActivity(new Intent(this, CrudsAdminActivity.class));
 
         }

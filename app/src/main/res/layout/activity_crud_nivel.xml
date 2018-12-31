@@ -4,13 +4,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:orientation="vertical"
+    android:background="@drawable/fondo_principal1"
     android:layout_height="match_parent"
     tools:context=".CrudNivelActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/imgAtras"
+            android:layout_width="67dp"
+            android:layout_height="73dp"
+            android:src="@drawable/atras" />
 
         <TextView
             android:id="@+id/textView"
@@ -66,11 +73,6 @@
             android:layout_height="172dp"
             android:textSize="8px"></ListView>
 
-        <ImageButton
-            android:id="@+id/imgAtras"
-            android:layout_width="67dp"
-            android:layout_height="73dp"
-            android:src="@drawable/atras" />
 
     </LinearLayout>
 

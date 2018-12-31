@@ -11,6 +11,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -20,6 +21,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
@@ -31,7 +33,7 @@ public class CrudAreaActivity extends AppCompatActivity implements View.OnClickL
     private EditText editTexttNombre;
     private EditText editTextDescripcion;
     private ListView listViewArea;
-    private ImageButton imageButtonFlechaAtras;
+    private ImageView imgFlechaAtras;
     DatabaseReference databaseReference;
     FirebaseDatabase firebaseDatabase;
     private List<Area> listArea = new ArrayList<Area>();
@@ -46,8 +48,8 @@ public class CrudAreaActivity extends AppCompatActivity implements View.OnClickL
         editTexttNombre=findViewById(R.id.txtNombre);
         editTextDescripcion= findViewById(R.id.txtDescripcion);
         listViewArea= findViewById(R.id.lstArea);
-        imageButtonFlechaAtras= findViewById(R.id.imgAtras);
-        imageButtonFlechaAtras.setOnClickListener(this);
+        imgFlechaAtras= findViewById(R.id.imgAtras);
+        imgFlechaAtras.setOnClickListener(this);
 
         incializarFirebase();
         listarAreas();
@@ -102,8 +104,8 @@ public class CrudAreaActivity extends AppCompatActivity implements View.OnClickL
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item){
-        String nombre = editTexttNombre.getText().toString();
-        String descripcion = editTextDescripcion.getText().toString();
+        final String nombre = editTexttNombre.getText().toString();
+        final String descripcion = editTextDescripcion.getText().toString();
 
 
         switch (item.getItemId()){
@@ -113,14 +115,31 @@ public class CrudAreaActivity extends AppCompatActivity implements View.OnClickL
 
                     break;
                 }else {
-                    Area area= new Area();
-                    area.setUid(UUID.randomUUID().toString());
-                    area.setName(nombre);
-                    area.setDescripcion(descripcion);
-                    databaseReference.child("Area").child(area.getUid()).setValue(area);
-                    Toast.makeText(this,"Añadido", Toast.LENGTH_LONG).show();
-                    CasillasBlancas();
-                    break;
+                    Query buequeda= FirebaseDatabase.getInstance().getReference().child("Area").orderByChild("name").equalTo(nombre);
+                    buequeda.addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            if(dataSnapshot.getChildrenCount()>0){
+                                Toast.makeText(CrudAreaActivity.this,"Nombre ya existente ingrese otro", Toast.LENGTH_SHORT).show();
+                            }else{
+
+                                Area area= new Area();
+                                area.setUid(UUID.randomUUID().toString());
+                                area.setName(nombre);
+                                area.setDescripcion(descripcion);
+                                databaseReference.child("Area").child(area.getUid()).setValue(area);
+                                Toast.makeText(CrudAreaActivity.this,"Añadido con exito", Toast.LENGTH_SHORT).show();
+                                CasillasBlancas();
+
+
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                        }
+                    });
                 }
 
 
@@ -171,7 +190,7 @@ public class CrudAreaActivity extends AppCompatActivity implements View.OnClickL
     @Override
     public void onClick(View view) {
 
-        if (view == imageButtonFlechaAtras){
+        if (view == imgFlechaAtras){
             startActivity(new Intent(this, CrudsAdminActivity.class));
 
         }

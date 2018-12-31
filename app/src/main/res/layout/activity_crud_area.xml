@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/fondo_principal1"
     android:orientation="vertical"
     tools:context=".CrudAreaActivity">
 
@@ -11,6 +12,12 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/imgAtras"
+            android:layout_width="67dp"
+            android:layout_height="73dp"
+            android:src="@drawable/atras" />
 
         <TextView
             android:id="@+id/textView"
@@ -51,12 +58,6 @@
             android:layout_width="match_parent"
             android:layout_height="210dp"
             android:textSize="8px"></ListView>
-
-        <ImageButton
-            android:id="@+id/imgAtras"
-            android:layout_width="67dp"
-            android:layout_height="73dp"
-            android:src="@drawable/atras" />
 
 
     </LinearLayout>
