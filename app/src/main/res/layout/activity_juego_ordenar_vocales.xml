@@ -151,22 +151,22 @@
 
         <LinearLayout
             android:id="@+id/lyVocal1"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
             android:layout_weight="0"
             android:background="@android:color/holo_purple"
             android:padding="5dp">
 
             <Button
                 android:id="@+id/vocalA"
-                android:layout_width="65dp"
-                android:layout_height="match_parent" />
+                android:layout_width="60dp"
+                android:layout_height="60dp" />
         </LinearLayout>
 
         <LinearLayout
             android:id="@+id/lyVocal2"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
             android:layout_weight="0"
             android:background="@android:color/holo_green_dark"
             android:orientation="vertical"
@@ -175,14 +175,14 @@
             <Button
                 android:id="@+id/vocalE"
                 android:layout_width="65dp"
-                android:layout_height="match_parent" />
+                android:layout_height="60dp" />
 
         </LinearLayout>
 
         <LinearLayout
             android:id="@+id/lyVocal3"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
             android:layout_weight="0"
             android:background="@android:color/holo_orange_dark"
             android:orientation="vertical"
@@ -190,14 +190,14 @@
 
             <Button
                 android:id="@+id/vocalI"
-                android:layout_width="70dp"
-                android:layout_height="match_parent" />
+                android:layout_width="60dp"
+                android:layout_height="60dp" />
         </LinearLayout>
 
         <LinearLayout
             android:id="@+id/lyVocal4"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
             android:layout_weight="0"
             android:background="@android:color/darker_gray"
             android:orientation="vertical"
@@ -205,23 +205,23 @@
 
             <Button
                 android:id="@+id/vocalO"
-                android:layout_width="65dp"
-                android:layout_height="wrap_content" />
+                android:layout_width="60dp"
+                android:layout_height="60dp" />
 
         </LinearLayout>
 
         <LinearLayout
             android:id="@+id/lyVocal5"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
             android:layout_weight="0"
             android:background="@android:color/holo_blue_light"
             android:padding="5dp">
 
             <Button
                 android:id="@+id/vocalU"
-                android:layout_width="65dp"
-                android:layout_height="wrap_content" />
+                android:layout_width="60dp"
+                android:layout_height="60dp" />
         </LinearLayout>
 
     </LinearLayout>

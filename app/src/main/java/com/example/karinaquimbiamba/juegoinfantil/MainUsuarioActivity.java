@@ -89,10 +89,10 @@ public class MainUsuarioActivity extends AppCompatActivity implements View.OnCli
         super.onResume();
         mdMusica.start();
     }
-    @Override
+    /*@Override
     protected void onPause(){
         super.onPause();
         mdMusica.pause();
-    }
+    }*/
 
 }

@@ -73,7 +73,7 @@ public class NivelesAre1Activity extends AppCompatActivity implements View.OnCli
                 }
                 if(position == 2) {
                     // Abre una nueva Activity:
-                    startActivity( new Intent(view.getContext(), JuegoNivel3Area1Activity.class));
+                    startActivity( new Intent(view.getContext(), JuegoOrdenarAbecedario.class));
 
                 }
 

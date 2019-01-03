@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/fondo_resta"
     tools:context=".JuegoRestaNumeros">
 
     <ImageView
@@ -215,30 +216,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.25" />
 
-    <ImageView
-        android:id="@+id/imgCorrecto"
-        android:layout_width="246dp"
-        android:layout_height="233dp"
-        android:src="@drawable/correcto"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.572"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageView
-        android:id="@+id/imgIncorrecto"
-        android:layout_width="246dp"
-        android:layout_height="233dp"
-        android:src="@drawable/incorrecto"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.572"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <TextView
         android:id="@+id/txtNombre"
         android:layout_width="wrap_content"
@@ -292,7 +269,7 @@
         android:id="@+id/rlMenu"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#00ffff"
+        android:background="@drawable/terminado_resta"
         android:visibility="gone">
 
         <TextView
@@ -304,7 +281,7 @@
             android:layout_marginTop="44dp"
             android:gravity="center"
             android:text="PERDISTE"
-            android:textColor="#f4b219"
+            android:textColor="#ff00"
             android:textSize="50dp"
             android:textStyle="bold" />
 
@@ -339,5 +316,30 @@
             android:src="@drawable/icono_derecha"/>
 
     </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/imgCorrecto"
+        android:layout_width="246dp"
+        android:layout_height="233dp"
+        android:src="@drawable/correcto"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.572"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imgIncorrecto"
+        android:layout_width="246dp"
+        android:layout_height="233dp"
+        android:src="@drawable/incorrecto"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.572"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 
 </android.support.constraint.ConstraintLayout>
